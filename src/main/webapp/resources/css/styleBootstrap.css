@@ -1,0 +1,333 @@
+/*http://bootsnipp.com/snippets/featured/dynamic-form-fields-add-new-field-on-focus-or-change*/
+/* 
+    Text fields 
+*/
+div.input-group-option:last-child span.input-group-addon-remove{
+    display: none;
+}
+
+div.input-group-option:last-child input.form-control{
+    border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+div.input-group-option span.input-group-addon-remove{
+	cursor: pointer;
+}
+
+div.input-group-option{
+    margin-bottom: 3px;
+}
+
+/* 
+    Selects 
+*/
+
+div.input-group-multiple-select:last-child span.input-group-addon-remove{
+	display: none;
+}
+
+div.input-group-multiple-select:last-child input.form-control{
+	border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+div.input-group-multiple-select span.input-group-addon-remove{
+	cursor: pointer;
+    background: none;
+    border: none;
+}
+
+div.input-group-multiple-select{
+    margin-bottom: 5px;
+}
+
+/* easy table filter*/
+/*http://bootsnipp.com/snippets/featured/easy-table-filter*/
+/*    --------------------------------------------------
+	:: General
+	-------------------------------------------------- */
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: #353535;
+}
+.content h1 {
+	text-align: center;
+}
+.content .content-footer p {
+	color: #6d6d6d;
+    font-size: 12px;
+    text-align: center;
+}
+.content .content-footer p a {
+	color: inherit;
+	font-weight: bold;
+}
+
+/*	--------------------------------------------------
+	:: Table Filter
+	-------------------------------------------------- */
+.panel {
+	border: 1px solid #ddd;
+	background-color: #fcfcfc;
+}
+.panel .btn-group {
+	margin: 15px 0 30px;
+}
+.panel .btn-group .btn {
+	transition: background-color .3s ease;
+}
+.table-filter {
+	background-color: #fff;
+	border-bottom: 1px solid #eee;
+}
+.table-filter tbody tr:hover {
+	cursor: pointer;
+	background-color: #eee;
+}
+.table-filter tbody tr td {
+	padding: 10px;
+	vertical-align: middle;
+	border-top-color: #eee;
+}
+.table-filter tbody tr.selected td {
+	background-color: #eee;
+}
+.table-filter tr td:first-child {
+	width: 38px;
+}
+.table-filter tr td:nth-child(2) {
+	width: 35px;
+}
+.ckbox {
+	position: relative;
+}
+.ckbox input[type="checkbox"] {
+	opacity: 0;
+}
+.ckbox label {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.ckbox label:before {
+	content: '';
+	top: 1px;
+	left: 0;
+	width: 18px;
+	height: 18px;
+	display: block;
+	position: absolute;
+	border-radius: 2px;
+	border: 1px solid #bbb;
+	background-color: #fff;
+}
+.ckbox input[type="checkbox"]:checked + label:before {
+	border-color: #2BBCDE;
+	background-color: #2BBCDE;
+}
+.ckbox input[type="checkbox"]:checked + label:after {
+	top: 3px;
+	left: 3.5px;
+	content: '\e013';
+	color: #fff;
+	font-size: 11px;
+	font-family: 'Glyphicons Halflings';
+	position: absolute;
+}
+.table-filter .star {
+	color: #ccc;
+	text-align: center;
+	display: block;
+}
+.table-filter .star.star-checked {
+	color: #F0AD4E;
+}
+.table-filter .star:hover {
+	color: #ccc;
+}
+.table-filter .star.star-checked:hover {
+	color: #F0AD4E;
+}
+.table-filter .media-photo {
+	width: 35px;
+}
+.table-filter .media-body {
+    display: block;
+    /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
+}
+.table-filter .media-meta {
+	font-size: 11px;
+	color: #999;
+}
+.table-filter .media .title {
+	color: #2BBCDE;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: normal;
+	margin: 0;
+}
+.table-filter .media .title span {
+	font-size: .8em;
+	margin-right: 20px;
+}
+.table-filter .media .title span.pagado {
+	color: #5cb85c;
+}
+.table-filter .media .title span.pendiente {
+	color: #f0ad4e;
+}
+.table-filter .media .title span.cancelado {
+	color: #d9534f;
+}
+.table-filter .media .summary {
+	font-size: 14px;
+}
+/*http://bootsnipp.com/snippets/featured/buttons-with-labels*/
+.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+.btn-labeled {padding-top: 0;padding-bottom: 0;}
+.btn { margin-bottom:10px; }
+
+/* http://bootsnipp.com/snippets/90QO4*/
+
+/***
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
+
+/***
+Content
+***/
+.content {
+    padding: 30px 0;
+}
+
+/***
+Pricing table
+***/
+.pricing {
+  position: relative;
+  margin-bottom: 15px;
+  border: 3px solid #eee;
+}
+
+.pricing-active {
+  border: 3px solid #36d7ac;
+  margin-top: -10px;
+  box-shadow: 7px 7px rgba(54, 215, 172, 0.2);
+}
+
+.pricing:hover {
+  border: 3px solid #36d7ac;
+}
+
+.pricing:hover h4 {
+  color: #36d7ac;
+}
+
+.pricing-head {
+  text-align: center;
+}
+
+.pricing-head h3,
+.pricing-head h4 {
+  margin: 0;
+  line-height: normal;
+}
+
+.pricing-head h3 span,
+.pricing-head h4 span {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.pricing-head h3 {
+  font-weight: 300;
+  color: #fafafa;
+  padding: 12px 0;
+  font-size: 27px;
+  background: #36d7ac;
+  border-bottom: solid 1px #41b91c;
+}
+
+.pricing-head h4 {
+  color: #bac39f;
+  padding: 5px 0;
+  font-size: 54px;
+  font-weight: 300;
+  background: #fbfef2;
+  border-bottom: solid 1px #f5f9e7;
+}
+
+.pricing-head-active h4 {
+  color: #36d7ac;
+}
+
+.pricing-head h4 i {
+  top: -8px;
+  font-size: 28px;
+  font-style: normal;
+  position: relative;
+}
+
+.pricing-head h4 span {
+  top: -10px;
+  font-size: 14px;
+  font-style: normal;
+  position: relative;
+}
+
+/*Pricing Content*/
+.pricing-content li {
+  color: #888;
+  font-size: 12px;
+  padding: 7px 15px;
+  border-bottom: solid 1px #f5f9e7;
+}
+
+/*Pricing Footer*/
+.pricing-footer {
+  color: #777;
+  font-size: 11px;
+  line-height: 17px;
+  text-align: center;
+  padding: 0 20px 19px;
+}
+
+/*Priceing Active*/
+.price-active,
+.pricing:hover {
+  z-index: 9;
+}
+
+.price-active h4 {
+  color: #36d7ac;
+}
+
+.no-space-pricing .pricing:hover {
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.no-space-pricing .price-active .pricing-head h4,
+.no-space-pricing .pricing:hover .pricing-head h4 {
+  color: #36d7ac;
+  padding: 15px 0;
+  font-size: 80px;
+  transition: color 0.5s ease-in-out;
+}
+
+.yellow-crusta.btn {
+  color: #FFFFFF;
+  background-color: #f3c200;
+}
+.yellow-crusta.btn:hover,
+.yellow-crusta.btn:focus,
+.yellow-crusta.btn:active,
+.yellow-crusta.btn.active {
+    color: #FFFFFF;
+    background-color: #cfa500;
+}
