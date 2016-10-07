@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.hxwr.lds.entities.Client" table="client">
-        <id name="id" type="java.lang.Short">
+        <id name="id" type="java.lang.Integer">
             <column name="clientid" />
             <generator class="identity" />
         </id>

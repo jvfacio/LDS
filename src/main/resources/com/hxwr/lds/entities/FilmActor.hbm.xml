@@ -12,8 +12,7 @@
                 <column name="film_id" />
             </key-property>
         </composite-id>
-        <many-to-one name="actor" class="com.hxwr.lds.entities.Actor" 
-                     update="false" insert="false" fetch="select">
+        <many-to-one name="actor" class="com.hxwr.lds.entities.Actor" update="false" insert="false" fetch="select">
             <column name="actor_id" not-null="true" />
         </many-to-one>
         <many-to-one name="film" class="com.hxwr.lds.entities.Film" update="false" insert="false" fetch="select">
