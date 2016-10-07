@@ -17,22 +17,22 @@ import org.hibernate.cfg.Configuration;
  * @author 35194
  */
 public class CustomerDao {
-    
+
     public void addCustomerDetails(Client customer) {
         try {
             Session session = HibernateConfig.openSession();
-            
             Transaction transaction = session.beginTransaction();
-            
             session.save(customer);
+            session.close();
             transaction.commit();
+
             System.out.println("\n\n Details Added \n");
- 
+
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
-            System.out.println("error");
+            System.out.println("error in customerDao");
         }
- 
+
     }
-    
+
 }

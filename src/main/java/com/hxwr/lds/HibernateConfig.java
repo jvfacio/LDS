@@ -14,9 +14,9 @@ import org.hibernate.cfg.Configuration;
  * @author Training
  */
 public class HibernateConfig {
-    
+
     private static SessionFactory factory;
-    
+
     static {
         try {
             factory = new Configuration().configure().buildSessionFactory();
@@ -25,13 +25,13 @@ public class HibernateConfig {
             throw new ExceptionInInitializerError(ex);
         }
     }
-    
+
     public static SessionFactory getSessionFactory() {
         return factory;
     }
-    
+
     public static Session openSession() {
         return factory.openSession();
     }
-    
+
 }

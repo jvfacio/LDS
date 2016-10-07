@@ -5,9 +5,10 @@
  */
 package com.hxwr.lds.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
-public class Client {
+public class Client implements java.io.Serializable{
 
     private int id;
     private String name;
@@ -15,7 +16,7 @@ public class Client {
     private String address;
     private String salary;
     private String lastName;
-    private Set<Loan> loans;
+    private Set<Loan> loans = new HashSet<Loan>(0);
 
     /**
      * @return the id
