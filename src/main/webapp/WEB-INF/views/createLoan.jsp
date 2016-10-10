@@ -20,11 +20,11 @@
                 </div>
                 <div class="form-group">
                     <label for="loanInterestInput">Interest</label>
-                    <input type="number" class="form-control" id="loanInterestInput" name="interest" placeholder="Interest">
+                    <input type="number" step=0.01 class="form-control" id="loanInterestInput" name="interest" placeholder="Interest">
                 </div>
                 <div class="form-group">
                     <label for="loanAmountInput">Amount</label>
-                    <input type="number" class="form-control" id="loanAmountInput" name="amount" placeholder="Amount">
+                    <input type="number" step=0.01 class="form-control" id="loanAmountInput" name="amount" placeholder="Amount">
                 </div>
 
                 <button type="submit" class="btn btn-default">Submit</button>
