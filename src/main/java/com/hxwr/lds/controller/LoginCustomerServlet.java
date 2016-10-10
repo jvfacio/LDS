@@ -9,6 +9,7 @@ import com.hxwr.lds.HibernateConfig;
 import com.hxwr.lds.entities.Client;
 import java.io.IOException;
 import java.util.Iterator;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -54,17 +55,23 @@ public class LoginCustomerServlet extends HttpServlet {
         query.setString("name", request.getParameter("name"));
         query.setString("lastName", request.getParameter("lastName"));
         HttpSession httpSession = request.getSession();
+        //RequestDispatcher dispatcher = request.getRequestDispatcher("/LDS/customer");
         Iterator<Client> iter = query.iterate();
-        if(iter.hasNext()) {
-            Client c = iter.next();
-            if(!httpSession.isNew()) {
-                httpSession.invalidate();
+        if (iter.hasNext()) {
+            Client client = iter.next();
+            if (!httpSession.isNew()) {
+                //   httpSession.invalidate();
             }
-            httpSession.setAttribute("clientId", c.getId());
+            
             httpSession.setAttribute("message", "Login successful!");
-            response.sendRedirect("/LDS/customer/");
-        }
-        else {
+            
+            //set client attribute 
+            httpSession.setAttribute("client", client);
+            
+            //redirect user to customer details page
+            response.sendRedirect("/LDS/customer");
+            
+        } else {
             httpSession.setAttribute("message", "Login credentials were invalid");
             response.sendRedirect("/LDS/customer/login");
         }

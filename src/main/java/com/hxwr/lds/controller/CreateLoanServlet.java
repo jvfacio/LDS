@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -46,20 +47,27 @@ public class CreateLoanServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
+
         Loan loan = new Loan();
         loan.setLoanType(request.getParameter("type"));
         loan.setLoanPeriod(request.getParameter("loanperiod"));
         loan.setAmount(Double.parseDouble(request.getParameter("amount")));
         loan.setInterest(Double.parseDouble(request.getParameter("interest")));
-        
+        HttpSession httpSession = request.getSession();
+
         try {
             new LoanDao().addLoanDetails(loan);
-            response.sendRedirect("/Success");
-        }
-        catch (Exception e) {
+
+            httpSession.setAttribute("loanType", request.getParameter("type"));
+            httpSession.setAttribute("loanPeriod", request.getParameter("loanperiod"));
+            httpSession.setAttribute("loanType", Double.parseDouble(request.getParameter("amount")));
+            httpSession.setAttribute("interest", Double.parseDouble(request.getParameter("interest")));
+            httpSession.setAttribute("message", "Loan Data Created!");
+            response.sendRedirect("/LDS/displayloan");
+            //response.sendRedirect("/Success");
+        } catch (Exception e) {
             e.printStackTrace();
-            try(PrintWriter out = response.getWriter()) {
+            try (PrintWriter out = response.getWriter()) {
                 out.print(e.toString());
             }
         }

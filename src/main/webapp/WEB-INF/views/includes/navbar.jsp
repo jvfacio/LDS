@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : navbar.jsp
     Created on : Oct 6, 2016, 9:52:25 AM
     Author     : Training
@@ -15,22 +15,22 @@
                     <!--sec:authorize access="authenticated" var="authenticated"/-->
                     <!--sec:authorize access="hasRole('ADMIN')" var="userRole"/-->
                     <c:choose>
-                        <c:when test="${clientId != null}">
-                            <c:url var="customerUrl" value="/customer/" />
+                        <c:when test="${client != null }">
+                            <c:url var="customerUrl" value="/customer" />
                             <li><a id="navCustomerLink" href="${customerUrl}">Customer Details</a></li>
-                            <c:url var="createLoanUrl" value= "/loan/create" />
+                                <c:url var="createLoanUrl" value= "/loan/create" />
                             <li><a id="navCreateLoanLink" href="${createLoanUrl}">Create Loan</a></li>
-                        </c:when>
-                    </c:choose>
+                            </c:when>
+                        </c:choose>
                 </ul>
             </div>
             <div id="nav-account" class="nav-collapse pull-right">
                 <ul class="nav">
                     <c:choose>
-                        <c:when test="${authenticated}">
+                        <c:when test="${client != null}">
                             <li id="greeting"><div>Welcome <!--sec:authentication property="name" /--></div></li>
-                            <c:url var="logoutUrl" value="/customer/logout"/>
-                            <li><a id="navLogoutLink" href="${logoutUrl}">Logout</a></li> 
+                                <c:url var="logoutUrl" value="/customer/logout"/>
+                            <li><a id="navLogoutLink" href="${logoutUrl}">Logout</a></li>
                         </c:when>
                         <c:otherwise>
                             <c:url var="loginUrl" value="/customer/login"/>
