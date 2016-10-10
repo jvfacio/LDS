@@ -6,6 +6,7 @@
 package com.hxwr.lds.controller;
 
 import com.hxwr.ids.service.impl.HelloWorld;
+import com.hxwr.ids.service.impl.dummy.DummyCRS;
 import com.hxwr.lds.CustomerDao;
 import com.hxwr.lds.entities.Client;
 import java.io.IOException;
@@ -49,10 +50,11 @@ public class RegisterCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
-        HelloWorld hw = (HelloWorld)webApplicationContext.getBean("helloBean");
         
-        hw.printHello();
+         
+        
+        
+        
         Client customer = new Client();
         customer.setAddress(request.getParameter("address"));
         customer.setName(request.getParameter("name"));

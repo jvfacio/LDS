@@ -5,8 +5,11 @@
  */
 package com.hxwr.lds.controller;
 
+import com.hxwr.ids.service.impl.dummy.DummyCRS;
 import com.hxwr.lds.LoanDao;
+import com.hxwr.lds.entities.Customer;
 import com.hxwr.lds.entities.Loan;
+import com.hxwr.lds.model.LoanReport;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,6 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -48,13 +53,21 @@ public class CreateLoanServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // obtain the spring web context
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+        
+        // obtain the Create report service bean
+        DummyCRS dummy = webApplicationContext.getBean(DummyCRS.class);
+        
+       
         Loan loan = new Loan();
         loan.setLoanType(request.getParameter("type"));
         loan.setLoanPeriod(request.getParameter("loanperiod"));
         loan.setAmount(Double.parseDouble(request.getParameter("amount")));
         loan.setInterest(Double.parseDouble(request.getParameter("interest")));
+        
+        
         HttpSession httpSession = request.getSession();
-
         try {
             new LoanDao().addLoanDetails(loan);
 
@@ -64,6 +77,8 @@ public class CreateLoanServlet extends HttpServlet {
             httpSession.setAttribute("interest", Double.parseDouble(request.getParameter("interest")));
             httpSession.setAttribute("message", "Loan Data Created!");
             response.sendRedirect("/LDS/displayloan");
+            LoanReport lr = dummy.CreateReport(loan, new Customer());
+            
             //response.sendRedirect("/Success");
         } catch (Exception e) {
             e.printStackTrace();
