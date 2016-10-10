@@ -6,6 +6,7 @@
 package com.hxwr.lds.controller;
 
 import com.hxwr.lds.LoanDao;
+import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,28 +48,40 @@ public class CreateLoanServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        Loan loan = new Loan();
-        loan.setLoanType(request.getParameter("type"));
-        loan.setLoanPeriod(request.getParameter("loanperiod"));
-        loan.setAmount(Double.parseDouble(request.getParameter("amount")));
-        loan.setInterest(Double.parseDouble(request.getParameter("interest")));
+        
+        //Retrieve Client object from the current session
         HttpSession httpSession = request.getSession();
-
-        try {
-            new LoanDao().addLoanDetails(loan);
-
-            httpSession.setAttribute("loanType", request.getParameter("type"));
-            httpSession.setAttribute("loanPeriod", request.getParameter("loanperiod"));
-            httpSession.setAttribute("loanType", Double.parseDouble(request.getParameter("amount")));
-            httpSession.setAttribute("interest", Double.parseDouble(request.getParameter("interest")));
-            httpSession.setAttribute("message", "Loan Data Created!");
-            response.sendRedirect("/LDS/displayloan");
-            //response.sendRedirect("/Success");
-        } catch (Exception e) {
-            e.printStackTrace();
-            try (PrintWriter out = response.getWriter()) {
-                out.print(e.toString());
+        Object rawClient = httpSession.getAttribute("client");
+        
+        //If the Client is not logged in, redirect to the login page
+        if(rawClient == null || !(rawClient instanceof Client)) {
+            response.sendRedirect("/LDS/customer/login");
+        }
+        else {
+            //Cast the Client to correct type
+            Client client = (Client) rawClient;
+            
+            //Initialize the new Loan object
+            Loan loan = new Loan();
+            loan.setLoanType(request.getParameter("type"));
+            loan.setLoanPeriod(request.getParameter("loanperiod"));
+            loan.setAmount(Double.parseDouble(request.getParameter("amount")));
+            loan.setInterest(Double.parseDouble(request.getParameter("interest")));
+            
+            //Add the new Loan to the Client
+            loan.setClient(client);
+            
+            try {
+                new LoanDao().addLoanDetails(loan);
+                //Set confirmation message
+                httpSession.setAttribute("message", "New Loan Created!");
+                response.sendRedirect("/LDS/displayloan");
+                //response.sendRedirect("/Success");
+            } catch (Exception e) {
+                e.printStackTrace();
+                try (PrintWriter out = response.getWriter()) {
+                    out.print(e.toString());
+                }
             }
         }
     }

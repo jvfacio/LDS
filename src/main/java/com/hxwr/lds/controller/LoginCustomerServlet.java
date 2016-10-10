@@ -63,10 +63,14 @@ public class LoginCustomerServlet extends HttpServlet {
                 //   httpSession.invalidate();
             }
             
+            //set confirmation message
             httpSession.setAttribute("message", "Login successful!");
             
             //set client attribute 
             httpSession.setAttribute("client", client);
+            
+            //set session expiration to 30 minutes
+            httpSession.setMaxInactiveInterval(30*60);
             
             //redirect user to customer details page
             response.sendRedirect("/LDS/customer");
