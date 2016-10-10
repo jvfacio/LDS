@@ -5,6 +5,7 @@
  */
 package com.hxwr.lds.controller;
 
+import com.hxwr.ids.service.impl.HelloWorld;
 import com.hxwr.lds.CustomerDao;
 import com.hxwr.lds.entities.Client;
 import java.io.IOException;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -46,6 +49,10 @@ public class RegisterCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+        HelloWorld hw = (HelloWorld)webApplicationContext.getBean("helloBean");
+        
+        hw.printHello();
         Client customer = new Client();
         customer.setAddress(request.getParameter("address"));
         customer.setName(request.getParameter("name"));
@@ -53,6 +60,10 @@ public class RegisterCustomerServlet extends HttpServlet {
         customer.setSalary(request.getParameter("salary"));
         customer.setlastName(request.getParameter("lastName"));
         HttpSession session = request.getSession(true);
+        
+        
+        
+        
         try {
             CustomerDao customerDAO = new CustomerDao();
             //userDAO.addUserDetails(userName, password, email, phone, city);
