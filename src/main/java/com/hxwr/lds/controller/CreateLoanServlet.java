@@ -5,9 +5,12 @@
  */
 package com.hxwr.lds.controller;
 
+import com.hxwr.ids.service.impl.dummy.DummyCRS;
 import com.hxwr.lds.LoanDao;
 import com.hxwr.lds.entities.Client;
+import com.hxwr.lds.entities.Customer;
 import com.hxwr.lds.entities.Loan;
+import com.hxwr.lds.model.LoanReport;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,6 +18,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -49,6 +54,13 @@ public class CreateLoanServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
+                // obtain the spring web context
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+        
+        // obtain the Create report service bean
+        DummyCRS dummy = webApplicationContext.getBean(DummyCRS.class);
+        
         //Retrieve Client object from the current session
         HttpSession httpSession = request.getSession();
         Object rawClient = httpSession.getAttribute("client");
@@ -72,10 +84,20 @@ public class CreateLoanServlet extends HttpServlet {
             loan.setClient(client);
             
             try {
+                //Save the new Loan
                 new LoanDao().addLoanDetails(loan);
                 //Set confirmation message
                 httpSession.setAttribute("message", "New Loan Created!");
-                response.sendRedirect("/LDS/displayloan");
+                
+                //Generate a loan report
+                LoanReport lr = dummy.CreateReport(loan, client);
+                
+                //Pass the LoanReport to JSP for rendering
+                request.setAttribute("report", lr);
+                request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp")
+                       .forward(request, response);
+
+                //response.sendRedirect("/LDS/displayloan");
                 //response.sendRedirect("/Success");
             } catch (Exception e) {
                 e.printStackTrace();
