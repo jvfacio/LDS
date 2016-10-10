@@ -47,6 +47,7 @@
         <div class="container">
             <c:if test="${message != null}">
                 <div class="alert alert-success" id="message"><c:out value="${message}"/></div>
+                <c:remove scope="session" var="message" />
             </c:if>
             <c:if test="${!hidePageTitle}">
                 <h1 id="title"><c:out value="${pageTitle}"/></h1>
