@@ -7,26 +7,29 @@
 <c:set var="pageTitle" value="Customer Details" scope="request"/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-6">
-            <form>
-                <div class="form-group">
-                    <label for="firstName">First Name: ${client.getName()}</label>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name: ${client.getlastName()}</label>
-                </div>
-                <div class="form-group">
-                    <label for="address">Address: ${client.getAddress()}</label>
-                </div>
-                <div class="form-group">
-                    <label for="salary">Salary: ${client.getSalary()}</label>
-                </div>
-                
-            </form>
+        <div class="col-md-4">
+            <table class="table table-hover">
+                <tr>
+                    <td>First Name</td>
+                    <td>${client.getName()}</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>${client.getlastName()}</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>${client.getAddress()}</td>
+                </tr>
+                <tr>
+                    <td>Salary</td>
+                    <td>${client.getSalary()}</td>
+                </tr>
+            </table>
+            
         </div>
-        <div class="col-xs-6">
+        <div class="col-md-8">
+            <h2>Loan History</h2>
             <table class="table table-hover">
                 <tr>
                     <th>Type</th>
@@ -48,8 +51,6 @@
                     </c:forEach>
                 </table>
         </div>
-    </div>
-</div>
 
 
 

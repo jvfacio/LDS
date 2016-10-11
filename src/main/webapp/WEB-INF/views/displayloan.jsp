@@ -15,7 +15,7 @@
     <c:forEach var="payment" items="${report.getMonthPaymentLst()}">
         <tr>
             <td> ${payment.getAmount()} </td>
-            <td> ${payment.getDate()}</td>
+            <td> ${payment.getFormattedDate()}</td>
         </tr>
     </c:forEach>
 </table>
