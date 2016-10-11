@@ -6,12 +6,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="pageTitle" value="Loan Report" scope="request"/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
-<body>
-    <h3>
-        Data: ${report.getLoan().getLoanType()};
-    </h3>
-
-</body>
+<h3>Loan Report</h3>
+<table class="table table-hover">
+    <tr>
+        <th>Amount</th>
+        <th>Date</th>
+    </tr>
+    <c:forEach var="payment" items="${report.getMonthPaymentLst()}">
+        <tr>
+            <td> ${payment.getAmount()} </td>
+            <td> ${payment.getDate()}</td>
+        </tr>
+    </c:forEach>
+</table>
 
 
 
