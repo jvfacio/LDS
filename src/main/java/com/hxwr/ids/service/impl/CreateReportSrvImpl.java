@@ -6,7 +6,7 @@
 package com.hxwr.ids.service.impl;
 
 import com.hxwr.ids.service.ICreateReportSrv;
-import com.hxwr.lds.entities.Customer;
+import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
 
@@ -17,7 +17,7 @@ import com.hxwr.lds.model.LoanReport;
 public class CreateReportSrvImpl implements ICreateReportSrv{
 
     @Override
-    public LoanReport CreateReport(Loan loan, Customer customer) {
+    public LoanReport CreateReport(Loan loan, Client client) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

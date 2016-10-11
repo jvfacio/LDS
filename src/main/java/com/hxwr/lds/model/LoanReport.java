@@ -5,7 +5,7 @@
  */
 package com.hxwr.lds.model;
 
-import com.hxwr.lds.entities.Customer;
+import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +21,9 @@ public class LoanReport {
     Loan loan;
     
     /**
-     * customer data
+     * client data
      */
-    Customer customer;
+    Client client;
     
     /**
      * the list of monthly payment
@@ -38,12 +38,12 @@ public class LoanReport {
         this.loan = loan;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Client getClient() {
+        return client;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public List<Payment> getMonthPaymentLst() {

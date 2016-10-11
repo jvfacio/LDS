@@ -61,9 +61,6 @@ public class RegisterCustomerServlet extends HttpServlet {
         customer.setlastName(request.getParameter("lastName"));
         HttpSession session = request.getSession(true);
         
-        
-        
-        
         try {
             CustomerDao customerDAO = new CustomerDao();
             //userDAO.addUserDetails(userName, password, email, phone, city);

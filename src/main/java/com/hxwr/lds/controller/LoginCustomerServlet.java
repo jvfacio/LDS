@@ -5,21 +5,15 @@
  */
 package com.hxwr.lds.controller;
 
-import com.hxwr.ids.service.impl.HelloWorld;
-import com.hxwr.lds.HibernateConfig;
+import com.hxwr.lds.CustomerDao;
 import com.hxwr.lds.entities.Client;
 import java.io.IOException;
 import java.util.Iterator;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -53,33 +47,21 @@ public class LoginCustomerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
-        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
-        
-        // obtain the Create report service bean
-        HelloWorld hw = webApplicationContext.getBean(HelloWorld.class);
-        hw.printHello();
-        
-        
-        
-        Session hibernateSession = HibernateConfig.openSession();
-        Query query = hibernateSession.createQuery(
-                "from Client where name = :name and lastName = :lastName");
-        query.setString("name", request.getParameter("name"));
-        query.setString("lastName", request.getParameter("lastName"));
         HttpSession httpSession = request.getSession();
-        //RequestDispatcher dispatcher = request.getRequestDispatcher("/LDS/customer");
-        Iterator<Client> iter = query.iterate();
-        if (iter.hasNext()) {
-            Client client = iter.next();
-            if (!httpSession.isNew()) {
-                //   httpSession.invalidate();
-            }
-            
+        
+        String fName = request.getParameter("name"),
+               lName = request.getParameter("lastName");
+        Client client = new CustomerDao().getByName(fName, lName);
+        
+        if(client != null) {       
+            //set confirmation message
             httpSession.setAttribute("message", "Login successful!");
             
             //set client attribute 
             httpSession.setAttribute("client", client);
+            
+            //set session expiration to 30 minutes
+            httpSession.setMaxInactiveInterval(30*60);
             
             //redirect user to customer details page
             response.sendRedirect("/LDS/customer");

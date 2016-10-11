@@ -5,7 +5,7 @@
  */
 package com.hxwr.ids.service;
 
-import com.hxwr.lds.entities.Customer;
+import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
 
@@ -22,5 +22,5 @@ public interface ICreateReportSrv {
      * @return a loan report data
      */
     
-    public LoanReport CreateReport(Loan loan, Customer customer);
+    public LoanReport CreateReport(Loan loan, Client client);
 }

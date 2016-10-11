@@ -7,6 +7,7 @@ package com.hxwr.lds.controller;
 
 import com.hxwr.ids.service.impl.dummy.DummyCRS;
 import com.hxwr.lds.LoanDao;
+import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Customer;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
@@ -55,35 +56,52 @@ public class CreateLoanServlet extends HttpServlet {
 
         // obtain the spring web context
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
-        
+
         // obtain the Create report service bean
         DummyCRS dummy = webApplicationContext.getBean(DummyCRS.class);
-        
-       
-        Loan loan = new Loan();
-        loan.setLoanType(request.getParameter("type"));
-        loan.setLoanPeriod(request.getParameter("loanperiod"));
-        loan.setAmount(Double.parseDouble(request.getParameter("amount")));
-        loan.setInterest(Double.parseDouble(request.getParameter("interest")));
-        
-        
-        HttpSession httpSession = request.getSession();
-        try {
-            new LoanDao().addLoanDetails(loan);
 
-            httpSession.setAttribute("loanType", request.getParameter("type"));
-            httpSession.setAttribute("loanPeriod", request.getParameter("loanperiod"));
-            httpSession.setAttribute("loanType", Double.parseDouble(request.getParameter("amount")));
-            httpSession.setAttribute("interest", Double.parseDouble(request.getParameter("interest")));
-            httpSession.setAttribute("message", "Loan Data Created!");
-            response.sendRedirect("/LDS/displayloan");
-            LoanReport lr = dummy.CreateReport(loan, new Customer());
-            
-            //response.sendRedirect("/Success");
-        } catch (Exception e) {
-            e.printStackTrace();
-            try (PrintWriter out = response.getWriter()) {
-                out.print(e.toString());
+        //Retrieve Client object from the current session
+        HttpSession httpSession = request.getSession();
+        Object rawClient = httpSession.getAttribute("client");
+
+        //If the Client is not logged in, redirect to the login page
+        if (rawClient == null || !(rawClient instanceof Client)) {
+            response.sendRedirect("/LDS/customer/login");
+        } else {
+            //Cast the Client to correct type
+            Client client = (Client) rawClient;
+
+            //Initialize the new Loan object
+            Loan loan = new Loan();
+            loan.setLoanType(request.getParameter("type"));
+            loan.setLoanPeriod(request.getParameter("loanperiod"));
+            loan.setAmount(Double.parseDouble(request.getParameter("amount")));
+            loan.setInterest(Double.parseDouble(request.getParameter("interest")));
+
+            //Add the new Loan to the Client
+            loan.setClient(client);
+
+            try {
+                //Save the new Loan
+                new LoanDao().addLoanDetails(loan);
+                //Set confirmation message
+                httpSession.setAttribute("message", "New Loan Created!");
+
+                //Generate a loan report
+                LoanReport lr = dummy.CreateReport(loan, client);
+
+                //Pass the LoanReport to JSP for rendering
+                request.setAttribute("report", lr);
+                //request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp")
+                // .forward(request, response);
+
+                response.sendRedirect("/LDS/customer/displayloan");
+                //response.sendRedirect("/Success");
+            } catch (Exception e) {
+                e.printStackTrace();
+                try (PrintWriter out = response.getWriter()) {
+                    out.print(e.toString());
+                }
             }
         }
     }

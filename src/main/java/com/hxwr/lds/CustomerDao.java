@@ -6,11 +6,13 @@
 package com.hxwr.lds;
 
 import com.hxwr.lds.entities.Client;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 /**
  *
@@ -33,6 +35,24 @@ public class CustomerDao {
             System.out.println("error in customerDao");
         }
 
+    }
+    
+    public Client getByName(String fName, String lName) {
+        
+        Session hibernateSession = HibernateConfig.openSession();
+        
+        Query query = hibernateSession.createQuery(
+                "from Client where name = :name and lastName = :lastName");
+        query.setString("name", fName);
+        query.setString("lastName", lName );
+        
+        Iterator<Client> iter = query.iterate();
+        if (iter.hasNext()) {
+            return iter.next();
+        }
+        else {
+            return null;
+        }
     }
 
 }

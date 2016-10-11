@@ -20,6 +20,17 @@
     <div class="form-group">
         <label for="salary">Salary: ${client.getSalary()}</label>
     </div>
+    <ul>
+        <c:forEach var="loan" items="${client.getLoans()}">
+            <ul>
+                <li> Loan Type: <span> ${loan.getLoanType()}</span> </li>
+                <li> Loan Type:<span>  ${loan.getLoanType()}</span></li>
+                <li> Loan Period: <span> ${loan.getLoanPeriod()}</span> </li>
+                <li> Interest: <span> ${loan.getInterest()}</span> </li>
+                <li> Amount needed: <span> ${loan.getAmount()}</span> </li>
+            </ul>
+        </c:forEach>
+    </ul>
 </form>
 
 
