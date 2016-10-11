@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author 35194
  */
-public class DummyCRS  implements ICreateReportSrv{
+public class DummyCRS implements ICreateReportSrv {
 
     @Override
     public LoanReport CreateReport(Loan loan, Client client) {
@@ -30,7 +30,7 @@ public class DummyCRS  implements ICreateReportSrv{
             payments.add(new Payment(100 * Math.random(), 100 * Math.random(), d));
             d = (Date)d.clone();
             d.setMonth(d.getMonth() + 1);
-        }    
+        }
         return lr;
     }
 }

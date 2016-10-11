@@ -92,11 +92,11 @@ public class CreateLoanServlet extends HttpServlet {
 
                 //Pass the LoanReport to JSP for rendering
                 request.setAttribute("report", lr);
+
                 //request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp")
                 // .forward(request, response);
-
                 response.sendRedirect("/LDS/customer/displayloan");
-                //response.sendRedirect("/Success");
+
             } catch (Exception e) {
                 e.printStackTrace();
                 try (PrintWriter out = response.getWriter()) {
