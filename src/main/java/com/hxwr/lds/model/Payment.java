@@ -28,7 +28,7 @@ public class Payment {
     }
     
     public Payment(double amount, double principal, Calendar date) {
-        this.date = this.date;
+        this.date = date;
         this.principal = principal;
         this.amount = amount;
         
@@ -56,7 +56,7 @@ public class Payment {
     }
     
     public String getFormattedDate() {
-        return new SimpleDateFormat("yyyy-MM-dd").format(date.getTime());
+        return new SimpleDateFormat("MM-dd-yyyy").format(date.getTime());
     }
 
     /**

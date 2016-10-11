@@ -25,7 +25,7 @@
                 </tr>
                 <tr>
                     <td>Salary</td>
-                    <td>${client.getSalary()}</td>
+                    <td>&#36;${client.getSalary()}</td>
                 </tr>
             </table>
         </div>
@@ -44,12 +44,11 @@
             
                     <c:forEach var="loan" items="${client.getLoans()}">
                         <tr>
-                            <td>${loan.getLoanType()}</td>
-                            <td>${loan.getLoanPeriod()}</td>
-                            <td>${loan.getInterest()}</td>
-                            <td>${loan.getAmount()}</td>
+                            <td>${loan.getLoanType()}</td>        
+                            <td>${loan.getLoanPeriod()} Months</td>
+                            <td>${loan.getInterest()}%</td>
+                            <td>&#36;${loan.getAmount()}</td>
                             <td><a class="btn btn-default" href="#" role="button">View</a></td>
-
                         </tr>
                     </c:forEach>
                 </table>
