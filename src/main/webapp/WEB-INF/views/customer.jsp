@@ -13,7 +13,7 @@
             <table class="table table-condensed">
                 <tr>
                     <td>Nickname</td>
-                    <td>${client.getNickname()}</td>
+                    <td>${client.getNickName()}</td>
                 </tr>
                 <tr>
                     <td>First Name</td>
