@@ -25,6 +25,16 @@
                     <label for="custSalary">Salary</label>
                     <input type="number" class="form-control" id="custSalary" name="salary" placeholder="Salary">
                 </div>
+                
+                <div class="form-group">
+                    <label for="custSalary">NickName</label>
+                    <input type="text" class="form-control" id="nickName" name="nickName" placeholder="nickName">
+                </div>
+                
+                <div class="form-group">
+                    <label for="custSalary">Password</label>
+                    <input type="password" class="form-control" id="pasword" name="pasword" placeholder="PassWord">
+                </div>
 
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
