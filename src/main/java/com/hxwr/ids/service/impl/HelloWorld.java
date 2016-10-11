@@ -5,11 +5,14 @@
  */
 package com.hxwr.ids.service.impl;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author 35194
  */
 public class HelloWorld {
+    private static final Logger log = Logger.getLogger(HelloWorld.class);
 
     private String name;
 
@@ -18,7 +21,11 @@ public class HelloWorld {
     }
 
     public void printHello() {
-        System.out.println("Spring 3 : Hello ! " + name);
+        log.debug("Spring 3 : Hello ! " + name);
+        log.warn("Spring 3 : Hello ! " + name);
+        log.error("Spring 3 : Hello ! " + name);
+        log.info("Spring 3 : Hello ! " + name);
+        
     }
 
 }

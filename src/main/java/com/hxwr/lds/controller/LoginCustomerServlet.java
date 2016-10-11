@@ -5,6 +5,7 @@
  */
 package com.hxwr.lds.controller;
 
+import com.hxwr.ids.service.impl.HelloWorld;
 import com.hxwr.lds.HibernateConfig;
 import com.hxwr.lds.entities.Client;
 import java.io.IOException;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -49,6 +52,16 @@ public class LoginCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+        
+        // obtain the Create report service bean
+        HelloWorld hw = webApplicationContext.getBean(HelloWorld.class);
+        hw.printHello();
+        
+        
+        
         Session hibernateSession = HibernateConfig.openSession();
         Query query = hibernateSession.createQuery(
                 "from Client where name = :name and lastName = :lastName");
