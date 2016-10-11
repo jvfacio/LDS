@@ -71,7 +71,7 @@ public class CustomerDao {
         try {
             hibernateSession = HibernateConfig.openSession();
             Query query = hibernateSession.createQuery(
-                    "from Client where nickname = :nickname and password = :password");
+                    "from Client where nickName = :nickname and pass = :password");
             query.setString("nickname", nickname);
             query.setString("password", password);
 

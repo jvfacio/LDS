@@ -13,7 +13,7 @@
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping resource="com/hxwr/lds/entities/Client.hbm.xml"/>
     <mapping resource="com/hxwr/lds/entities/Loan.hbm.xml"/>
-    <mapping resource="com/hxwr/lds/entities/ClientDummy.xml"/>
-    <mapping resource="com/hxwr/lds/entities/LoanDummy.xml"/>
+    <!--mapping resource="com/hxwr/lds/entities/ClientDummy.xml"/-->
+    <!--mapping resource="com/hxwr/lds/entities/LoanDummy.xml"/-->
   </session-factory>
 </hibernate-configuration>
