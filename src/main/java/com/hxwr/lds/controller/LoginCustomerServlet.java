@@ -5,18 +5,15 @@
  */
 package com.hxwr.lds.controller;
 
-import com.hxwr.lds.HibernateConfig;
+import com.hxwr.lds.CustomerDao;
 import com.hxwr.lds.entities.Client;
 import java.io.IOException;
 import java.util.Iterator;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.Query;
-import org.hibernate.Session;
 
 /**
  *
@@ -49,20 +46,14 @@ public class LoginCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Session hibernateSession = HibernateConfig.openSession();
-        Query query = hibernateSession.createQuery(
-                "from Client where name = :name and lastName = :lastName");
-        query.setString("name", request.getParameter("name"));
-        query.setString("lastName", request.getParameter("lastName"));
+        
         HttpSession httpSession = request.getSession();
-        //RequestDispatcher dispatcher = request.getRequestDispatcher("/LDS/customer");
-        Iterator<Client> iter = query.iterate();
-        if (iter.hasNext()) {
-            Client client = iter.next();
-            if (!httpSession.isNew()) {
-                //   httpSession.invalidate();
-            }
-            
+        
+        String fName = request.getParameter("name"),
+               lName = request.getParameter("lastName");
+        Client client = new CustomerDao().getByName(fName, lName);
+        
+        if(client != null) {       
             //set confirmation message
             httpSession.setAttribute("message", "Login successful!");
             

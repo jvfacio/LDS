@@ -51,10 +51,6 @@ public class RegisterCustomerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         
-        
-        
-        
         Client customer = new Client();
         customer.setAddress(request.getParameter("address"));
         customer.setName(request.getParameter("name"));
@@ -62,9 +58,6 @@ public class RegisterCustomerServlet extends HttpServlet {
         customer.setSalary(request.getParameter("salary"));
         customer.setlastName(request.getParameter("lastName"));
         HttpSession session = request.getSession(true);
-        
-        
-        
         
         try {
             CustomerDao customerDAO = new CustomerDao();
