@@ -28,7 +28,7 @@ public class Payment {
     }
     
     public Payment(double amount, double principal, Calendar date) {
-        this.date = this.date;
+        this.date = date;
         this.principal = principal;
         this.amount = amount;
         
