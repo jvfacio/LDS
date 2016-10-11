@@ -11,10 +11,10 @@
             <column name="address"/>
         </property>
         <property name="lastName" type="string">
-            <column name="lastName"/>
+            <column name="lastName" />
         </property>
         <property name="name" type="string">
-            <column name="name"/>
+            <column name="name" not-null="true"/>
         </property>
         <property name="phoneNumber" type="string">
             <column name="phoneNumber"/>
@@ -22,12 +22,13 @@
         <property name="salary" type="string">
             <column name="salary"/>
         </property>
+        <property name="nickName" type="string" not-null="true" unique="true"/>
+        <property name="pass" type="string" not-null="true"/>
         <set name="loans" table="loan" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="clientid" not-null="true"/>
             </key>
             <one-to-many class="com.hxwr.lds.entities.Loan"/>
         </set>
-
     </class>
 </hibernate-mapping>
