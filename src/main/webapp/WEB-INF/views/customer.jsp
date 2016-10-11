@@ -6,10 +6,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="pageTitle" value="Customer Details" scope="request"/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+<div class="container">
 
 <div class="row">
     <div class="col-md-4">
-            <table class="table table-hover">
+            <table class="table table-condensed">
                 <tr>
                     <td>First Name</td>
                     <td>${client.getName()}</td>
@@ -36,6 +37,7 @@
                     <th>Period</th>
                     <th>Interest</th>
                     <th>Amount Needed</th>
+                    <th>View</th>
                 </tr>
             
             
@@ -43,15 +45,17 @@
                     <c:forEach var="loan" items="${client.getLoans()}">
                         <tr>
                             <td>${loan.getLoanType()}</td>
-                            
                             <td>${loan.getLoanPeriod()}</td>
                             <td>${loan.getInterest()}</td>
                             <td>${loan.getAmount()}</td>
+                            <td><a class="btn btn-default" href="#" role="button">View</a></td>
+
                         </tr>
                     </c:forEach>
                 </table>
         </div>
 </div>
-        
+         
+</div>   
 
 <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
