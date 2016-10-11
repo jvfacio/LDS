@@ -5,7 +5,10 @@
  */
 package com.hxwr.lds.controller;
 
-import com.hxwr.lds.CustomerDao;
+import com.hxwr.ids.service.ICustomerSrv;
+import com.hxwr.ids.service.impl.HelloWorld;
+import com.hxwr.ids.service.impl.dummy.DummyCRS;
+import com.hxwr.lds.dao.impl.CustomerDao;
 import com.hxwr.lds.entities.Client;
 import java.io.IOException;
 import java.util.Iterator;
@@ -14,12 +17,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
  * @author Training
  */
 public class LoginCustomerServlet extends HttpServlet {
+    
+    private static final Logger log = Logger.getLogger(LoginCustomerServlet.class);
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -46,12 +54,18 @@ public class LoginCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         // obtain the spring web context
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
         
         HttpSession httpSession = request.getSession();
         
         String fName = request.getParameter("name"),
                lName = request.getParameter("lastName");
-        Client client = new CustomerDao().getByName(fName, lName);
+        
+        ICustomerSrv customerSrv = (ICustomerSrv) webApplicationContext.getBean("customerSrv");
+        
+        Client client =  customerSrv.validateCustomer(fName, lName);
+        //Client client = new CustomerDao().getByName(fName, lName);
         
         if(client != null) {       
             //set confirmation message

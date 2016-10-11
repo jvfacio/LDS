@@ -5,7 +5,7 @@
  */
 package com.hxwr.lds.controller;
 
-import com.hxwr.lds.CustomerDao;
+import com.hxwr.lds.dao.impl.CustomerDao;
 import com.hxwr.lds.entities.Client;
 import java.io.IOException;
 import java.io.PrintWriter;

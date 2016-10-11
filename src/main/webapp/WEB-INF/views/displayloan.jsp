@@ -7,6 +7,8 @@
 <c:set var="pageTitle" value="Loan Report" scope="request"/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
 
+
+
 <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 
 
