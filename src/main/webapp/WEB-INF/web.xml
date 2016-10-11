@@ -57,12 +57,15 @@
 
     <servlet>
         <servlet-name>DisplayLoanServlet</servlet-name>
-        <jsp-file>WEB-INF/views/displayloan.jsp</jsp-file>
+        <servlet-class>com.hxwr.lds.controller.DisplayLoanServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DisplayLoanServlet</servlet-name>
-        <url-pattern>/customer/displayloan</url-pattern>
+        <url-pattern>/customer/display</url-pattern>
     </servlet-mapping>
+
+    
+
 
 
     <servlet>

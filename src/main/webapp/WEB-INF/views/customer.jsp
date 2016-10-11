@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-8">
             <h2>Loan History</h2>
-            <table class="table table-hover">
+            <table class="table table-condensed">
                 <tr>
                     <th>Type</th>
                     <th>Period</th>
@@ -48,7 +48,7 @@
                             <td>${loan.getLoanPeriod()} Years</td>
                             <td>${loan.getInterest()}%</td>
                             <td>&#36;${loan.getAmount()}</td>
-                            <td><a class="btn btn-default" href="#" role="button">View</a></td>
+                            <td><a class="btn btn-default" href="/loan/display?id=${loan.getLoanID()}" role="button">View</a></td>
                         </tr>
                     </c:forEach>
                 </table>
