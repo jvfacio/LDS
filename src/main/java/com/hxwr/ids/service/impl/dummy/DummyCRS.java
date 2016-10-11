@@ -15,21 +15,22 @@ import com.hxwr.lds.model.Payment;
  *
  * @author 35194
  */
-public class DummyCRS  implements ICreateReportSrv{
+public class DummyCRS implements ICreateReportSrv {
 
     @Override
     public LoanReport CreateReport(Loan loan, Client client) {
         LoanReport lr = new LoanReport();
         lr.setLoan(loan);
         lr.setClient(client);
+
         lr.getMonthPaymentLst().add(new Payment());
         lr.getMonthPaymentLst().add(new Payment());
         lr.getMonthPaymentLst().add(new Payment());
         lr.getMonthPaymentLst().add(new Payment());
         lr.getMonthPaymentLst().add(new Payment());
         lr.getMonthPaymentLst().add(new Payment());
-        
+
         return lr;
     }
-    
+
 }
