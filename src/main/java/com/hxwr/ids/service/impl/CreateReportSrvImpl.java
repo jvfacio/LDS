@@ -32,7 +32,6 @@ public class CreateReportSrvImpl implements ICreateReportSrv {
         double monthlyInterest;
         List<Payment> payments = new ArrayList<>();
 
-        //getting current date;
         //get current date        
         Calendar date = Calendar.getInstance();
 
@@ -57,12 +56,16 @@ public class CreateReportSrvImpl implements ICreateReportSrv {
 
         //add monthly payments to payments list
         for (int i = 0; i < loanPeriodmonths; i++) {
-            //increment date by one month
-            date.add(Calendar.MONTH, i + 1);
-
+            
+            //get the current date
+            Calendar nextdate = (Calendar) date.clone();
+            
+            //increment the date my the necessary months
+            nextdate.add(Calendar.MONTH, i + 1);
+            
             //subtract the monthly payment and add the monthly interest
             amount = (amount - paymentAmount) + (amount * monthlyInterest);
-            Payment monthlyPayment = new Payment(paymentAmount, amount, date);
+            Payment monthlyPayment = new Payment(paymentAmount, amount, nextdate);
 
             //add new monthlyPayment to payments list
             payments.add(monthlyPayment);
