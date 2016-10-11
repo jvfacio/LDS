@@ -6,7 +6,7 @@
 package com.hxwr.lds.model;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -15,20 +15,20 @@ import java.util.Date;
 public class Payment {
 
     private double amount;
-    private Date date;
+    private Calendar date;
     private double principal;
 
     
     public Payment() {
-        this(0, 0, new Date());
+        this(0, 0, Calendar.getInstance());
     }
     
     public Payment(double amount, double principal) {
-        this(amount, principal, new Date());
+        this(amount, principal, Calendar.getInstance());
     }
     
-    public Payment(double amount, double principal, Date date) {
-        this.date = date;
+    public Payment(double amount, double principal, Calendar date) {
+        this.date = this.date;
         this.principal = principal;
         this.amount = amount;
         
@@ -51,7 +51,7 @@ public class Payment {
     /**
      * @return the date
      */
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
     
@@ -62,7 +62,7 @@ public class Payment {
     /**
      * @param date the date to set
      */
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 
