@@ -10,6 +10,8 @@ import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
 import com.hxwr.lds.model.Payment;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -22,14 +24,13 @@ public class DummyCRS implements ICreateReportSrv {
         LoanReport lr = new LoanReport();
         lr.setLoan(loan);
         lr.setClient(client);
-        lr.getMonthPaymentLst().add(new Payment());
-        lr.getMonthPaymentLst().add(new Payment());
-        lr.getMonthPaymentLst().add(new Payment());
-        lr.getMonthPaymentLst().add(new Payment());
-        lr.getMonthPaymentLst().add(new Payment());
-        lr.getMonthPaymentLst().add(new Payment());
-
+        List<Payment> payments = lr.getMonthPaymentLst();
+        Date d = new Date();
+        for (int i = 0; i < 20; i++) {
+            payments.add(new Payment(100 * Math.random(), d));
+            d = (Date) d.clone();
+            d.setMonth(d.getMonth() + 1);
+        }
         return lr;
     }
-
 }
