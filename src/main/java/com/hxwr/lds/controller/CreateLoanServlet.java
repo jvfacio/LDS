@@ -5,10 +5,10 @@
  */
 package com.hxwr.lds.controller;
 
+import com.hxwr.ids.service.ICreateReportSrv;
 import com.hxwr.ids.service.impl.dummy.DummyCRS;
 import com.hxwr.lds.LoanDao;
 import com.hxwr.lds.entities.Client;
-import com.hxwr.lds.entities.Customer;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
 import java.io.IOException;
@@ -58,7 +58,7 @@ public class CreateLoanServlet extends HttpServlet {
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
 
         // obtain the Create report service bean
-        DummyCRS dummy = webApplicationContext.getBean(DummyCRS.class);
+        ICreateReportSrv crs = webApplicationContext.getBean(DummyCRS.class);
 
         //Retrieve Client object from the current session
         HttpSession httpSession = request.getSession();
@@ -88,7 +88,7 @@ public class CreateLoanServlet extends HttpServlet {
                 httpSession.setAttribute("message", "New Loan Created!");
 
                 //Generate a loan report
-                LoanReport lr = dummy.CreateReport(loan, client);
+                LoanReport lr = crs.CreateReport(loan, client);
 
                 //Pass the LoanReport to JSP for rendering
                 request.setAttribute("report", lr);

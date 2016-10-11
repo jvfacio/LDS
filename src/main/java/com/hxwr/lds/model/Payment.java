@@ -16,6 +16,22 @@ public class Payment {
     private double amount;
     private Date date;
 
+    
+    public Payment() {
+        date = new Date();
+        amount = 0;
+    }
+    
+    public Payment(double amount) {
+        this.amount = amount;
+        date = new Date();
+    }
+    
+    public Payment(double amount, Date date) {
+        this.date = date;
+        this.amount = amount;
+    }
+    
     /**
      * @return the amount
      */
