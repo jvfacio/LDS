@@ -22,7 +22,6 @@ public class DummyCRS implements ICreateReportSrv {
         LoanReport lr = new LoanReport();
         lr.setLoan(loan);
         lr.setClient(client);
-
         lr.getMonthPaymentLst().add(new Payment());
         lr.getMonthPaymentLst().add(new Payment());
         lr.getMonthPaymentLst().add(new Payment());
