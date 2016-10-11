@@ -27,7 +27,7 @@ public class DummyCRS  implements ICreateReportSrv{
         List<Payment> payments = lr.getMonthPaymentLst();
         Date d = new Date();
         for(int i = 0; i < 20; i++) {
-            payments.add(new Payment(100 * Math.random(), d));
+            payments.add(new Payment(100 * Math.random(), 100 * Math.random(), d));
             d = (Date)d.clone();
             d.setMonth(d.getMonth() + 1);
         }    
