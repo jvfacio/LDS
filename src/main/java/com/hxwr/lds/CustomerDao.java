@@ -84,7 +84,7 @@ public class CustomerDao {
             }
         }
         finally {
-            if (hibernateSession != null) hibernateSession.close();
+            //if (hibernateSession != null) hibernateSession.close();
         }
     }
 }
