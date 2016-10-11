@@ -59,9 +59,6 @@ public class LoginCustomerServlet extends HttpServlet {
         Iterator<Client> iter = query.iterate();
         if (iter.hasNext()) {
             Client client = iter.next();
-            if (!httpSession.isNew()) {
-                //   httpSession.invalidate();
-            }
             
             //set confirmation message
             httpSession.setAttribute("message", "Login successful!");
