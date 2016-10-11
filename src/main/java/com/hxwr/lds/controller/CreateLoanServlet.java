@@ -58,7 +58,7 @@ public class CreateLoanServlet extends HttpServlet {
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
 
         // obtain the Create report service bean
-        ICreateReportSrv crs = webApplicationContext.getBean(DummyCRS.class);
+        ICreateReportSrv crs = (ICreateReportSrv) webApplicationContext.getBean("createReportSrv");
 
         //Retrieve Client object from the current session
         HttpSession httpSession = request.getSession();
