@@ -64,4 +64,27 @@ public class CustomerDao {
             if (hibernateSession != null) hibernateSession.close();
         }
     }
+    
+    public Client getByLoginInfo(String nickname, String password) {
+        
+        Session hibernateSession = null;
+        try {
+            hibernateSession = HibernateConfig.openSession();
+            Query query = hibernateSession.createQuery(
+                    "from Client where nickname = :nickname and password = :password");
+            query.setString("nickname", nickname);
+            query.setString("password", password);
+
+            Iterator<Client> iter = query.iterate();
+            if (iter.hasNext()) {
+                return iter.next();
+            }
+            else {
+                return null;
+            }
+        }
+        finally {
+            if (hibernateSession != null) hibernateSession.close();
+        }
+    }
 }

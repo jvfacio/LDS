@@ -12,6 +12,10 @@
     <div class="col-md-4">
             <table class="table table-condensed">
                 <tr>
+                    <td>Nickname</td>
+                    <td>${client.getNickname()}</td>
+                </tr>
+                <tr>
                     <td>First Name</td>
                     <td>${client.getName()}</td>
                 </tr>
