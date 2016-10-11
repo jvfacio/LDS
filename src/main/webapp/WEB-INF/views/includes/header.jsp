@@ -44,7 +44,7 @@
         <c:if test="${!noNavBar}">
             <jsp:include page="/WEB-INF/views/includes/navbar.jsp" />
         </c:if>
-        <div class="container-fluid">
+        <div class="container">
             <c:if test="${message != null}">
                 <div class="alert alert-success" id="message"><c:out value="${message}"/></div>
                 <c:remove scope="session" var="message" />
