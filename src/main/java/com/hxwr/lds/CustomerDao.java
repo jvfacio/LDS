@@ -21,38 +21,47 @@ import org.hibernate.Session;
 public class CustomerDao {
 
     public void addCustomerDetails(Client customer) {
+        Session session = null;
+        Transaction transaction = null;
         try {
-            Session session = HibernateConfig.openSession();
-            Transaction transaction = session.beginTransaction();
+            session = HibernateConfig.openSession();
+            transaction = session.beginTransaction();
             session.save(customer);
-            session.close();
             transaction.commit();
 
             System.out.println("\n\n Details Added \n");
 
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-            System.out.println("error in customerDao");
+            if(transaction != null) transaction.rollback();
+            throw e;
         }
+        finally {
+            if(session != null) session.close();
+        }
+        
 
     }
     
     public Client getByName(String fName, String lName) {
         
-        Session hibernateSession = HibernateConfig.openSession();
-        
-        Query query = hibernateSession.createQuery(
-                "from Client where name = :name and lastName = :lastName");
-        query.setString("name", fName);
-        query.setString("lastName", lName );
-        
-        Iterator<Client> iter = query.iterate();
-        if (iter.hasNext()) {
-            return iter.next();
+        Session hibernateSession = null;
+        try {
+            hibernateSession = HibernateConfig.openSession();
+            Query query = hibernateSession.createQuery(
+                    "from Client where name = :name and lastName = :lastName");
+            query.setString("name", fName);
+            query.setString("lastName", lName );
+
+            Iterator<Client> iter = query.iterate();
+            if (iter.hasNext()) {
+                return iter.next();
+            }
+            else {
+                return null;
+            }
         }
-        else {
-            return null;
+        finally {
+            if (hibernateSession != null) hibernateSession.close();
         }
     }
-
 }
