@@ -54,6 +54,17 @@
         <url-pattern>/loan/create</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>DisplayLoanServlet</servlet-name>
+        <jsp-file>WEB-INF/views/displayloan.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisplayLoanServlet</servlet-name>
+        <url-pattern>/customer/displayloan</url-pattern>
+    </servlet-mapping>
+
+
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.hxwr.lds.controller.LogoutCustomerServlet</servlet-class>
@@ -95,8 +106,8 @@
             30
         </session-timeout>
     </session-config>
-    
-    
+
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
