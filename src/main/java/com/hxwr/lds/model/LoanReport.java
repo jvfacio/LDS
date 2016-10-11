@@ -53,6 +53,4 @@ public class LoanReport {
     public void setMonthPaymentLst(List<Payment> monthPaymentLst) {
         this.monthPaymentLst = monthPaymentLst;
     }
-    
-    
 }

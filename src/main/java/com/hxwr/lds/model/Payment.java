@@ -56,7 +56,7 @@ public class Payment {
     }
     
     public String getFormattedDate() {
-        return new SimpleDateFormat("yyyy-MM-dd").format(date);
+        return new SimpleDateFormat("yyyy-MM-dd").format(date.getTime());
     }
 
     /**
