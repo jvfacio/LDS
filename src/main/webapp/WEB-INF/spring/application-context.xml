@@ -7,19 +7,19 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
 
 	
-    <bean id="helloBean" class="com.hxwr.ids.service.impl.HelloWorld">
+    <bean id="helloBean" class="com.hxwr.lds.service.impl.HelloWorld">
         <property name="name" value="Facio" />
     </bean>
 
-    <bean id="createReportSrv" class="com.hxwr.ids.service.impl.dummy.DummyCRS">
+    <bean id="createReportSrv" class="com.hxwr.lds.service.impl.dummy.DummyCRS">
     </bean>
 
 
-    <bean id="customerSrv" class="com.hxwr.ids.service.impl.CustomerSrvImpl">
+    <bean id="customerSrv" class="com.hxwr.lds.service.impl.CustomerSrvImpl">
         <property name="customerDao" ref="customerDao"></property>
     </bean>
         
-    <bean id="loanSrv" class="com.hxwr.ids.service.impl.LoanSrvImpl">
+    <bean id="loanSrv" class="com.hxwr.lds.service.impl.LoanSrvImpl">
         <property name="loanDao" ref="loanDao"></property>
     </bean>    
 
