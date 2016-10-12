@@ -27,7 +27,7 @@ public class LoanSrvImpl implements ILoanSrv {
     
     
     @Override
-     public Loan getLoanByID(int loanID){
+     public Loan fetchLoanByID(int loanID){
          
          return null;
      }

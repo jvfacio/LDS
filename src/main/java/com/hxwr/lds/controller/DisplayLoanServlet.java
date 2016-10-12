@@ -5,6 +5,11 @@
  */
 package com.hxwr.lds.controller;
 
+import com.hxwr.ids.service.impl.CreateReportSrvImpl;
+import com.hxwr.lds.dao.impl.LoanDao;
+import com.hxwr.lds.entities.Client;
+import com.hxwr.lds.entities.Loan;
+import com.hxwr.lds.model.LoanReport;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,19 +37,36 @@ public class DisplayLoanServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DisplayLoanServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DisplayLoanServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        HttpSession session = request.getSession();
+
+        //get the loan id
+        Integer loanid = Integer.parseInt(request.getParameter("id").trim());
+
+        //get the load associated with the loanid
+        Loan loan = new LoanDao().getByLoanID(loanid);
+
+        if (loan != null) {
+
+            //retrieve the customer associated with the loan
+            Client client = loan.getClient();
+
+            //create LoanReport
+            CreateReportSrvImpl createReport = new CreateReportSrvImpl();
+            LoanReport report = createReport.CreateReport(loan, client);
+
+            //set report attribute
+            session.setAttribute("report", report);
+
+            //redirect the loan to the display loan jsp
+            request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp")
+                    .forward(request, response);
+
+        } else {
+            session.setAttribute("message", "Loan doesn't exist");
+            response.sendRedirect("/LDS/customer");
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,8 +82,9 @@ public class DisplayLoanServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher("/WEB-INF/views/diplayloan.jsp").forward(request, response);
+        processRequest(request, response);
 
+        //request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp").forward(request, response);
     }
 
     /**

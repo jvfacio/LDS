@@ -51,7 +51,7 @@
                             <td>${loan.getLoanPeriod()} Years</td>
                             <td>${loan.getInterest()}%</td>
                             <td>&#36;${loan.getAmount()}</td>
-                            <td><a class="btn btn-default" href="/loan/display?id=${loan.getLoanID()}" role="button">View</a></td>
+                            <td><a class="btn btn-default" href="/LDS/loan/display?id=${loan.getLoanID()}" role="button">View</a></td>
                         </tr>
                     </c:forEach>
                 </table>

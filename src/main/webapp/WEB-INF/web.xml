@@ -61,7 +61,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>DisplayLoanServlet</servlet-name>
-        <url-pattern>/customer/display</url-pattern>
+        <url-pattern>/loan/display</url-pattern>
     </servlet-mapping>
 
     

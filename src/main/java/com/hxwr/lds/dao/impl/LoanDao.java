@@ -8,7 +8,9 @@ package com.hxwr.lds.dao.impl;
 //import com.hxwr.lds.*;
 import com.hxwr.lds.dao.ILoanDao;
 import com.hxwr.lds.entities.Loan;
+import java.util.Iterator;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -32,13 +34,33 @@ public class LoanDao implements ILoanDao{
             session.save(loan);
             transaction.commit();
             System.out.println("\n\n Details Added \n");
-        }
-        catch (HibernateException e) {
-            if(transaction != null) transaction.rollback();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             throw e;
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
-        finally {
-            if(session != null) session.close();
+    }
+
+    public Loan getByLoanID(Integer loanID) {
+        Session session = null;
+
+        session = sessionFactory.openSession();
+
+        Query query = session.createQuery("from Loan where loanID = :loanID");
+
+        query.setInteger("loanID", loanID);
+
+        Iterator<Loan> iter = query.iterate();
+
+        if (iter.hasNext()) {
+            return iter.next();
+        } else {
+            return null;
         }
     }
     
@@ -49,5 +71,4 @@ public class LoanDao implements ILoanDao{
     public void setSessionFactory(SessionFactory factory) {
         sessionFactory = factory;
     }
-    
 }

@@ -5,7 +5,7 @@
  */
 package com.hxwr.lds.util;
 
-import org.hibernate.cfg.AnnotationConfiguration;
+//import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
 /**

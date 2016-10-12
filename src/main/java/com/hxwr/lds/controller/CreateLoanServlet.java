@@ -7,7 +7,7 @@ package com.hxwr.lds.controller;
 
 import com.hxwr.ids.service.ICreateReportSrv;
 import com.hxwr.ids.service.impl.dummy.DummyCRS;
-import com.hxwr.lds.LoanDao;
+import com.hxwr.lds.dao.impl.LoanDao;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
