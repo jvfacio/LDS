@@ -68,7 +68,7 @@ public class CreateReportSrvImpl implements ICreateReportSrv {
             payments.add(monthlyPayment);
         }
 
-        //
+        //add payments list to loanReport
         loanReport.setMonthPaymentLst(payments);
 
         return loanReport;
