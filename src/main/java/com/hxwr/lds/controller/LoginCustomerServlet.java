@@ -49,9 +49,9 @@ public class LoginCustomerServlet extends HttpServlet {
         
         HttpSession httpSession = request.getSession();
         
-        String fName = request.getParameter("name"),
-               lName = request.getParameter("lastName");
-        Client client = new CustomerDao().getByName(fName, lName);
+        String nickname = request.getParameter("nickname"),
+               password = request.getParameter("password");
+        Client client = new CustomerDao().getByLoginInfo(nickname, password);
         
         if(client != null) {       
             //set confirmation message

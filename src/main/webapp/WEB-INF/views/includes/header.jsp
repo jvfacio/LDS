@@ -52,3 +52,4 @@
             <c:if test="${!hidePageTitle}">
                 <h1 id="title"><c:out value="${pageTitle}"/></h1>
             </c:if>
+                    

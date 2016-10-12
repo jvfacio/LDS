@@ -5,7 +5,8 @@
  */
 package com.hxwr.lds.model;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -14,8 +15,25 @@ import java.util.Date;
 public class Payment {
 
     private double amount;
-    private Date date;
+    private Calendar date;
+    private double principal;
 
+    
+    public Payment() {
+        this(0, 0, Calendar.getInstance());
+    }
+    
+    public Payment(double amount, double principal) {
+        this(amount, principal, Calendar.getInstance());
+    }
+    
+    public Payment(double amount, double principal, Calendar date) {
+        this.date = date;
+        this.principal = principal;
+        this.amount = amount;
+        
+    }
+    
     /**
      * @return the amount
      */
@@ -33,15 +51,33 @@ public class Payment {
     /**
      * @return the date
      */
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
+    }
+    
+    public String getFormattedDate() {
+        return new SimpleDateFormat("MM-dd-yyyy").format(date.getTime());
     }
 
     /**
      * @param date the date to set
      */
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
+    }
+
+    /**
+     * @return the principal
+     */
+    public double getPrincipal() {
+        return principal;
+    }
+
+    /**
+     * @param principal the principal to set
+     */
+    public void setPrincipal(double principal) {
+        this.principal = principal;
     }
 
 }

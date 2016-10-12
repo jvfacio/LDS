@@ -16,13 +16,24 @@ import org.hibernate.Transaction;
  */
 public class LoanDao {
     public void addLoanDetails(Loan loan) throws HibernateException {
-        Session session = HibernateConfig.openSession();
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = HibernateConfig.openSession();
 
-        Transaction transaction = session.beginTransaction();
+            transaction = session.beginTransaction();
 
-        session.save(loan);
-        transaction.commit();
-        System.out.println("\n\n Details Added \n");
+            session.save(loan);
+            transaction.commit();
+            System.out.println("\n\n Details Added \n");
+        }
+        catch (HibernateException e) {
+            if(transaction != null) transaction.rollback();
+            throw e;
+        }
+        finally {
+            if(session != null) session.close();
+        }
     }
     
 }
