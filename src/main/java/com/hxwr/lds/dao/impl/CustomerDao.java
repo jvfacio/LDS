@@ -23,7 +23,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  *
  * @author 35194
  */
-public class CustomerDao extends HibernateDaoSupport implements ICustomerDao {
+public class CustomerDao implements ICustomerDao {
 
     private SessionFactory sessionFactory;
     
@@ -33,7 +33,7 @@ public class CustomerDao extends HibernateDaoSupport implements ICustomerDao {
         Session session = null;
         Transaction transaction = null;
         try {
-            session = getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(customer);
             transaction.commit();
@@ -55,7 +55,7 @@ public class CustomerDao extends HibernateDaoSupport implements ICustomerDao {
         
         Session hibernateSession = null;
         try {
-            hibernateSession = getSessionFactory().openSession();
+            hibernateSession = sessionFactory.openSession();
             Query query = hibernateSession.createQuery(
                     "from Client where name = :name and lastName = :lastName");
             query.setString("name", fName);
@@ -78,7 +78,7 @@ public class CustomerDao extends HibernateDaoSupport implements ICustomerDao {
         
         Session hibernateSession = null;
         try {
-            hibernateSession = getSessionFactory().openSession();
+            hibernateSession = sessionFactory.openSession();
             Query query = hibernateSession.createQuery(
                     "from Client where nickName = :nickname and pass = :password");
             query.setString("nickname", nickname);
@@ -95,5 +95,13 @@ public class CustomerDao extends HibernateDaoSupport implements ICustomerDao {
         finally {
             //if (hibernateSession != null) hibernateSession.close();
         }
+    }
+    
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+    
+    public void setSessionFactory(SessionFactory factory) {
+        sessionFactory = factory;
     }
 }
