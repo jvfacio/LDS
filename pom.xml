@@ -28,7 +28,7 @@
 	</dependency>
         
         <!-- Hibernate ORM -->
-	<dependency>
+	<!--dependency>
 		<groupId>org.hibernate</groupId>
 		<artifactId>hibernate-core</artifactId>
 		<version>5.1.0.Final</version>
@@ -39,10 +39,9 @@
 	      <artifactId>jboss-logging</artifactId>
 	     </exclusion>
 	    </exclusions>
-	</dependency>
-
-
-        <!--dependency>
+	</dependency-->
+        
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.1.Final</version>
@@ -51,7 +50,7 @@
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
             <version>1.0.0.Final</version>
-        </dependency-->
+        </dependency>
         <dependency>
         <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
