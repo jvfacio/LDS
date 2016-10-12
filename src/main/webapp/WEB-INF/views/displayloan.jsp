@@ -46,5 +46,3 @@
 
 <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 
-
-

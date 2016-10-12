@@ -7,13 +7,11 @@ package com.hxwr.lds.model;
 
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author 35194
- */
+
 public class LoanReport implements java.io.Serializable{ 
     /**
      * Loan information

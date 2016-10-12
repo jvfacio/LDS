@@ -5,8 +5,9 @@
  */
 package com.hxwr.lds.controller;
 
-import com.hxwr.ids.service.impl.CreateReportSrvImpl;
-import com.hxwr.lds.LoanDao;
+import com.hxwr.lds.service.ILoanSrv;
+import com.hxwr.lds.service.impl.CreateReportSrvImpl;
+import com.hxwr.lds.dao.impl.LoanDao;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -44,7 +47,10 @@ public class DisplayLoanServlet extends HttpServlet {
         Integer loanid = Integer.parseInt(request.getParameter("id").trim());
 
         //get the load associated with the loanid
-        Loan loan = new LoanDao().getByLoanID(loanid);
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+        ILoanSrv loanSrv=(ILoanSrv) webApplicationContext.getBean("loanSrv");
+        Loan loan=loanSrv.fetchLoanByID(loanid);
+        //Loan loan = new LoanDao().getByLoanID(loanid);
 
         if (loan != null) {
 

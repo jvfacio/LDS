@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hxwr.ids.service;
+package com.hxwr.lds.service;
 
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;

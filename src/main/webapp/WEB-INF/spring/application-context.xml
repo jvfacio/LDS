@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+
+	
+    <bean id="helloBean" class="com.hxwr.lds.service.impl.HelloWorld">
+        <property name="name" value="Facio" />
+    </bean>
+
+    <bean id="createReportSrv" class="com.hxwr.lds.service.impl.dummy.DummyCRS">
+    </bean>
+
+
+    <bean id="customerSrv" class="com.hxwr.lds.service.impl.CustomerSrvImpl">
+        <property name="customerDao" ref="customerDao"></property>
+    </bean>
+        
+    <bean id="loanSrv" class="com.hxwr.lds.service.impl.LoanSrvImpl">
+        <property name="loanDao" ref="loanDao"></property>
+    </bean>    
+
+        <!-- Stock Data Access Object -->
+   <bean id="customerDao" class="com.hxwr.lds.dao.impl.CustomerDao" >
+       <property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   
+   <bean id="loanDao" class="com.hxwr.lds.dao.impl.LoanDao ">
+       <property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+
+
+        
+        <!-- AOP beans
+        
+        
+        <bean id="hiBeforeMethod" class="com.hxwr.lds.aop.HiBeforeMethod" /-->
+
+        <!--bean id="hijackAroundMethodBean" class="com.hxwr.lds.aop.HijackAroundMethod" /-->
+        <bean id="hijackBeforeMethod" class="com.hxwr.lds.aop.HijackBeforeMethod" />
+        
+	<bean id="ServiceProxy"
+                 class="org.springframework.aop.framework.ProxyFactoryBean">
+
+		<property name="target" ref="helloBean" />
+
+		<property name="interceptorNames">
+			<list>
+				<value>hijackBeforeMethod</value>
+			</list>
+		</property>
+	</bean>
+</beans>
