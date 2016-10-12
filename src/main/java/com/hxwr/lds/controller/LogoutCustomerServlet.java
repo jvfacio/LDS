@@ -5,7 +5,6 @@
  */
 package com.hxwr.lds.controller;
 
-import com.hxwr.lds.HibernateConfig;
 import com.hxwr.lds.entities.Client;
 import java.io.IOException;
 import javax.servlet.ServletException;

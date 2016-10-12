@@ -5,7 +5,6 @@
  */
 package com.hxwr.lds.dao.impl;
 
-import com.hxwr.lds.HibernateConfig;
 import com.hxwr.lds.dao.ICustomerDao;
 import com.hxwr.lds.entities.Client;
 import java.util.ArrayList;
