@@ -3,23 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hxwr.lds;
+package com.hxwr.lds.dao.impl;
 
+//import com.hxwr.lds.*;
+import com.hxwr.lds.dao.ILoanDao;
 import com.hxwr.lds.entities.Loan;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
  *
  * @author Training
  */
-public class LoanDao {
+public class LoanDao implements ILoanDao{
+    
+    private SessionFactory sessionFactory;
+    @Override
     public void addLoanDetails(Loan loan) throws HibernateException {
         Session session = null;
         Transaction transaction = null;
         try {
-            session = HibernateConfig.openSession();
+            session = sessionFactory.openSession();
 
             transaction = session.beginTransaction();
 
@@ -34,6 +40,14 @@ public class LoanDao {
         finally {
             if(session != null) session.close();
         }
+    }
+    
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+    
+    public void setSessionFactory(SessionFactory factory) {
+        sessionFactory = factory;
     }
     
 }
