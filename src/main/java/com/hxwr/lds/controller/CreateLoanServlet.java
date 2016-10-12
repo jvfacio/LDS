@@ -6,7 +6,10 @@
 package com.hxwr.lds.controller;
 
 import com.hxwr.ids.service.ICreateReportSrv;
+import com.hxwr.ids.service.ILoanSrv;
+import com.hxwr.ids.service.impl.LoanSrvImpl;
 import com.hxwr.ids.service.impl.dummy.DummyCRS;
+import com.hxwr.lds.dao.ILoanDao;
 import com.hxwr.lds.dao.impl.LoanDao;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
@@ -83,7 +86,10 @@ public class CreateLoanServlet extends HttpServlet {
 
             try {
                 //Save the new Loan
-                new LoanDao().addLoanDetails(loan);
+                ILoanDao loanDao = (ILoanDao) webApplicationContext.getBean("laonDao");
+                loanDao.addLoanDetails(loan);
+          
+                //new LoanDao().addLoanDetails(loan);
                 //Set confirmation message
                 httpSession.setAttribute("message", "New Loan Created!");
 
