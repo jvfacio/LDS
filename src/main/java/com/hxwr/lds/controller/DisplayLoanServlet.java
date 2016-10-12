@@ -5,8 +5,8 @@
  */
 package com.hxwr.lds.controller;
 
-import com.hxwr.ids.service.ILoanSrv;
-import com.hxwr.ids.service.impl.CreateReportSrvImpl;
+import com.hxwr.lds.service.ILoanSrv;
+import com.hxwr.lds.service.impl.CreateReportSrvImpl;
 import com.hxwr.lds.dao.impl.LoanDao;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;

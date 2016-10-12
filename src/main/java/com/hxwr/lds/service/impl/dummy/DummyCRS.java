@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hxwr.ids.service.impl.dummy;
+package com.hxwr.lds.service.impl.dummy;
 
-import com.hxwr.ids.service.ICreateReportSrv;
+import com.hxwr.lds.service.ICreateReportSrv;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hxwr.ids.service.impl;
+package com.hxwr.lds.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
