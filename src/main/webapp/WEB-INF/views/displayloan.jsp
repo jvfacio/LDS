@@ -13,7 +13,7 @@
     </tr>
     <tr>
         <td> Period </td>
-        <td> ${report.getLoan().getLoanPeriod()} Months </td>
+        <td> ${report.getLoan().getLoanPeriod()} Years </td>
     </tr>
     <tr>
         <td> Interest </td>
