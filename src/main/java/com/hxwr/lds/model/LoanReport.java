@@ -11,11 +11,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author 35194
- */
-public class LoanReport implements Serializable{ 
+
+public class LoanReport implements java.io.Serializable{ 
     /**
      * Loan information
      */
