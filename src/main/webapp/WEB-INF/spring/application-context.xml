@@ -11,7 +11,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
         <property name="name" value="Facio" />
     </bean>
 
-    <bean id="createReportSrv" class="com.hxwr.lds.service.impl.dummy.DummyCRS">
+    <bean id="createReportSrv" class="com.hxwr.lds.service.impl.CreateReportSrvImpl">
     </bean>
 
 
