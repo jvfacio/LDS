@@ -86,7 +86,7 @@ public class CreateLoanServlet extends HttpServlet {
 
             try {
                 //Save the new Loan
-                ILoanDao loanDao = (ILoanDao) webApplicationContext.getBean("laonDao");
+                ILoanDao loanDao = (ILoanDao) webApplicationContext.getBean("loanDao");
                 loanDao.addLoanDetails(loan);
           
                 //new LoanDao().addLoanDetails(loan);
