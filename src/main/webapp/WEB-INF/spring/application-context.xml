@@ -28,7 +28,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
        <property name="sessionFactory" ref="sessionFactory"></property>
    </bean>
    
-   <bean id="loanDao" class="com.hxwr.lds.dao.impl.loanDao ">
+   <bean id="loanDao" class="com.hxwr.lds.dao.impl.LoanDao ">
        <property name="sessionFactory" ref="sessionFactory"></property>
    </bean>
 
