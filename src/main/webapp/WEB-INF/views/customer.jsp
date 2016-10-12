@@ -6,32 +6,59 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="pageTitle" value="Customer Details" scope="request"/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+<div class="container">
 
-<form>
-    <div class="form-group">
-        <label for="firstName">First Name: ${client.getName()}</label>
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name: ${client.getlastName()}</label>
-    </div>
-    <div class="form-group">
-        <label for="address">Address: ${client.getAddress()}</label>
-    </div>
-    <div class="form-group">
-        <label for="salary">Salary: ${client.getSalary()}</label>
-    </div>
-    <ul>
-        <c:forEach var="loan" items="${client.getLoans()}">
-            <ul>
-                <li> Loan Type: <span> ${loan.getLoanType()}</span> </li>
-                <li> Loan Type:<span>  ${loan.getLoanType()}</span></li>
-                <li> Loan Period: <span> ${loan.getLoanPeriod()}</span> </li>
-                <li> Interest: <span> ${loan.getInterest()}</span> </li>
-                <li> Amount needed: <span> ${loan.getAmount()}</span> </li>
-            </ul>
-        </c:forEach>
-    </ul>
-</form>
-
+<div class="row">
+    <div class="col-md-4">
+            <table class="table table-condensed">
+                <tr>
+                    <td>Nickname</td>
+                    <td>${client.getNickName()}</td>
+                </tr>
+                <tr>
+                    <td>First Name</td>
+                    <td>${client.getName()}</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>${client.getlastName()}</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>${client.getAddress()}</td>
+                </tr>
+                <tr>
+                    <td>Salary</td>
+                    <td>&#36;${client.getSalary()}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-8">
+            <h2>Loan History</h2>
+            <table class="table table-condensed">
+                <tr>
+                    <th>Type</th>
+                    <th>Period</th>
+                    <th>Interest</th>
+                    <th>Amount Needed</th>
+                    <th>View</th>
+                </tr>
+            
+            
+            
+                    <c:forEach var="loan" items="${client.getLoans()}">
+                        <tr>
+                            <td>${loan.getLoanType()}</td>        
+                            <td>${loan.getLoanPeriod()} Years</td>
+                            <td>${loan.getInterest()}%</td>
+                            <td>&#36;${loan.getAmount()}</td>
+                            <td><a class="btn btn-default" href="/loan/display?id=${loan.getLoanID()}" role="button">View</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+        </div>
+</div>
+         
+</div>   
 
 <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>

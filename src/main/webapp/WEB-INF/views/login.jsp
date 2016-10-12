@@ -11,12 +11,12 @@
         <div class="col-xs-6 col-md-4">
             <form action="login" method="post">
                 <div class="form-group">
-                    <label for="custFirstName">First Name</label>
-                    <input type="text" class="form-control" id="custFirstName" name="name" placeholder="First Name">
+                    <label for="custNickname">Nickname</label>
+                    <input type="text" class="form-control" id="custNickname" name="nickname" placeholder="Nickname">
                 </div>
                 <div class="form-group">
-                    <label for="custLastName">Last Name</label>
-                    <input type="text" class="form-control" id="custLastName" name="lastName" placeholder="Last Name">
+                    <label for="custPassword">Password</label>
+                    <input type="password" class="form-control" id="custPassword" name="password" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>

@@ -58,13 +58,11 @@ public class LoginCustomerServlet extends HttpServlet {
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
         
         HttpSession httpSession = request.getSession();
-        
-        String fName = request.getParameter("name"),
-               lName = request.getParameter("lastName");
-        
         ICustomerSrv customerSrv = (ICustomerSrv) webApplicationContext.getBean("customerSrv");
+        String nickname = request.getParameter("nickname"),
+               password = request.getParameter("password");
         
-        Client client =  customerSrv.validateCustomer(fName, lName);
+        Client client =  customerSrv.validateCustomer(nickname, password);
         //Client client = new CustomerDao().getByName(fName, lName);
         
         if(client != null) {       

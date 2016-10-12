@@ -6,6 +6,14 @@
         <div class="col-xs-6 col-md-4">
             <form action="register" method="post">
                 <div class="form-group">
+                    <label for="custNickname">Nickname</label>
+                    <input type="text" class="form-conrol" id="custNickname" name="nickname" placeholder="Nickname">
+                </div>
+                <div class="form-group">
+                    <label for="custPassword">Password</label>
+                    <input type="password" class="form-control" id="custPassword" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
                     <label for="custFirstName">First Name</label>
                     <input type="text" class="form-control" id="custFirstName" name="name" placeholder="First Name">
                 </div>
@@ -25,7 +33,6 @@
                     <label for="custSalary">Salary</label>
                     <input type="number" class="form-control" id="custSalary" name="salary" placeholder="Salary">
                 </div>
-
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
 

@@ -25,49 +25,75 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  */
 public class CustomerDao extends HibernateDaoSupport implements ICustomerDao {
 
+    private SessionFactory sessionFactory;
+    
     private static final Logger log = Logger.getLogger(CustomerDao.class);
 
     public void addCustomerDetails(Client customer) {
+        Session session = null;
+        Transaction transaction = null;
         try {
-            Session session = HibernateConfig.openSession();
-            Transaction transaction = session.beginTransaction();
+            session = getSessionFactory().openSession();
+            transaction = session.beginTransaction();
             session.save(customer);
-            session.close();
             transaction.commit();
 
             System.out.println("\n\n Details Added \n");
 
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-            System.out.println("error in customerDao");
+            if(transaction != null) transaction.rollback();
+            throw e;
         }
+        finally {
+            if(session != null) session.close();
+        }
+        
 
     }
-
+    
     public Client getByName(String fName, String lName) {
-
-        log.debug("getByName in the dao implementation");
         
-        Session hibernateSession = getSessionFactory().openSession();
+        Session hibernateSession = null;
+        try {
+            hibernateSession = getSessionFactory().openSession();
+            Query query = hibernateSession.createQuery(
+                    "from Client where name = :name and lastName = :lastName");
+            query.setString("name", fName);
+            query.setString("lastName", lName );
 
-//        Session hibernateSession = HibernateConfig.openSession();
-//        
-        Query query = hibernateSession.createQuery(
-                "from Client where name = :name and lastName = :lastName");
-        query.setString("name", fName);
-        query.setString("lastName", lName );
-//        
-        Iterator<Client> iter = query.iterate();
-        if (iter.hasNext()) {
-            return iter.next();
+            Iterator<Client> iter = query.iterate();
+            if (iter.hasNext()) {
+                return iter.next();
+            }
+            else {
+                return null;
+            }
         }
-        else {
-            return null;
+        finally {
+            //if (hibernateSession != null) hibernateSession.close();
         }
-
-        //getHibernateTemplate().find("from Client where name = :name and lastName = :lastName");
-        
-        //return null;
     }
+    
+    public Client getByLoginInfo(String nickname, String password) {
+        
+        Session hibernateSession = null;
+        try {
+            hibernateSession = getSessionFactory().openSession();
+            Query query = hibernateSession.createQuery(
+                    "from Client where nickName = :nickname and pass = :password");
+            query.setString("nickname", nickname);
+            query.setString("password", password);
 
+            Iterator<Client> iter = query.iterate();
+            if (iter.hasNext()) {
+                return iter.next();
+            }
+            else {
+                return null;
+            }
+        }
+        finally {
+            //if (hibernateSession != null) hibernateSession.close();
+        }
+    }
 }

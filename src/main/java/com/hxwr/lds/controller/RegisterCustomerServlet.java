@@ -50,10 +50,10 @@ public class RegisterCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        
-        
+
         Client customer = new Client();
+        customer.setNickName(request.getParameter("nickname"));
+        customer.setPass(request.getParameter("password"));
         customer.setAddress(request.getParameter("address"));
         customer.setName(request.getParameter("name"));
         customer.setPhoneNumber(request.getParameter("phone"));

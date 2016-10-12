@@ -14,7 +14,7 @@ class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 <bean id="dataSource"
          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	<property name="url" value="jdbc:mysql://192.168.10.20/LDS2" />
+	<property name="url" value="jdbc:mysql://192.168.10.50/LDS2" />
 	<property name="username" value="user" />
 	<property name="password" value="user" />
 </bean>

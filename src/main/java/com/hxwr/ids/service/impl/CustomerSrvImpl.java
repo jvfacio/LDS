@@ -37,10 +37,10 @@ public class CustomerSrvImpl implements ICustomerSrv{
     
 
     @Override
-    public Client validateCustomer(String fName, String lName) {
+    public Client validateCustomer(String username, String password) {
         
         log.debug("Validate the customer");
-        return customerDao.getByName(fName, lName);
+        return customerDao.getByLoginInfo(username, password);
         
     }
     
