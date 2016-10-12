@@ -29,7 +29,7 @@ public class LoanSrvImpl implements ILoanSrv {
     @Override
      public Loan fetchLoanByID(int loanID){
          
-         return null;
+         return loanDao.getByLoanID(loanID);
      }
     
 }

@@ -8,7 +8,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
 	
     <bean id="helloBean" class="com.hxwr.ids.service.impl.HelloWorld">
-            <property name="name" value="Facio" />
+        <property name="name" value="Facio" />
     </bean>
 
     <bean id="createReportSrv" class="com.hxwr.ids.service.impl.dummy.DummyCRS">
@@ -19,13 +19,18 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
         <property name="customerDao" ref="customerDao"></property>
     </bean>
         
-        
+    <bean id="loanSrv" class="com.hxwr.ids.service.impl.LoanSrvImpl">
+        <property name="loanDao" ref="loanDao"></property>
+    </bean>    
 
         <!-- Stock Data Access Object -->
    <bean id="customerDao" class="com.hxwr.lds.dao.impl.CustomerDao" >
-   		<property name="sessionFactory" ref="sessionFactory"></property>
+       <property name="sessionFactory" ref="sessionFactory"></property>
    </bean>
-
+   
+   <bean id="loanDao" class="com.hxwr.lds.dao.impl.loanDao ">
+       <property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
 
 
         

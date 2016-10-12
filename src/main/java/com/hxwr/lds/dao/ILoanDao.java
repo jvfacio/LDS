@@ -14,5 +14,5 @@ import com.hxwr.lds.entities.Loan;
 public interface ILoanDao {
     
     public void addLoanDetails(Loan loan);
-    
+    public Loan getByLoanID(Integer loanID);
 }
