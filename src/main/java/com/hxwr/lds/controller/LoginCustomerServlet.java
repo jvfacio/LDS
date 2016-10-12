@@ -6,12 +6,8 @@
 package com.hxwr.lds.controller;
 
 import com.hxwr.lds.service.ICustomerSrv;
-import com.hxwr.lds.service.impl.HelloWorld;
-import com.hxwr.lds.service.impl.dummy.DummyCRS;
-import com.hxwr.lds.dao.impl.CustomerDao;
 import com.hxwr.lds.entities.Client;
 import java.io.IOException;
-import java.util.Iterator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -7,12 +7,10 @@ package com.hxwr.lds.controller;
 
 import com.hxwr.lds.service.ILoanSrv;
 import com.hxwr.lds.service.impl.CreateReportSrvImpl;
-import com.hxwr.lds.dao.impl.LoanDao;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

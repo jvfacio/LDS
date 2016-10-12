@@ -5,9 +5,6 @@
  */
 package com.hxwr.lds.entities;
 
-import org.hibernate.cfg.*;
-import org.hibernate.*;
-
 /**
  *
  * @author Training

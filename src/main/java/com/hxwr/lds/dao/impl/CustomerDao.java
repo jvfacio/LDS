@@ -7,16 +7,13 @@ package com.hxwr.lds.dao.impl;
 
 import com.hxwr.lds.dao.ICustomerDao;
 import com.hxwr.lds.entities.Client;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
  *
