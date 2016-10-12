@@ -12,7 +12,7 @@ import org.hibernate.*;
  *
  * @author Training
  */
-public class Loan {
+public class Loan implements java.io.Serializable{
 
     private int loanID;
     private String loanType;

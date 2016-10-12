@@ -7,7 +7,6 @@
 <c:set var="pageTitle" value="Customer Details" scope="request"/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
 <div class="container">
-
 <div class="row">
     <div class="col-md-4">
             <table class="table table-condensed">
@@ -52,7 +51,7 @@
                             <td>${loan.getLoanPeriod()} Years</td>
                             <td>${loan.getInterest()}%</td>
                             <td>&#36;${loan.getAmount()}</td>
-                            <td><a class="btn btn-default" href="/loan/display?id=${loan.getLoanID()}" role="button">View</a></td>
+                            <td><a class="btn btn-default" href="/LDS/loan/display?id=${loan.getLoanID()}" role="button">View</a></td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -60,5 +59,4 @@
 </div>
          
 </div>   
-
 <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
