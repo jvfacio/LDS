@@ -8,7 +8,7 @@
     <welcome-file-list>
         <welcome-file>index</welcome-file>
     </welcome-file-list>
-
+    
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
         <jsp-file>WEB-INF/views/index.jsp</jsp-file>
@@ -17,16 +17,16 @@
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
-        <servlet-name>CustomerServlet</servlet-name>
-        <jsp-file>WEB-INF/views/customer.jsp</jsp-file>
+        <servlet-name>DisplayCustomerServlet</servlet-name>
+        <servlet-class>com.hxwr.lds.controller.DisplayCustomerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CustomerServlet</servlet-name>
+        <servlet-name>DisplayCustomerServlet</servlet-name>
         <url-pattern>/customer</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <servlet-class>com.hxwr.lds.controller.RegisterCustomerServlet</servlet-class>
@@ -35,7 +35,7 @@
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/customer/register</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
         <servlet-name>Success</servlet-name>
         <servlet-class>com.hxwr.lds.controller.Success</servlet-class>
@@ -44,7 +44,7 @@
         <servlet-name>Success</servlet-name>
         <url-pattern>/Success</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
         <servlet-name>CreateLoanServlet</servlet-name>
         <servlet-class>com.hxwr.lds.controller.CreateLoanServlet</servlet-class>
@@ -53,8 +53,7 @@
         <servlet-name>CreateLoanServlet</servlet-name>
         <url-pattern>/loan/create</url-pattern>
     </servlet-mapping>
-
-
+    
     <servlet>
         <servlet-name>DisplayLoanServlet</servlet-name>
         <servlet-class>com.hxwr.lds.controller.DisplayLoanServlet</servlet-class>
@@ -63,29 +62,16 @@
         <servlet-name>DisplayLoanServlet</servlet-name>
         <url-pattern>/loan/display</url-pattern>
     </servlet-mapping>
-
     
-
-
-
     <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-name>LogoutCustomerServlet</servlet-name>
         <servlet-class>com.hxwr.lds.controller.LogoutCustomerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-name>LogoutCustomerServlet</servlet-name>
         <url-pattern>/customer/logout</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>HibernateServlet</servlet-name>
-        <servlet-class>com.hxwr.lds.servlets.HibernateServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HibernateServlet</servlet-name>
-        <url-pattern>/HibernateServlet</url-pattern>
-    </servlet-mapping>
-
+    
     <servlet>
         <servlet-name>LoginCustomerServlet</servlet-name>
         <servlet-class>com.hxwr.lds.controller.LoginCustomerServlet</servlet-class>
@@ -95,32 +81,18 @@
         <url-pattern>/customer/login</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>LoanTableServlet</servlet-name>
-        <jsp-file>WEB-INF/views/displayloan.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LoanTableServlet</servlet-name>
-        <url-pattern>/LDS/displayloan</url-pattern>
-    </servlet-mapping>
-
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-
-
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/spring/*-context.xml
         </param-value>
     </context-param>
-
-
 </web-app>
