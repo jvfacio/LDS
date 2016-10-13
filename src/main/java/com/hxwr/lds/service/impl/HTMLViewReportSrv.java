@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class HTMLViewReportSrv implements IViewReportSrv {
     
     @Override
-    public view(LoanReport loan, HttpServletRequest request, HttpServletResponse response) {
+    public void view(LoanReport loan, HttpServletRequest request, HttpServletResponse response) {
         
     }
-    
 }
