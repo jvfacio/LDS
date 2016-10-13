@@ -13,6 +13,9 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
     <bean id="createReportSrv" class="com.hxwr.lds.service.impl.CreateReportSrvImpl">
     </bean>
+    
+    <bean id="viewReportSrv" class="com.hxwr.lds.service.impl.HTMLViewReportSrv">
+    </bean>
 
 
     <bean id="customerSrv" class="com.hxwr.lds.service.impl.CustomerSrvImpl">
