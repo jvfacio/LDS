@@ -6,7 +6,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="pageTitle" value="Loan Report" scope="request"/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
-<% int c=1;%>
 <table class="table table-hover">
     <tr>
         <td> Type </td>
@@ -36,10 +35,11 @@
         <th>Amount</th>
         <th>Date</th>
     </tr>
+    <c:set var="count" value="0" scope="page" />
     <c:forEach var="payment" items="${report.getMonthPaymentLst()}">
         <tr>
-            <td><%out.print(c);
-                c++;%></td>
+            <td>${count}</td>
+            <c:set var="count" value="${count + 1}" scope="page"/>
             <td> &#36;${payment.getAmount()} </td>
             <td> ${payment.getFormattedDate()}</td>
         </tr>
