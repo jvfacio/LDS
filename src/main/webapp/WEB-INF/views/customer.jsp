@@ -7,7 +7,6 @@
 <c:set var="pageTitle" value="Customer Details" scope="request"/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
 <div class="container">
-
 <div class="row">
     <div class="col-md-4">
             <table class="table table-condensed">
@@ -60,5 +59,4 @@
 </div>
          
 </div>   
-
 <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
