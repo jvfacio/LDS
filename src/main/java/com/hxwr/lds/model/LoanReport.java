@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author 35194
  */
-public class LoanReport { 
+public class LoanReport implements java.io.Serializable{ 
     /**
      * Loan information
      */
