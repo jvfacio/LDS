@@ -45,8 +45,7 @@ public class DisplayLoanServlet extends HttpServlet {
         //get the loan id
         Integer loanid = Integer.parseInt(request.getParameter("id").trim());
         //Get the display method
-        Integer dispop = Integer.parseInt(request.getParameter("disp"));
-        System.out.println(dispop);
+        String dispop = request.getParameter("disp");
         //get the load associated with the loanid
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
         ILoanSrv loanSrv=(ILoanSrv) webApplicationContext.getBean("loanSrv");
@@ -61,13 +60,11 @@ public class DisplayLoanServlet extends HttpServlet {
             //create LoanReport
             CreateReportSrvImpl createReport = new CreateReportSrvImpl();
             LoanReport report = createReport.CreateReport(loan, client);
-            
-            //set report attribute
-            session.setAttribute("report", report);
-            if(dispop==1){
+            //Check if the view is required as HTML(true) or PDF (false)
+            if(dispop.equals("HTML")){
                 x.view(report, request, response);
             }
-            else if(dispop==2){
+            else{
                 //something else
             }
             

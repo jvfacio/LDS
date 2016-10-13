@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,7 +24,9 @@ public class HTMLViewReportSrv implements IViewReportSrv {
     @Override
     public void view(LoanReport loan, HttpServletRequest request, HttpServletResponse response)  {
         try {
-            
+            HttpSession session = request.getSession();
+             //set report attribute
+            session.setAttribute("report", loan);
             //redirect the loan to the display loan jsp
             request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp")
                     .forward(request, response);
