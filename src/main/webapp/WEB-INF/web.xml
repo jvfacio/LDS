@@ -80,7 +80,17 @@
         <servlet-name>LoginCustomerServlet</servlet-name>
         <url-pattern>/customer/login</url-pattern>
     </servlet-mapping>
-
+    
+    
+    <servlet>
+        <servlet-name>LoansHistoryServlet</servlet-name>
+        <servlet-class>com.hxwr.lds.controller.LoansHistoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoansHistoryServlet</servlet-name>
+        <url-pattern>/loan/history</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
