@@ -35,7 +35,7 @@
         <th>Amount</th>
         <th>Date</th>
     </tr>
-    <c:set var="count" value="0" scope="page" />
+    <c:set var="count" value="1" scope="page" />
     <c:forEach var="payment" items="${report.getMonthPaymentLst()}">
         <tr>
             <td>${count}</td>
