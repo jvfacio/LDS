@@ -40,13 +40,9 @@
                     <th>Period</th>
                     <th>Interest</th>
                     <th>Amount Needed</th>
-                    <th>View</th>
+                    <th>Details</th>
                     <th></th>
-                    
                 </tr>
-            
-            
-            
                     <c:forEach var="loan" items="${client.getLoans()}">
                         <tr>
                             <td>${loan.getLoanType()}</td>        
@@ -54,7 +50,7 @@
                             <td>${loan.getInterest()}%</td>
                             <td>&#36;${loan.getAmount()}</td>
                             <td><a class="btn btn-default" href="/LDS/loan/display?id=${loan.getLoanID()}&disp=HTML" role="button">View</a></td>
-                            <td><a class="btn btn-default" href="/LDS/loan/display?id=${loan.getLoanID()}&disp=PDF" role="button">PDF</a></td>
+                            <td><a class="btn btn-default" href="/LDS/loan/display?id=${loan.getLoanID()}&disp=PDF" role="button" download>Download PDF</a></td>
                         </tr>
                     </c:forEach>
                 </table>
