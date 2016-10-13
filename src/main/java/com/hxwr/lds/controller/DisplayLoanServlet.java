@@ -10,6 +10,7 @@ import com.hxwr.lds.service.impl.CreateReportSrvImpl;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
+import com.hxwr.lds.service.IViewReportSrv;
 import com.hxwr.lds.service.impl.HTMLViewReportSrv;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -60,15 +61,21 @@ public class DisplayLoanServlet extends HttpServlet {
             //create LoanReport
             CreateReportSrvImpl createReport = new CreateReportSrvImpl();
             LoanReport report = createReport.CreateReport(loan, client);
+            
             //Check if the view is required as HTML(true) or PDF (false)
-            if(dispop.equals("HTML")){
-                x.view(report, request, response);
+            IViewReportSrv viewSrv;
+            if(dispop.equalsIgnoreCase("HTML")){
+                viewSrv = (IViewReportSrv) webApplicationContext.getBean("HTMLViewReportSrv");
             }
-            else{
-                //something else
+            else if (dispop.equalsIgnoreCase("PDF")){
+                viewSrv = (IViewReportSrv) webApplicationContext.getBean("PDFViewReportSrv");
+            }
+            else {
+                viewSrv = (IViewReportSrv) webApplicationContext.getBean("defaultViewReportSrv");
             }
             
-
+            viewSrv.view(report, request, response);     
+        
         } else {
             session.setAttribute("message", "Loan doesn't exist");
             response.sendRedirect("/LDS/customer");
