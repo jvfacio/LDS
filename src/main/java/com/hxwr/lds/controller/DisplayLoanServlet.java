@@ -43,7 +43,8 @@ public class DisplayLoanServlet extends HttpServlet {
 
         //get the loan id
         Integer loanid = Integer.parseInt(request.getParameter("id").trim());
-
+        Integer dispop = Integer.parseInt(request.getParameter("disp"));
+        System.out.println(dispop);
         //get the load associated with the loanid
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
         ILoanSrv loanSrv=(ILoanSrv) webApplicationContext.getBean("loanSrv");
@@ -61,7 +62,7 @@ public class DisplayLoanServlet extends HttpServlet {
 
             //set report attribute
             session.setAttribute("report", report);
-
+            
             //redirect the loan to the display loan jsp
             request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp")
                     .forward(request, response);

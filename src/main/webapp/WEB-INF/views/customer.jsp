@@ -41,6 +41,8 @@
                     <th>Interest</th>
                     <th>Amount Needed</th>
                     <th>View</th>
+                    <th></th>
+                    
                 </tr>
             
             
@@ -51,7 +53,8 @@
                             <td>${loan.getLoanPeriod()} Years</td>
                             <td>${loan.getInterest()}%</td>
                             <td>&#36;${loan.getAmount()}</td>
-                            <td><a class="btn btn-default" href="/LDS/loan/display?id=${loan.getLoanID()}" role="button">View</a></td>
+                            <td><a class="btn btn-default" href="/LDS/loan/display?id=${loan.getLoanID()}&disp=1" role="button">View</a></td>
+                            <td><a class="btn btn-default" href="/LDS/loan/display?id=${loan.getLoanID()}&disp=2" role="button">PDF</a></td>
                         </tr>
                     </c:forEach>
                 </table>
