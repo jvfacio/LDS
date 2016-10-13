@@ -10,6 +10,7 @@ import com.hxwr.lds.dao.ILoanDao;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
+import com.hxwr.lds.service.ILoanSrv;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -56,9 +57,13 @@ public class CreateLoanServlet extends HttpServlet {
         // obtain the spring web context
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
 
+        // obtain the loan service
+        ILoanSrv loanSrv = (ILoanSrv) webApplicationContext.getBean("loanSrv");
+
         // obtain the Create report service bean
         ICreateReportSrv crs = (ICreateReportSrv) webApplicationContext.getBean("createReportSrv");
 
+        
         //Retrieve Client object from the current session
         HttpSession httpSession = request.getSession();
         Object rawClient = httpSession.getAttribute("client");
@@ -82,8 +87,7 @@ public class CreateLoanServlet extends HttpServlet {
 
             try {
                 //Save the new Loan
-                ILoanDao loanDao = (ILoanDao) webApplicationContext.getBean("loanDao");
-                loanDao.addLoanDetails(loan);
+                loanSrv.addLoanDetails(loan);
           
                 //new LoanDao().addLoanDetails(loan);
                 //Set confirmation message

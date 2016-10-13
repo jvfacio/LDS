@@ -15,6 +15,8 @@ public interface ICustomerDao {
     
     public void addCustomerDetails(Client customer);
     
-    public Client getByName(String fName, String lName);   
+    public Client getByName(String fName, String lName);
+    public Client getById(int clientId);
     public Client getByLoginInfo(String username, String password);
+    public Client refresh(Client client);
 }

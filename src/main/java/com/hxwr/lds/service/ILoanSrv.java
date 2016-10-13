@@ -14,4 +14,5 @@ import com.hxwr.lds.entities.Loan;
 public interface ILoanSrv {
     
     public Loan fetchLoanByID(int loanID);
+    public void addLoanDetails(Loan loan);
 }

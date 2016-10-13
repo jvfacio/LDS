@@ -25,6 +25,15 @@ public class CustomerDao implements ICustomerDao {
     
     private static final Logger log = Logger.getLogger(CustomerDao.class);
 
+        public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+    
+    public void setSessionFactory(SessionFactory factory) {
+        sessionFactory = factory;
+    }
+    
+    @Override
     public void addCustomerDetails(Client customer) {
         Session session = null;
         Transaction transaction = null;
@@ -47,6 +56,19 @@ public class CustomerDao implements ICustomerDao {
 
     }
     
+    @Override
+    public Client getById(int clientId) {
+        Session hibernateSession = null;
+        try {
+            hibernateSession = sessionFactory.openSession();
+            return (Client) hibernateSession.get(Client.class, clientId);
+        }
+        finally {
+            //if (hibernateSession != null) hibernateSession.close();
+        }
+    }
+    
+    @Override
     public Client getByName(String fName, String lName) {
         
         Session hibernateSession = null;
@@ -70,6 +92,7 @@ public class CustomerDao implements ICustomerDao {
         }
     }
     
+    @Override
     public Client getByLoginInfo(String nickname, String password) {
         
         Session hibernateSession = null;
@@ -93,11 +116,8 @@ public class CustomerDao implements ICustomerDao {
         }
     }
     
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-    
-    public void setSessionFactory(SessionFactory factory) {
-        sessionFactory = factory;
+    @Override
+    public Client refresh(Client client) {
+        return getById(client.getId()); 
     }
 }

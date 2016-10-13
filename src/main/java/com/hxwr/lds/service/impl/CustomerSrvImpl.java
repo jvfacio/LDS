@@ -44,4 +44,9 @@ public class CustomerSrvImpl implements ICustomerSrv{
         
     }
     
+    @Override 
+    public Client refresh(Client client) {
+        return customerDao.refresh(client);
+    }
+    
 }

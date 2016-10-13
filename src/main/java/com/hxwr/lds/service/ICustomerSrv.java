@@ -14,4 +14,5 @@ import com.hxwr.lds.entities.Client;
 public interface ICustomerSrv {
     
     public Client validateCustomer(String nickname, String password);
+    public Client refresh(Client client);
 }

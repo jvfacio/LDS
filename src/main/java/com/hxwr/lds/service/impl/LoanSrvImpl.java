@@ -31,5 +31,10 @@ public class LoanSrvImpl implements ILoanSrv {
          
          return loanDao.getByLoanID(loanID);
      }
+     
+     @Override
+     public void addLoanDetails(Loan loan) {
+         loanDao.addLoanDetails(loan);
+     }
     
 }

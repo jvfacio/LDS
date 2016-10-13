@@ -15,4 +15,5 @@ public interface ILoanDao {
     
     public void addLoanDetails(Loan loan);
     public Loan getByLoanID(Integer loanID);
+    public Loan refresh(Loan loan);
 }

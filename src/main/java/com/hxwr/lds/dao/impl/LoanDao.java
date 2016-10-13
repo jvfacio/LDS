@@ -22,6 +22,7 @@ import org.hibernate.Transaction;
 public class LoanDao implements ILoanDao{
     
     private SessionFactory sessionFactory;
+    
     @Override
     public void addLoanDetails(Loan loan) throws HibernateException {
         Session session = null;
@@ -46,6 +47,7 @@ public class LoanDao implements ILoanDao{
         }
     }
 
+    @Override
     public Loan getByLoanID(Integer loanID) {
         Session session = null;
 
@@ -62,6 +64,11 @@ public class LoanDao implements ILoanDao{
         } else {
             return null;
         }
+    }
+    
+    @Override
+    public Loan refresh(Loan loan) {
+        return getByLoanID(loan.getLoanID());
     }
     
     public SessionFactory getSessionFactory() {
