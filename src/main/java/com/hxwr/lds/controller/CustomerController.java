@@ -20,7 +20,7 @@ public class CustomerController{
     @RequestMapping(value = "/customer", method  = RequestMethod.GET)
     public String printHello(ModelMap model) {
         model.addAttribute("message", "Hello Spring MVC Framework!");
-        return "login";
+        return "hello";
     }
     
 
