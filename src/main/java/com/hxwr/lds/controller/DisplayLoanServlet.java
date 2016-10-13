@@ -10,6 +10,7 @@ import com.hxwr.lds.service.impl.CreateReportSrvImpl;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
+import com.hxwr.lds.service.impl.HTMLViewReportSrv;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,6 +44,7 @@ public class DisplayLoanServlet extends HttpServlet {
 
         //get the loan id
         Integer loanid = Integer.parseInt(request.getParameter("id").trim());
+        //Get the display method
         Integer dispop = Integer.parseInt(request.getParameter("disp"));
         System.out.println(dispop);
         //get the load associated with the loanid
@@ -55,17 +57,20 @@ public class DisplayLoanServlet extends HttpServlet {
 
             //retrieve the customer associated with the loan
             Client client = loan.getClient();
-
+            HTMLViewReportSrv x= new HTMLViewReportSrv();
             //create LoanReport
             CreateReportSrvImpl createReport = new CreateReportSrvImpl();
             LoanReport report = createReport.CreateReport(loan, client);
-
+            
             //set report attribute
             session.setAttribute("report", report);
+            if(dispop==1){
+                x.view(report, request, response);
+            }
+            else if(dispop==2){
+                //something else
+            }
             
-            //redirect the loan to the display loan jsp
-            request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp")
-                    .forward(request, response);
 
         } else {
             session.setAttribute("message", "Loan doesn't exist");
