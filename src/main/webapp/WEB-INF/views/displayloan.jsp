@@ -46,7 +46,5 @@
     </c:forEach>
 </table>
 
-
-
 <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 
