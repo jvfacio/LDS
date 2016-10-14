@@ -10,6 +10,8 @@ import com.hxwr.lds.service.impl.CreateReportSrvImpl;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
+import com.hxwr.lds.service.IViewReportSrv;
+import com.hxwr.lds.service.impl.HTMLViewReportSrv;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,8 +45,8 @@ public class DisplayLoanServlet extends HttpServlet {
 
         //get the loan id
         Integer loanid = Integer.parseInt(request.getParameter("id").trim());
-        Integer dispop = Integer.parseInt(request.getParameter("disp"));
-        System.out.println(dispop);
+        //Get the display method
+        String dispop = request.getParameter("disp");
         //get the load associated with the loanid
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
         ILoanSrv loanSrv=(ILoanSrv) webApplicationContext.getBean("loanSrv");
@@ -55,18 +57,25 @@ public class DisplayLoanServlet extends HttpServlet {
 
             //retrieve the customer associated with the loan
             Client client = loan.getClient();
-
+            HTMLViewReportSrv x= new HTMLViewReportSrv();
             //create LoanReport
             CreateReportSrvImpl createReport = new CreateReportSrvImpl();
             LoanReport report = createReport.CreateReport(loan, client);
-
-            //set report attribute
-            session.setAttribute("report", report);
             
-            //redirect the loan to the display loan jsp
-            request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp")
-                    .forward(request, response);
-
+            //Check if the view is required as HTML(true) or PDF (false)
+            IViewReportSrv viewSrv;
+            if(dispop.equalsIgnoreCase("HTML")){
+                viewSrv = (IViewReportSrv) webApplicationContext.getBean("HTMLViewReportSrv");
+            }
+            else if (dispop.equalsIgnoreCase("PDF")){
+                viewSrv = (IViewReportSrv) webApplicationContext.getBean("PDFViewReportSrv");
+            }
+            else {
+                viewSrv = (IViewReportSrv) webApplicationContext.getBean("defaultViewReportSrv");
+            }
+            
+            viewSrv.view(report, request, response);     
+        
         } else {
             session.setAttribute("message", "Loan doesn't exist");
             response.sendRedirect("/LDS/customer");

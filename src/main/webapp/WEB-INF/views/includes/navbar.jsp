@@ -20,6 +20,11 @@
                             <li><a id="navCustomerLink" href="${customerUrl}">Customer Details</a></li>
                                 <c:url var="createLoanUrl" value= "/loan/create" />
                             <li><a id="navCreateLoanLink" href="${createLoanUrl}">Create Loan</a></li>
+                            
+                            <%-- my adds --%>
+                            <c:url var="loadHistoryUrl" value= "/loan/history" />
+                            <li><a id="navLoadHistoryLink" href="${loadHistoryUrl}">Loans Approved</a></li>
+                            
                             </c:when>
                         </c:choose>
                 </ul>
