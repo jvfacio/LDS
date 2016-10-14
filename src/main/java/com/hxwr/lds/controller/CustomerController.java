@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 /**
  *
@@ -29,7 +30,7 @@ public class CustomerController{
     }
 
     @RequestMapping(value = "/customer/login", method  = RequestMethod.GET)
-    public String loginCustomer(ModelMap model) { 
+    public String loginPage(ModelMap model) { 
         return "login";
     }
     
@@ -41,11 +42,20 @@ public class CustomerController{
         if (client != null) {
             model.addAttribute("message", "Login successful!");
             session.setAttribute("client", client);
-            return "customer";
+            return "redirect:/customer";
         }
         else {
             model.addAttribute("message", "Login credentials invalid.");
-            return "login";
+            return "redirect:/login";
         }
+    }
+    
+    @RequestMapping(value = "/customer/logout", method = RequestMethod.POST)
+    public String submitLogout(
+            ModelMap model, HttpSession session,
+            @SessionAttribute Client client
+    ) {
+        session.setAttribute("client", null);
+        return "redirect:/";
     }
 }
