@@ -64,7 +64,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
             PdfPTable table = new PdfPTable(3);
           
             //add table headers
-            table.s.setHeaderRows(1);
+            table.setHeaderRows(1);
             table.addCell("Date");
             table.addCell("Payment");
             table.addCell("Balance");
