@@ -39,11 +39,12 @@ public class CustomerController{
             String nickname, String password) {
         Client client = customerSrv.validateCustomer(nickname, password);
         if (client != null) {
+            model.addAttribute("message", "Login successful!");
             session.setAttribute("client", client);
             return "customer";
         }
         else {
-            model.addAttribute("message", "Login credentials invalid");
+            model.addAttribute("message", "Login credentials invalid.");
             return "login";
         }
     }
