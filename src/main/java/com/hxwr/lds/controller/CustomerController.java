@@ -65,7 +65,7 @@ public class CustomerController{
         }
         else {
             session.setAttribute("message", "Login credentials invalid.");
-            return "redirect:/login";
+            return "redirect:/customer/login";
         }
     }
     
