@@ -17,7 +17,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     <bean id="HTMLViewReportSrv" class="com.hxwr.lds.service.impl.HTMLViewReportSrv">        
     </bean>
     
-    <!--bean id="PDFViewReportSrv" class="com.hxwr.lds.service.impl.PDFViewReportSrv">
+    <bean id="PDFViewReportSrv" class="com.hxwr.lds.service.impl.PDFViewReportSrv">
     </bean-->
     
     <alias alias="defaultViewReportSrv" name="HTMLViewReportSrv" />
