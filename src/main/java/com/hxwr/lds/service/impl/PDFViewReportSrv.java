@@ -77,7 +77,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
             //add dates, payments, and balance to table
             for (int i = 0; i < loan.getMonthPaymentLst().size(); i++) {
 
-                table.addCell(String.valueOf(i));
+                table.addCell(String.valueOf(i+1));
                 //add date to table
                 table.addCell(loan.getMonthPaymentLst().get(i).getFormattedDate());
 
