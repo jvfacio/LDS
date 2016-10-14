@@ -9,11 +9,13 @@ import com.hxwr.lds.model.LoanReport;
 import com.hxwr.lds.service.IViewReportSrv;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Training
  */
+@Service
 public class HTMLViewReportSrv implements IViewReportSrv {
     
     @Override

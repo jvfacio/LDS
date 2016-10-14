@@ -11,9 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  *
@@ -21,36 +25,51 @@ import org.springframework.web.bind.annotation.SessionAttribute;
  */
 @Controller
 public class CustomerController{
+    
     @Autowired
     ICustomerSrv customerSrv;
     
-    @RequestMapping(value = "/customer", method  = RequestMethod.GET)
-    public String customerDetails() {
+    @GetMapping("/customer")
+    public String customerDetails(@SessionAttribute("client") Client client) {
         return "customer";
     }
+    
+    @GetMapping("/customer/register")
+    public String registerPage() {
+        return "register";
+    }
+    
+    @PostMapping("/customer/register")
+    public String registerCustomer(
+            HttpSession session,
+            @ModelAttribute Client client) {
+        customerSrv.register(client);
+        session.setAttribute("message", "Account successfully created.");
+        return "redirect:/customer";
+    }
 
-    @RequestMapping(value = "/customer/login", method  = RequestMethod.GET)
+    @GetMapping("/customer/login")
     public String loginPage(ModelMap model) { 
         return "login";
     }
     
-    @RequestMapping(value = "/customer/login", method  = RequestMethod.POST)
+    @PostMapping("/customer/login")
     public String submitLogin(
-            ModelMap model, HttpSession session,
+            HttpSession session,
             String nickname, String password) {
         Client client = customerSrv.validateCustomer(nickname, password);
         if (client != null) {
-            model.addAttribute("message", "Login successful!");
+            session.setAttribute("message", "Login successful!");
             session.setAttribute("client", client);
             return "redirect:/customer";
         }
         else {
-            model.addAttribute("message", "Login credentials invalid.");
+            session.setAttribute("message", "Login credentials invalid.");
             return "redirect:/login";
         }
     }
     
-    @RequestMapping(value = "/customer/logout", method = RequestMethod.POST)
+    @RequestMapping(value = "/customer/logout")
     public String submitLogout(
             ModelMap model, HttpSession session,
             @SessionAttribute Client client

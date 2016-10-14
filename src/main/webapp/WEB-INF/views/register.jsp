@@ -7,11 +7,11 @@
             <form action="register" method="post">
                 <div class="form-group">
                     <label for="custNickname">Nickname</label>
-                    <input type="text" class="form-conrol" id="custNickname" name="nickname" placeholder="Nickname">
+                    <input type="text" class="form-conrol" id="custNickname" name="nickName" placeholder="Nickname">
                 </div>
                 <div class="form-group">
                     <label for="custPassword">Password</label>
-                    <input type="password" class="form-control" id="custPassword" name="password" placeholder="Password">
+                    <input type="password" class="form-control" id="custPassword" name="pass" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <label for="custFirstName">First Name</label>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="custPhone">Phone Number</label>
-                    <input type="tel" class="form-control" id="custPhone" name="phone" placeholder="Phone Number">
+                    <input type="tel" class="form-control" id="custPhone" name="phoneNumber" placeholder="Phone Number">
                 </div>
                 <div class="form-group">
                     <label for="custSalary">Salary</label>
