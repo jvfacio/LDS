@@ -15,7 +15,7 @@
                     <!--sec:authorize access="authenticated" var="authenticated"/-->
                     <!--sec:authorize access="hasRole('ADMIN')" var="userRole"/-->
                     <c:choose>
-                        <c:when test="${client != null }">
+                        <c:when test="${clientSession.isLoggedIn()}}">
                             <c:url var="customerUrl" value="/customer" />
                             <li><a id="navCustomerLink" href="${customerUrl}">Customer Details</a></li>
                                 <c:url var="createLoanUrl" value= "/loan/create" />
@@ -32,7 +32,7 @@
             <div id="nav-account" class="nav-collapse pull-right">
                 <ul class="nav">
                     <c:choose>
-                        <c:when test="${client != null}">
+                        <c:when test="${clientSession.isLoggedIn()}">
                             <li id="greeting"><div>Welcome <!--sec:authentication property="name" /--></div></li>
                                 <c:url var="logoutUrl" value="/customer/logout"/>
                             <li><a id="navLogoutLink" href="${logoutUrl}">Logout</a></li>
