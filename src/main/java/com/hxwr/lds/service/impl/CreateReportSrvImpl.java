@@ -13,13 +13,14 @@ import com.hxwr.lds.model.Payment;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  * implements the real way to create the loan report
  *
  * @author 35194
  */
-
+@Service
 public class CreateReportSrvImpl implements ICreateReportSrv {
 
     @Override
