@@ -20,12 +20,14 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletOutputStream;
+import org.springframework.stereotype.Service;
 
 /**
  * A service for generating a LoanReport view.
  *
  * @author Training
  */
+@Service
 public class PDFViewReportSrv implements IViewReportSrv {
 
     /**
