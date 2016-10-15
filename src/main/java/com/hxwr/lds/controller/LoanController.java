@@ -10,6 +10,11 @@ import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.model.LoanReport;
 import com.hxwr.lds.service.ICreateReportSrv;
 import com.hxwr.lds.service.ILoanSrv;
+import com.hxwr.lds.service.IViewReportSrv;
+import com.hxwr.lds.service.impl.HTMLViewReportSrv;
+import com.hxwr.lds.service.impl.PDFViewReportSrv;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +33,12 @@ public class LoanController {
 
     @Autowired
     ICreateReportSrv crs;
+
+    @Autowired
+    HTMLViewReportSrv HTMLView;
+
+    @Autowired
+    PDFViewReportSrv PDFView;
 
     @GetMapping(value = "/loan/create")
     public String createLoan() {
@@ -75,5 +86,36 @@ public class LoanController {
 
         }
 
+    }
+
+    @GetMapping(value = "/loan/display")
+    public void displayLoan(HttpServletRequest request, String id,String disp,
+            HttpSession session, HttpServletResponse response) {
+
+        //get the loan id
+        Integer loanid =  Integer.parseInt(id);
+        
+        //get the load associated with the loanid
+
+        Loan loan = loanSrv.fetchLoanByID(loanid);
+
+        if (loan != null) {
+
+            //retrieve the customer associated with the loan
+            Client client = loan.getClient();
+
+            //create the LoanReport
+            LoanReport report = crs.CreateReport(loan, client);
+
+            if (disp.equalsIgnoreCase("HTML")) {
+                HTMLView.view(report, request, response);
+            } else if (disp.equalsIgnoreCase("PDF")) {
+                PDFView.view(report, request, response);
+            }
+
+        } else {
+            session.setAttribute("message", "Loan doesn't exist");
+            //return "customer";
+        }
     }
 }
