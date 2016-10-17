@@ -25,6 +25,9 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 	<list>
            <value>com/hxwr/lds/entities/Client.hbm.xml</value>
            <value>com/hxwr/lds/entities/Loan.hbm.xml</value>
+           <value>com/hxwr/lds/entities/LoansApprove.hbm.xml/</value>
+           <value>com/hxwr/lds/entities/PayDetail.hbm.xml/</value>
+           <value>com/hxwr/lds/entities/Arrears.hbm.xml/</value>
 	</list>
       </property>
 

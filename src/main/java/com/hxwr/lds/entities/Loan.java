@@ -17,6 +17,17 @@ public class Loan implements java.io.Serializable{
     private double interest;
     private double amount;
     private Client client;
+    private loansApproved lApprove;
+
+    public loansApproved getlApprove() {
+        return lApprove;
+    }
+
+    public void setlApprove(loansApproved lApprove) {
+        this.lApprove = lApprove;
+    }
+    
+    
 
     public Client getClient() {
         return client;

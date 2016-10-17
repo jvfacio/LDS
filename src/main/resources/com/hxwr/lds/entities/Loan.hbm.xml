@@ -22,7 +22,7 @@
         <property name="amount" type="double">
             <column name="amount" not-null="false" />
         </property>
-
+        <one-to-one cascade="all" class="com.hxwr.lds.entities.loansApproved" name="lApprove"/>
 
     </class>
 
