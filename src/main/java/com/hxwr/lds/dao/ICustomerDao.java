@@ -6,6 +6,7 @@
 package com.hxwr.lds.dao;
 
 import com.hxwr.lds.entities.Client;
+import java.util.List;
 
 /**
  *
@@ -19,4 +20,5 @@ public interface ICustomerDao {
     public Client getById(int clientId);
     public Client getByLoginInfo(String username, String password);
     public Client refresh(Client client);
+    public List<Client> getAllClients();
 }

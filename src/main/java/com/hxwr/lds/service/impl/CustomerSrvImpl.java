@@ -8,6 +8,7 @@ package com.hxwr.lds.service.impl;
 import com.hxwr.lds.service.ICustomerSrv;
 import com.hxwr.lds.dao.ICustomerDao;
 import com.hxwr.lds.entities.Client;
+import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,4 +61,11 @@ public class CustomerSrvImpl implements ICustomerSrv{
     public void register(Client client) {
         customerDao.addCustomerDetails(client);
     }
+
+    @Override
+    public List<Client> getAllClients() {
+       return customerDao.getAllClients();
+    }
+    
+ 
 }

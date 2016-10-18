@@ -8,6 +8,7 @@ package com.hxwr.lds.dao.impl;
 import com.hxwr.lds.dao.ICustomerDao;
 import com.hxwr.lds.entities.Client;
 import java.util.Iterator;
+import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
@@ -126,4 +127,21 @@ public class CustomerDao implements ICustomerDao {
     public Client refresh(Client client) {
         return getById(client.getId()); 
     }
+
+    @Override
+    public List<Client> getAllClients() {
+        Session hibernateSession = null;
+        try{
+            hibernateSession = sessionFactory.openSession();
+            Query query = hibernateSession.createQuery(
+                    "from Client");
+            List<Client> iter =  query.list();
+            return iter;
+            
+        }
+        finally{
+            //if (hibernateSession != null) hibernateSession.close();
+        }
+    }
+    
 }

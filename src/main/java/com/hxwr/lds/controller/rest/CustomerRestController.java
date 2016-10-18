@@ -5,11 +5,14 @@
  */
 package com.hxwr.lds.controller.rest;
 
+import java.util.List;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.service.ICustomerSrv;
+import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +26,17 @@ public class CustomerRestController {
     
     @Autowired
     private ICustomerSrv customerSrv;
+    
+    @GetMapping("/client")
+    public List<Client> getAllClients(){
+        return customerSrv.getAllClients();
+    }
+    
+   // @PostMapping("/client")
+    //public void postClient(){
+        
+   // }
+    
     
     @GetMapping("/client/{id}")
     public Client getClient(@PathVariable("id") int id) {

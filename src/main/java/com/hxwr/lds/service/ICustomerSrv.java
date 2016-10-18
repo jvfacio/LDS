@@ -6,6 +6,7 @@
 package com.hxwr.lds.service;
 
 import com.hxwr.lds.entities.Client;
+import java.util.List;
 
 /**
  *
@@ -16,5 +17,6 @@ public interface ICustomerSrv {
     public Client validateCustomer(String nickname, String password);
     public Client refresh(Client client);
     public Client getCustomer(int id);
+    public List<Client> getAllClients();
     public void register(Client client);
 }
