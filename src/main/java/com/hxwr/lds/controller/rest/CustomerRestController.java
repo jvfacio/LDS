@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hxwr.lds.controller;
+package com.hxwr.lds.controller.rest;
 
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.service.ICustomerSrv;
