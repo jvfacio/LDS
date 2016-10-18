@@ -15,5 +15,6 @@ public interface ICustomerSrv {
     
     public Client validateCustomer(String nickname, String password);
     public Client refresh(Client client);
+    public Client getCustomer(int id);
     public void register(Client client);
 }
