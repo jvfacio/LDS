@@ -27,7 +27,7 @@ public class CustomerRestController {
     @Autowired
     private ICustomerSrv customerSrv;
     
-    @GetMapping("/client")
+    @GetMapping("/clients")
     public List<Client> getAllClients(){
         return customerSrv.getAllClients();
     }
