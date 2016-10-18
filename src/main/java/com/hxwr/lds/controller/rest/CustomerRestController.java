@@ -8,11 +8,14 @@ package com.hxwr.lds.controller.rest;
 import java.util.List;
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.service.ICustomerSrv;
+import java.io.InputStream;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,10 +35,14 @@ public class CustomerRestController {
         return customerSrv.getAllClients();
     }
     
-   // @PostMapping("/client")
-    //public void postClient(){
+    @PostMapping("/client")
+    @Consumes("application/json")
+   public void postClient(@RequestBody Client cl){
+       System.out.println(cl.getName());
+       System.out.println(cl.getNickName());
+       System.out.println("Finish");
         
-   // }
+    }
     
     
     @GetMapping("/client/{id}")
