@@ -5,6 +5,8 @@
  */
 package com.hxwr.lds.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Training
@@ -16,6 +18,8 @@ public class Loan implements java.io.Serializable{
     private String loanPeriod;
     private double interest;
     private double amount;
+    
+    @JsonIgnore
     private Client client;
 
     public Client getClient() {
