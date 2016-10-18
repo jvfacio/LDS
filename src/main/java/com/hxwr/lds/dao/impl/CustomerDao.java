@@ -74,6 +74,30 @@ public class CustomerDao implements ICustomerDao {
         }
     }
     
+    
+    @Override
+    public Client getByNickName (String nickName){
+        
+        Session hibernateSession = null;
+        try {
+            hibernateSession = sessionFactory.openSession();
+            Query query = hibernateSession.createQuery(
+                    "from Client where nickName = :nickname");
+            query.setString("nickname", nickName);
+            Iterator<Client> iter = query.iterate();
+            if (iter.hasNext()) {
+                return iter.next();
+            }
+            else {
+                return null;
+            }
+        }
+        finally {
+            //if (hibernateSession != null) hibernateSession.close();
+        }
+           
+    }
+    
     @Override
     public Client getByName(String fName, String lName) {
         

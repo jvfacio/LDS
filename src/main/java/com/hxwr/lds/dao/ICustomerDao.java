@@ -19,4 +19,5 @@ public interface ICustomerDao {
     public Client getById(int clientId);
     public Client getByLoginInfo(String username, String password);
     public Client refresh(Client client);
+    public Client getByNickName (String nickName);
 }
