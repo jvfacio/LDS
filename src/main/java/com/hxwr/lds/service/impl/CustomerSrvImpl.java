@@ -46,6 +46,11 @@ public class CustomerSrvImpl implements ICustomerSrv{
         return customerDao.getByLoginInfo(username, password);
         
     }
+    @Override
+    public Client getCustomer(String nickName){
+        return customerDao.getByNickName(nickName);
+        
+    }
     
     @Override
     public Client getCustomer(int id) {

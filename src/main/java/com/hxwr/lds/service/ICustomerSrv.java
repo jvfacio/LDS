@@ -19,4 +19,5 @@ public interface ICustomerSrv {
     public Client getCustomer(int id);
     public List<Client> getAllClients();
     public void register(Client client);
+    public Client getCustomer(String nickName);
 }
