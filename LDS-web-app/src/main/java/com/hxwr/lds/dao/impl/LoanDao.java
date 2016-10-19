@@ -54,20 +54,13 @@ public class LoanDao implements ILoanDao{
 
     @Override
     public Loan getByLoanID(Integer loanID) {
-        Session session = null;
-
-        session = sessionFactory.openSession();
-
-        Query query = session.createQuery("from Loan where loanID = :loanID");
-
-        query.setInteger("loanID", loanID);
-
-        Iterator<Loan> iter = query.iterate();
-
-        if (iter.hasNext()) {
-            return iter.next();
-        } else {
-            return null;
+        Session hibernateSession = null;
+        try {
+            hibernateSession = sessionFactory.openSession();
+            return (Loan) hibernateSession.get(Loan.class, loanID);
+        }
+        finally {
+            //if (hibernateSession != null) hibernateSession.close();
         }
     }
     
