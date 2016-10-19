@@ -24,7 +24,6 @@ import org.hamcrest.Matchers.*;
  */
 public class ApplicationTest {
     private Client client;
-    private ICustomerSrv custSrv;
     @Before
     public void Init(){
         
