@@ -14,13 +14,19 @@ import org.hibernate.Transaction;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author 35194
  */
+
+@Repository
 public class CustomerDao implements ICustomerDao {
 
+    @Autowired
     private SessionFactory sessionFactory;
     
     private static final Logger log = Logger.getLogger(CustomerDao.class);

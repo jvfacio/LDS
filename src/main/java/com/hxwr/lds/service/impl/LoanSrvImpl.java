@@ -8,13 +8,17 @@ package com.hxwr.lds.service.impl;
 import com.hxwr.lds.service.ILoanSrv;
 import com.hxwr.lds.dao.ILoanDao;
 import com.hxwr.lds.entities.Loan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Training
  */
+@Service
 public class LoanSrvImpl implements ILoanSrv {
     
+    @Autowired
     private ILoanDao loanDao;
 
     public ILoanDao getLoanDao() {

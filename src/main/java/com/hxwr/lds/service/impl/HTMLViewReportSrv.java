@@ -14,11 +14,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Training
  */
+@Service
+@Qualifier("HTMLView")
 public class HTMLViewReportSrv implements IViewReportSrv {
     
     @Override
