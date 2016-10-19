@@ -19,7 +19,17 @@ public class Client implements java.io.Serializable{
    private String nickName;
     private String pass;
     private Set<Loan> loans = new HashSet<Loan>(0);
-
+    
+    public Client(String namec,String phoneNumberc, String addressc, String salaryc, String lastnamec, String nicknamec, String passc){
+        setName(namec);
+        setPhoneNumber(phoneNumberc);
+        setAddress(addressc);
+        setSalary(salaryc);
+        setlastName(lastnamec);
+        setNickName(nicknamec);
+        setPass(passc);
+    }
+    
     public String getNickName() {
         return nickName;
     }
