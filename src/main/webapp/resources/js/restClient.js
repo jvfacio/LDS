@@ -7,16 +7,17 @@ function loadLoanList(loans) {
     }
     else {
         var loanSummaryList = $("#loanSummaryList");
-        for(var i in clientObj.loans) {
+        for(var i in loans) {
 
-            var loanReport = $('<li class="list-group-item liitem"/><ul class="list-group" />');
+            var loanReport = $('<li class="row list-group-item liitem"><ul class="list-group container" /></li>');
             loanSummaryList.append(loanReport);
 
-            var loan = clientObj.loans[i];
+            var loan = loans[i];
+            var loanReportList = loanReport.children().first();
             for(var key in loan) {
                 var loanRow = $('<li class="list-group-item liitem" />');
-                loanReport.append(loanRow);
-                loanRow.text(key + ": " + loan[key]);
+                loanReportList.append(loanRow);
+                loanRow.text(key + ": " + (loan[key] || "(empty)"));
             }
         }
     }

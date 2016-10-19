@@ -38,9 +38,6 @@
         <div id="loanSummaryContainer" class="container">
             <h2> Loan Summary </h2>
             <ul id="loanSummaryList" class="container list-group" >
-                <li class="row">
-
-                </li>
             </ul>
         </div>
     </div>
