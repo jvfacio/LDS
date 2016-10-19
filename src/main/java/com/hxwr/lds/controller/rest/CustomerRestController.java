@@ -36,8 +36,8 @@ public class CustomerRestController {
         return customerSrv.getAllClients();
     }
     
-    @PostMapping("/client")
-    @Consumes("application/json")
+   @PostMapping("/client")
+   @Consumes("application/json")
    public void postClient(@RequestBody Client cl){
        System.out.println(cl.getName());
        System.out.println(cl.getNickName());
