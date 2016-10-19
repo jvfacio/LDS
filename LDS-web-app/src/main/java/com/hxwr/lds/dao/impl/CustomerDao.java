@@ -82,6 +82,7 @@ public class CustomerDao implements ICustomerDao {
         Session hibernateSession = null;
         try {
             hibernateSession = sessionFactory.openSession();
+            //using left join to avoid lazy behaviour
             Query query = hibernateSession.createQuery(
                     "from Client as client left join fetch client.loans where client.nickName = :nickname");
             query.setString("nickname", nickName);
