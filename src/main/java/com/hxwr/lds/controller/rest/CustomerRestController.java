@@ -40,6 +40,7 @@ public class CustomerRestController {
    public void postClient(@RequestBody Client cl){
        System.out.println(cl.getName());
        System.out.println(cl.getNickName());
+       customerSrv.register(cl);
        System.out.println("Finish");
         
     }
