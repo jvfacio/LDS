@@ -83,11 +83,11 @@ public class CustomerDao implements ICustomerDao {
         try {
             hibernateSession = sessionFactory.openSession();
             Query query = hibernateSession.createQuery(
-                    "from Client where nickName = :nickname");
+                    "from Client as client left join fetch client.loans where client.nickName = :nickname");
             query.setString("nickname", nickName);
-            Iterator<Client> iter = query.iterate();
-            if (iter.hasNext()) {
-                return iter.next();
+            List list = query.list();
+            if (list.get(0) != null) {
+                return (Client) list.get(0);
             }
             else {
                 return null;
