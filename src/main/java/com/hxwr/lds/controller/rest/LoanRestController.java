@@ -29,7 +29,7 @@ public class LoanRestController {
     public void addLoan(@RequestBody  Loan loan){
         iLoanSrv.addLoanDetails(loan);
     }
-    @GetMapping("/loan/#id")
+    @GetMapping("/loan/{#id}")
     public Loan getLoanById(@PathVariable("id") int id){
      
         return iLoanSrv.fetchLoanByID(id);
