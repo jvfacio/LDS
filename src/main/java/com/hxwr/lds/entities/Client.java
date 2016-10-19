@@ -5,6 +5,7 @@
  */
 package com.hxwr.lds.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +18,7 @@ public class Client implements java.io.Serializable{
     private String salary;
     private String lastName;
     private String nickName;
+    @JsonIgnore
     private String pass;
     private Set<Loan> loans = new HashSet<Loan>();
     
