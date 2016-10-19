@@ -8,9 +8,9 @@ package com.hxwr.lds.controller;
 //import static jdk.nashorn.internal.runtime.Debug.id;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -32,5 +32,9 @@ public class LdsController {
         
         return "index";
     }
-
+    
+    @GetMapping("/RestClient")
+    public String getRestClientExample() {
+        return "restClient";
+    }
 }

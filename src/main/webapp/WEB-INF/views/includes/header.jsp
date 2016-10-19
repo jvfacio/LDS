@@ -12,22 +12,23 @@
 
                 <c:url var="styleBootstrapUrl" value="/resources/css/styleBootstrap.css"/>
                 <link href="${styleBootstrapUrl}" rel="stylesheet" type="text/css">
-
-                <c:url var="scriptsBootstrapUrl" value="/resources/js/scriptsBootstrap.js"/>
-                <script type="text/javascript" src="${scriptsBootstrapUrl}"></script>
             </c:if>
             <c:url var="styleUrl" value="/resources/css/styles.css"/>
             <link href="${styleUrl}" rel="stylesheet" type="text/css">
         </c:if>
         <c:if test="${!noJs}">
             <c:if test="${!noJquery}">
-                <c:url var="jqueryUrl" value="/resources/js/jquery-3.1.1.slim.min.js"/>
+                <c:url var="jqueryUrl" value="/resources/js/jquery-3.1.1.min.js"/>
                 <script type="text/javascript" src="${jqueryUrl}"></script>
             </c:if>
             <c:if test="${!noBootstrap}">
                 <c:url var="scriptsBootstrapUrl" value="/resources/js/scriptsBootstrap.js"/>
                 <script type="text/javascript" src="${scriptsBootstrapUrl}"></script>
             </c:if>
+            <c:forEach var="jsFile" items="${jsImports}">
+                <c:url var="jsUrl" value="resources/js/${jsFile}.js" />
+                <script type="text/javascript" src="${jsUrl}"}></script>
+            </c:forEach>
         </c:if>
         <style>
             body {
