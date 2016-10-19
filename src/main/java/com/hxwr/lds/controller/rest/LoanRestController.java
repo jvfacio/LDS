@@ -7,9 +7,11 @@ package com.hxwr.lds.controller.rest;
 
 import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.service.ILoanSrv;
+import javax.ws.rs.Consumes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,11 +27,12 @@ public class LoanRestController {
     @Autowired
     private ILoanSrv iLoanSrv;
     
-    @GetMapping("/client/#id/createLoan")
+    @PostMapping("/client/{id}/createLoan")
+    @Consumes("application/json")
     public void addLoan(@RequestBody  Loan loan){
         iLoanSrv.addLoanDetails(loan);
     }
-    @GetMapping("/loan/{#id}")
+    @GetMapping("/loan/{id}")
     public Loan getLoanById(@PathVariable("id") int id){
      
         return iLoanSrv.fetchLoanByID(id);
