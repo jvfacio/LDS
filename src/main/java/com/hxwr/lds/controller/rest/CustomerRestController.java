@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,9 +8,9 @@ package com.hxwr.lds.controller.rest;
 
 import java.util.List;
 import com.hxwr.lds.entities.Client;
-import com.hxwr.lds.entities.Loan;
 import com.hxwr.lds.service.ICustomerSrv;
-import com.hxwr.lds.service.ILoanSrv;
+import java.io.InputStream;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,17 +31,20 @@ public class CustomerRestController {
     @Autowired
     private ICustomerSrv customerSrv;
     
-    
-    
     @GetMapping("/clients")
     public List<Client> getAllClients(){
         return customerSrv.getAllClients();
     }
     
-   // @PostMapping("/client")
-    //public void postClient(){
+    @PostMapping("/client")
+    @Consumes("application/json")
+   public void postClient(@RequestBody Client cl){
+       System.out.println(cl.getName());
+       System.out.println(cl.getNickName());
+       customerSrv.register(cl);
+       System.out.println("Finish");
         
-   // }
+    }
     
     
     @GetMapping("/client/{id}")
@@ -52,5 +56,4 @@ public class CustomerRestController {
     public Client getCustomer(@PathVariable("nickName") String nickName){
         return customerSrv.getCustomer(nickName);
     }
-    
 }
