@@ -6,7 +6,13 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>LDS-web-app</name>
+    <name>lds-web-app</name>
+    
+    <parent>
+        <groupId>com.hxwr</groupId>
+        <artifactId>lds</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -21,7 +27,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>lds-api</artifactId>
+            <artifactId>lds-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         

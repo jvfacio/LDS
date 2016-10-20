@@ -20,18 +20,18 @@ public class LoanRestApiTest {
 	
 	/*@Test
 	public void retrieveContact() {
-		
-		given().
-			params("grant_type","client_credentials").
-			auth().
-			preemptive().
-			basic("wsuser","t0ps3cr3t").
-		when().
-			get("http://192.168.10.50:8181/contact/1").
-		then().body("id",equalTo(1))
-                        .and().body("firstName", equalTo("Javier"))
-                        .and().body("lastName", equalTo("Mercado"))
-                        .statusCode(200);
+//		
+//		given().
+//			params("grant_type","client_credentials").
+//			auth().
+//			preemptive().
+//			basic("wsuser","t0ps3cr3t").
+//		when().
+//			get("http://192.168.10.50:8181/contact/1").
+//		then().body("id",equalTo(1))
+//                        .and().body("firstName", equalTo("Javier"))
+//                        .and().body("lastName", equalTo("Mercado"))
+//                        .statusCode(200);
 	}
         
         @Test

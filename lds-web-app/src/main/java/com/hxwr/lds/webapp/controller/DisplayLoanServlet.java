@@ -5,13 +5,14 @@
  */
 package com.hxwr.lds.webapp.controller;
 
-import com.hxwr.lds.api.service.ILoanSrv;
-import com.hxwr.lds.api.service.impl.CreateReportSrvImpl;
-import com.hxwr.lds.entities.Client;
-import com.hxwr.lds.entities.Loan;
-import com.hxwr.lds.model.LoanReport;
-import com.hxwr.lds.webapp.service.IViewReportSrv;
-import com.hxwr.lds.webapp.service.impl.HTMLViewReportSrv;
+import com.hxwr.lds.core.service.ILoanSrv;
+import com.hxwr.lds.core.entities.Client;
+import com.hxwr.lds.core.entities.Loan;
+import com.hxwr.lds.core.model.LoanReport;
+import com.hxwr.lds.core.service.ICreateReportSrv;
+import com.hxwr.lds.core.service.IViewReportSrv;
+import com.hxwr.lds.webapp.service.CreateReportSrvImpl;
+import com.hxwr.lds.webapp.service.HTMLViewReportSrv;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,7 +60,7 @@ public class DisplayLoanServlet extends HttpServlet {
             Client client = loan.getClient();
             HTMLViewReportSrv x= new HTMLViewReportSrv();
             //create LoanReport
-            CreateReportSrvImpl createReport = new CreateReportSrvImpl();
+            ICreateReportSrv createReport = new CreateReportSrvImpl();
             LoanReport report = createReport.CreateReport(loan, client);
             
             //Check if the view is required as HTML(true) or PDF (false)

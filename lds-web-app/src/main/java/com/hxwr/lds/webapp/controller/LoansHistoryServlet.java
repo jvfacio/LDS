@@ -5,12 +5,12 @@
  */
 package com.hxwr.lds.webapp.controller;
 
-import com.hxwr.lds.api.service.ICreateReportSrv;
-import com.hxwr.lds.api.dao.ILoanDao;
-import com.hxwr.lds.entities.Client;
-import com.hxwr.lds.entities.Loan;
-import com.hxwr.lds.model.LoanReport;
-import com.hxwr.lds.api.service.ILoanSrv;
+import com.hxwr.lds.core.service.ICreateReportSrv;
+import com.hxwr.lds.core.dao.ILoanDao;
+import com.hxwr.lds.core.entities.Client;
+import com.hxwr.lds.core.entities.Loan;
+import com.hxwr.lds.core.model.LoanReport;
+import com.hxwr.lds.core.service.ILoanSrv;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

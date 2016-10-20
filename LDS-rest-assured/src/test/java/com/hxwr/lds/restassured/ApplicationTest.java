@@ -7,13 +7,12 @@ package com.hxwr.lds.restassured;
  */
 
 
-/*
-import com.hxwr.lds.entities.Client;
-import com.hxwr.lds.service.ICustomerSrv;
+
+import com.hxwr.lds.core.entities.Client;
+import com.hxwr.lds.core.service.ICustomerSrv;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
-import javax.ws.rs.core.MediaType;
 import io.restassured.RestAssured.*;
 import static io.restassured.RestAssured.expect;
 import io.restassured.matcher.RestAssuredMatchers.*;
@@ -23,7 +22,7 @@ import org.hamcrest.Matchers.*;
  * 
  * @author AntonyRmrz
  */
-/*
+
 public class ApplicationTest {
     private Client client;
     @Before
@@ -35,17 +34,31 @@ public class ApplicationTest {
     }
     @Test
     public void testUnit1(){//Post a contact and retrieve it
-//        expect().
-//        statusCode(200).
-//        when().
-//                get("http://localhost:8080/LDS/rest/clients");
-//        
+        expect().
+        statusCode(200).
+        when().
+                get("http://localhost:8081/lds-api/rest/clients");
+        
         System.out.println("hello from test1");
     }
     
     @Test
     public void testUnit2(){
+        expect().
+        statusCode(200).
+        when().
+                get("http://localhost:8081/lds-api/rest/client/1");
+        
         System.out.println("Hello from test2");
     }
+    @Test
+    public void testUnit3(){
+        expect().
+        statusCode(200).
+        when().
+                get("http://localhost:8081/lds-api/rest/client/antonyrmrz");
+        
+        System.out.println("Hello from test3");
+    }
+    
 }
-*/

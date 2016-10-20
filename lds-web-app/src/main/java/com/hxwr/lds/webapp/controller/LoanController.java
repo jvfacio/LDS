@@ -5,14 +5,13 @@
  */
 package com.hxwr.lds.webapp.controller;
 
-import com.hxwr.lds.entities.Client;
-import com.hxwr.lds.entities.Loan;
-import com.hxwr.lds.model.LoanReport;
-import com.hxwr.lds.api.service.ICreateReportSrv;
-import com.hxwr.lds.api.service.ILoanSrv;
-import com.hxwr.lds.webapp.service.IViewReportSrv;
-import com.hxwr.lds.webapp.service.impl.HTMLViewReportSrv;
-import com.hxwr.lds.webapp.service.impl.PDFViewReportSrv;
+import com.hxwr.lds.core.entities.Client;
+import com.hxwr.lds.core.entities.Loan;
+import com.hxwr.lds.core.model.LoanReport;
+import com.hxwr.lds.core.service.ICreateReportSrv;
+import com.hxwr.lds.core.service.ILoanSrv;
+import com.hxwr.lds.webapp.service.HTMLViewReportSrv;
+import com.hxwr.lds.webapp.service.PDFViewReportSrv;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

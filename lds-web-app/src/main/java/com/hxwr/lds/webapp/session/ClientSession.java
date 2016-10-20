@@ -5,7 +5,7 @@
  */
 package com.hxwr.lds.webapp.session;
 
-import com.hxwr.lds.entities.Client;
+import com.hxwr.lds.core.entities.Client;
 import java.io.Serializable;
 
 /**
