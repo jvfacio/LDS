@@ -5,8 +5,8 @@
  */
 package com.hxwr.lds.api.dao.impl;
 
-import com.hxwr.lds.api.dao.ICustomerDao;
-import com.hxwr.lds.entities.Client;
+import com.hxwr.lds.core.dao.ICustomerDao;
+import com.hxwr.lds.core.entities.Client;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
