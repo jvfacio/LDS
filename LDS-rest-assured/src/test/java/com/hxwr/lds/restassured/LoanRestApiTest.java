@@ -90,7 +90,7 @@ public class LoanRestApiTest {
     @Test 
     public void getClientByNickNameTest(){
         given().
-                pathParam("nickName","ok").
+                pathParam("nickName","xxx").
         when().
                 get("http://localhost:8080/lds-api/client/getclientbynickname/{nickName}").
         then().
