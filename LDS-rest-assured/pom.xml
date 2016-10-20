@@ -78,7 +78,7 @@
                                 <deployables>
                                     <deployable>
                                         <groupId>${project.groupId}</groupId>
-                                        <artifactId>lds-rest-api</artifactId>
+                                        <artifactId>lds-api</artifactId>
                                         <type>war</type>
                                         <pingURL>http://localhost:8081/</pingURL>
                                         <pingTimeout>30000</pingTimeout>
