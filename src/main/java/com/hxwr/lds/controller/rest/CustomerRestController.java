@@ -52,7 +52,7 @@ public class CustomerRestController {
         return customerSrv.getCustomer(id);
     }
     
-    @GetMapping("/client/{nickName}")
+    @GetMapping("/client/getclientbynickname/{nickName}")
     public Client getCustomer(@PathVariable("nickName") String nickName){
         return customerSrv.getCustomer(nickName);
     }
