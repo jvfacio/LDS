@@ -1,4 +1,4 @@
-package com.hxwr.restassured;
+package com.hxwr.lds.restassured;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
