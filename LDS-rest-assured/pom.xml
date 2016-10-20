@@ -5,6 +5,13 @@
     <artifactId>lds-rest-assured</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>lds-rest-assured</name>
+    
+    <parent>
+        <groupId>com.hxwr</groupId>
+        <artifactId>lds</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

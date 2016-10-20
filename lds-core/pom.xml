@@ -5,6 +5,11 @@
     <artifactId>lds-core</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <parent>
+        <groupId>com.hxwr</groupId>
+        <artifactId>lds</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

@@ -6,8 +6,13 @@
     <artifactId>lds-api</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-
     <name>lds-api</name>
+    
+    <parent>
+        <groupId>com.hxwr</groupId>
+        <artifactId>lds</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
