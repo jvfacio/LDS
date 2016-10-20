@@ -52,17 +52,53 @@ public class LoanRestApiTest {
     }*/
     
     @Test
-    public void validateContentAndContentType() {
+    public void getClientByIdTest() {
         given().
                 pathParam("id",1).
         when().
                 get("http://localhost:8080/LDS-web-app/rest/client/{id}").
         then().
+                assertThat().
                 body("name",equalTo("xxx")).
                 and().
                 body("phoneNumber",equalTo("123")).
                 and().
+                contentType("application/json").
+                and().
+                statusCode(200);
+                
+    }
+   /* @Test
+    public void getClient(int id){
+        given().
+                contentType("application/json").
+        when().
+                 get("http://localhost:8080/LDS-web-app/rest/client/{id}").
+        then().
                 assertThat().
+                body(containsString("id")).
+                body(containsString("name")).
+                body(containsString("address")).
+                body(containsString("phoneNumber")).
+                body(containsString("salary")).
+                body(containsString("lastNmae")).
+                body(containsString("nickName")).
+                
+                statusCode(200);
+    }
+    */
+    @Test 
+    public void getClientByNickNameTest(){
+        given().
+                pathParam("nickName","ok").
+        when().
+                get("http://localhost:8080/LDS-web-app/rest/client/{nickName}").
+        then().
+                assertThat().
+                body("name",equalTo("xxx")).
+                and().
+                body("phoneNumber",equalTo("123")).
+                and().
                 contentType("application/json").
                 and().
                 statusCode(200);
