@@ -7,7 +7,7 @@ package com.hxwr.lds.restassured;
  */
 
 
-
+/*
 import com.hxwr.lds.entities.Client;
 import com.hxwr.lds.service.ICustomerSrv;
 import org.junit.Before;
@@ -23,6 +23,7 @@ import org.hamcrest.Matchers.*;
  * 
  * @author AntonyRmrz
  */
+/*
 public class ApplicationTest {
     private Client client;
     @Before
@@ -47,3 +48,4 @@ public class ApplicationTest {
         System.out.println("Hello from test2");
     }
 }
+*/

@@ -1,11 +1,13 @@
 package com.hxwr.lds.restassured;
 
+import io.restassured.RestAssured;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class LoanRestApiTest {
@@ -16,7 +18,7 @@ public class LoanRestApiTest {
 	 * Use Basic authentication
 	 ******************************************************/
 	
-	@Test
+	/*@Test
 	public void retrieveContact() {
 		
 		given().
@@ -43,5 +45,28 @@ public class LoanRestApiTest {
 		when().
 			get("http://localhost:8181/contact/1").
 		then().statusCode(200);
-	}
+	}*/
+    /*@BeforeTest
+    public void initPath(){
+        RestAssured.rootPath="http://localhost:8080/LDS-web-app/rest";//"http://localhost:8080/LDS/rest/clients"
+    }*/
+    
+    @Test
+    public void validateContentAndContentType() {
+        given().
+                pathParam("id",1).
+        when().
+                get("http://localhost:8080/LDS-web-app/rest/client/{id}").
+        then().
+                body("name",equalTo("xxx")).
+                and().
+                body("phoneNumber",equalTo("123")).
+                and().
+                assertThat().
+                contentType("application/json").
+                and().
+                statusCode(200);
+                
+    }
+         
 }
