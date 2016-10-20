@@ -33,16 +33,31 @@ public class ApplicationTest {
     }
     @Test
     public void testUnit1(){//Post a contact and retrieve it
-//        expect().
-//        statusCode(200).
-//        when().
-//                get("http://localhost:8080/LDS/rest/clients");
-//        
+        expect().
+        statusCode(200).
+        when().
+                get("http://localhost:8081/lds-api/rest/clients");
+        
         System.out.println("hello from test1");
     }
     
     @Test
     public void testUnit2(){
+        expect().
+        statusCode(200).
+        when().
+                get("http://localhost:8081/lds-api/rest/client/1");
+        
         System.out.println("Hello from test2");
     }
+    @Test
+    public void testUnit3(){
+        expect().
+        statusCode(200).
+        when().
+                get("http://localhost:8081/lds-api/rest/client/antonyrmrz");
+        
+        System.out.println("Hello from test3");
+    }
+    
 }
