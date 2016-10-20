@@ -6,18 +6,15 @@
  */
 package com.hxwr.lds.api.controller;
 
+import com.hxwr.lds.core.dao.ICustomerDao;
 import java.util.List;
-import com.hxwr.lds.entities.Client;
-import com.hxwr.lds.api.service.ICustomerSrv;
-import java.io.InputStream;
+import com.hxwr.lds.core.entities.Client;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,11 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerRestController {
     
     @Autowired
-    private ICustomerSrv customerSrv;
+    private ICustomerDao customerDao;
     
     @GetMapping("/clients")
     public List<Client> getAllClients(){
-        return customerSrv.getAllClients();
+        return customerDao.getAllClients();
     }
     
    @PostMapping("/client")
@@ -40,7 +37,7 @@ public class CustomerRestController {
    public void postClient(@RequestBody Client cl){
        System.out.println(cl.getName());
        System.out.println(cl.getNickName());
-       customerSrv.register(cl);
+       customerDao.addCustomerDetails(cl);
        System.out.println("Finish");
         
     }
@@ -48,11 +45,11 @@ public class CustomerRestController {
     
     @GetMapping("/client/{id}")
     public Client getClient(@PathVariable("id") int id) {
-        return customerSrv.getCustomer(id);
+        return customerDao.getById(id);
     }
     
     @GetMapping("/client/getclientbynickname/{nickName}")
     public Client getCustomer(@PathVariable("nickName") String nickName){
-        return customerSrv.getCustomer(nickName);
+        return customerDao.getByNickName(nickName);
     }
 }

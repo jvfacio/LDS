@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.hxwr.lds.entities.paymentDetail" table="payment_Detail">
+    <class name="com.hxwr.lds.core.entities.paymentDetail" table="payment_Detail">
         <composite-id >
             <key-property name="numOfPayment" type="integer" >
                 <column name="NUM_OF_PEYMENT"/>
@@ -22,7 +22,7 @@
                 <column name="STATUS" not-null="true" default="0" />
             </property>
        
-        <one-to-one name="arrear" class="com.hxwr.lds.entities.arrears"
+        <one-to-one name="arrear" class="com.hxwr.lds.core.entities.arrears"
                     cascade="all" />
     </class>
 </hibernate-mapping>

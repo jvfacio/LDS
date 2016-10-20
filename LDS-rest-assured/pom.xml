@@ -14,6 +14,12 @@
             <type>war</type>
         </dependency>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>lds-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.9.10</version>
@@ -54,7 +60,7 @@
                         <home>${project.build.directory}/tomcat-${tomcat.version}/container</home>
                         <properties>
                             <cargo.logging>high</cargo.logging>
-                            <cargo.servlet.port>9080</cargo.servlet.port>
+                            <cargo.servlet.port>8081</cargo.servlet.port>
                             <cargo.tomcat.ajp.port>9008</cargo.tomcat.ajp.port>
                         </properties>
                     </configuration>
@@ -62,7 +68,7 @@
                 <executions>
                     <execution>
                         <id>start-container</id>
-                        <phase>pre-integration-test</phase>
+                        <phase>pre-test</phase>
                         <goals>
                             <goal>start</goal>
                             <goal>deploy</goal>
@@ -74,7 +80,7 @@
                                         <groupId>${project.groupId}</groupId>
                                         <artifactId>lds-rest-api</artifactId>
                                         <type>war</type>
-                                        <pingURL>http://localhost:9080/LDS/</pingURL>
+                                        <pingURL>http://localhost:8081/</pingURL>
                                         <pingTimeout>30000</pingTimeout>
                                         <properties>
                                             <context>mod-war</context>
@@ -86,7 +92,7 @@
                     </execution>
                     <execution>
                         <id>stop-container</id>
-                        <phase>post-integration-test</phase>
+                        <phase>post-test</phase>
                         <goals>
                             <goal>stop</goal>
                         </goals>

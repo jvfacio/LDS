@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.hxwr.lds.entities.Loan" table="loan">
+    <class name="com.hxwr.lds.core.entities.Loan" table="loan">
         <id name="loanID" type="java.lang.Integer">
             <column name="loanid"/>
             <generator class="identity" />
         </id>
-        <many-to-one name="client" class="com.hxwr.lds.entities.Client" fetch="select">
+        <many-to-one name="client" class="com.hxwr.lds.core.entities.Client" fetch="select">
             <column name="clientid" not-null="true"/>
         </many-to-one>
 
@@ -22,7 +22,7 @@
         <property name="amount" type="double">
             <column name="amount" not-null="false" />
         </property>
-        <one-to-one cascade="all" class="com.hxwr.lds.entities.loansApproved" name="lApprove"/>
+        <one-to-one cascade="all" class="com.hxwr.lds.core.entities.loansApproved" name="lApprove"/>
 
     </class>
 

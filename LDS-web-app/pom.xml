@@ -21,9 +21,8 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>lds-api</artifactId>
+            <artifactId>lds-core</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <type>war</type>
         </dependency>
         
         <!-- Hibernate ORM -->

@@ -6,8 +6,8 @@
 package com.hxwr.lds.webapp.controller;
 
 import com.hxwr.lds.webapp.session.ClientSession;
-import com.hxwr.lds.entities.Client;
-import com.hxwr.lds.api.service.ICustomerSrv;
+import com.hxwr.lds.core.entities.Client;
+import com.hxwr.lds.core.service.ICustomerSrv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
