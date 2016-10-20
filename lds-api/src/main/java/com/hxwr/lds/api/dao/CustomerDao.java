@@ -24,7 +24,7 @@ import org.springframework.stereotype.Repository;
  * @author 35194
  */
 
-@Repository
+@Repository ("customerDao")
 public class CustomerDao implements ICustomerDao {
 
     @Autowired
