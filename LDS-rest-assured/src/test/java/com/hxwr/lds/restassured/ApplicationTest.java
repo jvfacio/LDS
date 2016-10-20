@@ -9,7 +9,7 @@ package com.hxwr.lds.restassured;
 
 
 import com.hxwr.lds.entities.Client;
-import com.hxwr.lds.service.ICustomerSrv;
+import com.hxwr.lds.api.service.ICustomerSrv;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
