@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hxwr.lds.entities.paymentDetail" table="payment_Detail">
+        <composite-id >
+            <key-property name="numOfPayment" type="integer" >
+                <column name="NUM_OF_PEYMENT"/>
+            </key-property>
+            <key-many-to-one name="loanid">
+                <column name="LOAN_ID"/>
+            </key-many-to-one>
+        </composite-id>
+  
+            <property name="limitPayDay" type="date">
+                <column name="LIMIT_PAY_DAY" not-null="true" />
+            </property>
+            <property name="amount" type="double">
+                <column name="AMOUNT" not-null="true"/>
+            </property>
+            <property name="status" type="integer">
+                <column name="STATUS" not-null="true" default="0" />
+            </property>
+       
+        <one-to-one name="arrear" class="com.hxwr.lds.entities.arrears"
+                    cascade="all" />
+    </class>
+</hibernate-mapping>
