@@ -38,8 +38,7 @@ public class CustomerRestController {
        System.out.println(cl.getName());
        System.out.println(cl.getNickName());
        customerDao.addCustomerDetails(cl);
-       System.out.println("Finish");
-        
+       System.out.println("Finish");      
     }
     
     
