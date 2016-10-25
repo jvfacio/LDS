@@ -13,12 +13,17 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Training
  */
-public class LdsRestClient {
+@Service("ldsRestClient")
+@Scope(value = "session", proxyMode = ScopedProxyMode.INTERFACES)
+public class LdsRestClient implements IRestClient {
     
     private static final URI DEFAULT_URI = 
             UriBuilder.fromUri("http://192.168.10.50:8081/lds-api")
@@ -39,18 +44,22 @@ public class LdsRestClient {
         this(UriBuilder.fromUri(basePath).build());
     }
     
+    @Override
     public Response makeRequest(String method, String path) {
         return makeInvocationBuilder(path).method(method);
     }
     
+    @Override
     public Response makeReuqest(String method, String path, Entity<?> param) {
         return makeInvocationBuilder(path).method(method, param);
     }
     
+    @Override
     public <T> T makeRequest(String method, String path, Class<T> cls) {
         return makeInvocationBuilder(path).method(method, cls);
     }
     
+    @Override
     public <T> T makeRequest(String method, String path, Entity<?> param, Class<T> cls) {
         return makeInvocationBuilder(path).method(method, param, cls);
     }
