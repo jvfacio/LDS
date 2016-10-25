@@ -10,6 +10,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -61,6 +62,16 @@ public class LdsRestClient implements IRestClient {
     
     @Override
     public <T> T makeRequest(String method, String path, Entity<?> param, Class<T> cls) {
+        return makeInvocationBuilder(path).method(method, param, cls);
+    }
+    
+        @Override
+    public <T> T makeRequest(String method, String path, GenericType<T> cls) {
+        return makeInvocationBuilder(path).method(method, cls);
+    }
+    
+    @Override
+    public <T> T makeRequest(String method, String path, Entity<?> param, GenericType<T> cls) {
         return makeInvocationBuilder(path).method(method, param, cls);
     }
     

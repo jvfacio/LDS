@@ -6,6 +6,7 @@
 package com.hxwr.lds.webapp;
 
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -19,6 +20,10 @@ public interface IRestClient {
     <T> T makeRequest(String method, String path, Class<T> cls);
 
     <T> T makeRequest(String method, String path, Entity<?> param, Class<T> cls);
+    
+    <T> T makeRequest(String method, String path, GenericType<T> cls);
+
+    <T> T makeRequest(String method, String path, Entity<?> param, GenericType<T> cls);
 
     Response makeReuqest(String method, String path, Entity<?> param);
     
