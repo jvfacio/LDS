@@ -13,16 +13,6 @@
         <artifactId>lds</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.3.3.RELEASE</spring.version>
-        <!--spring.version>3.2.8.RELEASE</spring.version-->
-        <spring.security.version>3.2.3.RELEASE</spring.security.version>
-        <hibernate.version>4.2.11.Final</hibernate.version>
-        <dbcp.version>1.4</dbcp.version>
-    </properties>
     
     <dependencies>
         <dependency>
@@ -39,7 +29,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.3.1.Final</version>
+            <version>${hibernate.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -78,17 +68,22 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!-- database pool -->
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>${dbcp.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>2.8.0</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-json</artifactId>
+            <version>${jersey.version}</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
