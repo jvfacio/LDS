@@ -6,8 +6,6 @@
 package com.hxwr.lds.webapp;
 
 import java.io.IOException;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
 /**
