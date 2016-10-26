@@ -5,6 +5,7 @@
  */
 package com.hxwr.lds.webapp;
 
+import java.io.IOException;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
@@ -15,16 +16,11 @@ import javax.ws.rs.core.Response;
  */
 public interface IRestClient {
 
-    Response makeRequest(String method, String path);
-
-    <T> T makeRequest(String method, String path, Class<T> cls);
-
-    <T> T makeRequest(String method, String path, Entity<?> param, Class<T> cls);
+    Response makeRequest(String method, String path) throws IOException;
     
-    <T> T makeRequest(String method, String path, GenericType<T> cls);
+    Response makeRequest(String method, String path, Object param) throws IOException;
 
-    <T> T makeRequest(String method, String path, Entity<?> param, GenericType<T> cls);
+    <T> T makeRequest(String method, String path, Class<T> cls) throws IOException;
 
-    Response makeReuqest(String method, String path, Entity<?> param);
-    
+    <T> T makeRequest(String method, String path, Object param, Class<T> cls) throws IOException;
 }

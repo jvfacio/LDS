@@ -6,10 +6,11 @@ package com.hxwr.lds.webapp.service;
  * and open the template in the editor.
  */
 
-
-import com.hxwr.lds.core.dao.ICustomerDao;
 import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.service.ICustomerSrv;
+import com.hxwr.lds.webapp.IRestClient;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,59 +21,58 @@ import org.springframework.stereotype.Service;
  * @author 35194
  */
 @Service
-public class CustomerSrvImpl implements ICustomerSrv{
+public class CustomerSrvImpl implements ICustomerSrv {
     
     /**
      * logger
      */
     private static final Logger log = Logger.getLogger(CustomerSrvImpl.class);
     
-    /**
-     * persist layer 
-     */
     @Autowired
-    private ICustomerDao customerDao;
-
-    public ICustomerDao getCustomerDao() {
-        return customerDao;
-    }
-
-    public void setCustomerDao(ICustomerDao customerDao) {
-        this.customerDao = customerDao;
-    }
+    private IRestClient restClient;
 
     @Override
-    public Client validateCustomer(String username, String password) {
+    public Client validateCustomer(String username, String password) throws IOException {
         
         log.debug("Validate the customer");
-        return customerDao.getByLoginInfo(username, password);
-        
+        Client client = restClient.makeRequest(
+                "GET", "/client/getclientbynickname/" + username,
+                Client.class);
+        //TODO: authenticate
+        return client;
     }
     @Override
-    public Client getCustomer(String nickName){
-        return customerDao.getByNickName(nickName);
+    public Client getCustomer(String nickName) throws IOException {
+        return restClient.makeRequest(
+            "GET", "/client/getclientbynickname/" + nickName,
+            Client.class);
         
     }
     
     @Override
-    public Client getCustomer(int id) {
-        return customerDao.getById(id);
+    public Client getCustomer(int id) throws IOException  {
+        return restClient.makeRequest(
+                "GET", "/client/" + id,
+                Client.class);
     }
     
     @Override 
-    public Client refresh(Client client) {
-        return customerDao.refresh(client);
+    public Client refresh(Client client) throws IOException  {
+        return getCustomer(client.getId());
     }
 
     @Override
-    public void register(Client client) {
-        customerDao.addCustomerDetails(client);
+    public void register(Client client) throws IOException {
+        restClient.makeRequest("POST", "/client/", client);
     }
 
     @Override
-    public List<Client> getAllClients() {
-       return customerDao.getAllClients();
+    public List<Client> getAllClients() throws IOException {
+       return Arrays.asList(
+            restClient.makeRequest(
+                "GET", "/clients/",
+                Client[].class
+            )
+       );
     }
-    
- 
 }
