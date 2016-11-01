@@ -32,4 +32,12 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
       </property>
 
     </bean>
+    
+    <!-- Beans de training -->
+    
+    <bean id="testService"
+          class="com.hxwr.lds.api.service.impl.TestServiceImpl">
+       
+    </bean>
+    
 </beans>
