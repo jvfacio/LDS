@@ -34,4 +34,9 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     </bean>
 
     
+    <bean id="testServiceRamirin"
+          class="com.hxwr.lds.api.service.impl.TestServiceRamirinImpl">
+       
+    </bean>
+    
 </beans>
