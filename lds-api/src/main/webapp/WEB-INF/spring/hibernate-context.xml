@@ -36,8 +36,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     <!-- Beans de training -->
     
     <bean id="testService"
-          class="com.hxwr.lds.api.service.impl.TestServiceImpl">
-       
+          class="com.hxwr.lds.api.service.ITestService">
     </bean>
     
 </beans>

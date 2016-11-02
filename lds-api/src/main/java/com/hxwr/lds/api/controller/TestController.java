@@ -20,9 +20,18 @@ public class TestController {
     
     @Autowired
     private ITestService testService;
+
+    public ITestService getTestService() {
+        return testService;
+    }
+
+    public void setTestService(ITestService testService) {
+        this.testService = testService;
+    }
+    
     
     @GetMapping("/test/{name}")
-    public String sayHola(@PathVariable("name") String name){
+    public String xxxxzyyasosdfhk(@PathVariable("name") String name){
         return testService.sayHola(name);
     }
     
