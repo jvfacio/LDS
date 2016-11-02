@@ -56,7 +56,7 @@ public class LoanRestApiTest {
         given().
                 pathParam("id",1).
         when().
-                get("http://localhost:8080/lds-api/client/{id}").
+                get("http://127.0.0.1:8080/lds-api/client/{id}").
         then().
                 assertThat().
                 body("name",equalTo("xxx")).
@@ -92,7 +92,7 @@ public class LoanRestApiTest {
         given().
                 pathParam("nickName","xxx").
         when().
-                get("http://localhost:8080/lds-api/client/getclientbynickname/{nickName}").
+                get("http://127.0.0.1:8080/lds-api/client/getclientbynickname/{nickName}").
         then().
                 assertThat().
                 body("name",equalTo("xxx")).

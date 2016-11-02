@@ -6,6 +6,7 @@
 package com.hxwr.lds.core.service;
 
 import com.hxwr.lds.core.entities.Client;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -14,10 +15,16 @@ import java.util.List;
  */
 public interface ICustomerSrv {
     
-    public Client validateCustomer(String nickname, String password);
-    public Client refresh(Client client);
-    public Client getCustomer(int id);
-    public List<Client> getAllClients();
-    public void register(Client client);
-    public Client getCustomer(String nickName);
+    public Client validateCustomer(String nickname, String password)
+            throws IOException ;
+    public Client refresh(Client client)
+            throws IOException ;
+    public Client getCustomer(int id)
+            throws IOException ;
+    public List<Client> getAllClients()
+            throws IOException ;
+    public void register(Client client)
+            throws IOException ;
+    public Client getCustomer(String nickName)
+            throws IOException ;
 }
