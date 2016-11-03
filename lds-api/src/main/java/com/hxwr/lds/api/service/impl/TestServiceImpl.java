@@ -6,12 +6,29 @@
 package com.hxwr.lds.api.service.impl;
 
 import com.hxwr.lds.api.service.ITestService;
+import com.hxwr.lds.api.service.ITestServiceRamirin;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author 35194
  */
+@Component
 public class TestServiceImpl implements ITestService {
+    
+    @Autowired
+    public ITestServiceRamirin testServiceRamirin;
+
+    public ITestServiceRamirin getTestServiceRamirin() {
+        return testServiceRamirin;
+    }
+
+    public void setTestServiceRamirin(ITestServiceRamirin testServiceRamirin) {
+        this.testServiceRamirin = testServiceRamirin;
+    }
+
+    
     
     private String name;
 
@@ -39,7 +56,8 @@ public class TestServiceImpl implements ITestService {
 
     @Override
     public String sayHola(String name) {
-        return "Hola " + name + "  desde clase servicio implementado metodo sayHola ";
+        String str = testServiceRamirin.add(0, 0);
+        return "Hola " + name + "  desde clase servicio implementado metodo sayHola \n" + str ;
     }
     
     public String print(){

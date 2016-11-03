@@ -8,11 +8,14 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
     
     <!-- Beans de training -->
-    <bean id="testService"
+    <!--bean id="testService"
           class="com.hxwr.lds.api.service.impl.TestServiceImpl">
-        <constructor-arg>
-            <value>Hello Spring Framework</value>
-        </constructor-arg>
+        <property name="testServiceRamirin" ref="testServiceRamirin" />
     </bean>
+    
+    <bean id="testServiceRamirin"
+          class="com.hxwr.lds.api.service.impl.TestServiceRamirinImpl">
+       
+    </bean-->
     
 </beans>

@@ -1,21 +1,18 @@
-package com.hxwr.lds.api.service;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.hxwr.lds.api.service.impl;
 
 /**
  *
  * @author 35194
  */
-public interface ITestService {
+public class TestDao {
     
-    public String sayHello(String name);
-    
-    public String sayHola(String name);
-    
-    public String print();
+    public String test1() {
+        return "XXXXX";
+    }
     
 }

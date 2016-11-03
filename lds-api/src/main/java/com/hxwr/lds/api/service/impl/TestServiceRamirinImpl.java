@@ -6,11 +6,14 @@
 package com.hxwr.lds.api.service.impl;
 
 import com.hxwr.lds.api.service.ITestServiceRamirin;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author ramirin
  */
+@Service
 public class TestServiceRamirinImpl implements ITestServiceRamirin{
     
     @Override
