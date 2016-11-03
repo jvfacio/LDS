@@ -22,18 +22,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author 35194
  *    
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-    "file:src/main/webapp/WEB-INF/spring/api-servlet.xml",
-    "file:src/main/webapp/WEB-INF/spring/databse-context.xml",
-    "file:src/main/webapp/WEB-INF/spring/hibernate-context.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {
+//    "file:src/main/webapp/WEB-INF/spring/api-servlet.xml",
+//    "file:src/main/webapp/WEB-INF/spring/databse-context.xml",
+//    "file:src/main/webapp/WEB-INF/spring/hibernate-context.xml"})
 public class CustomerDaoImplTest {
 
     @Autowired
     @Qualifier("customerDao")
     ICustomerDao customerDao;
     
-    @Test
+    //@Test
     public void test_ml_always_return_true() {
 
         //assert correct type/impl
