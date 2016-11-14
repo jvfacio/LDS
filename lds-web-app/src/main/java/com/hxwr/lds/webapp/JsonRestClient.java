@@ -24,6 +24,8 @@ import org.springframework.stereotype.Service;
 /**
  *
  * @author Training
+ * 
+ * A Spring service for accessing lds-rest-api via a JSON/HTTP client
  */
 @Service("jsonRestClient")
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public abstract class AbstractSessionAwareController {
     
     @ModelAttribute("clientSession")
-    
     public ClientSession defaultClientSession() {
         return new ClientSession();
     }
