@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class LoanRestApiTest {
+//public class LoanRestApiTest {
 	
 	/*******************************************************
 	 * Send a GET request to
@@ -51,7 +51,7 @@ public class LoanRestApiTest {
         RestAssured.rootPath="http://localhost:8080/LDS-web-app/rest";//"http://localhost:8080/LDS/rest/clients"
     }*/
     
-    @Test
+    /*@Test
     public void getClientByIdTest() {
         given().
                 pathParam("id",1).
@@ -87,7 +87,7 @@ public class LoanRestApiTest {
                 statusCode(200);
     }
     */
-    @Test 
+    /*@Test 
     public void getClientByNickNameTest(){
         given().
                 pathParam("nickName","xxx").
@@ -105,4 +105,4 @@ public class LoanRestApiTest {
                 
     }
          
-}
+}*/
