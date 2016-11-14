@@ -35,10 +35,7 @@ public class CustomerRestController {
    @PostMapping("/client")
    @Consumes("application/json")
    public void postClient(@RequestBody Client cl){
-       System.out.println(cl.getName());
-       System.out.println(cl.getNickName());
-       customerDao.addCustomerDetails(cl);
-       System.out.println("Finish");      
+       customerDao.addCustomerDetails(cl);    
     }
     
     
