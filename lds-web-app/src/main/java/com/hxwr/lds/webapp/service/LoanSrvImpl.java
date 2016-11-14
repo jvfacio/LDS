@@ -8,9 +8,7 @@ package com.hxwr.lds.webapp.service;
 
 
 import com.hxwr.lds.core.service.ILoanSrv;
-import com.hxwr.lds.core.dao.ILoanDao;
 import com.hxwr.lds.core.entities.Loan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,27 +18,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoanSrvImpl implements ILoanSrv {
     
-    @Autowired
-    private ILoanDao loanDao;
-
-    public ILoanDao getLoanDao() {
-        return loanDao;
-    }
-
-    public void setLoanDao(ILoanDao loanDao) {
-        this.loanDao = loanDao;
-    }
-    
     
     @Override
      public Loan fetchLoanByID(int loanID){
          
-         return loanDao.getByLoanID(loanID);
+        throw new UnsupportedOperationException();
      }
      
      @Override
      public void addLoanDetails(Loan loan) {
-         loanDao.addLoanDetails(loan);
+        throw new UnsupportedOperationException();
      }
     
 }
