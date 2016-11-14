@@ -49,7 +49,7 @@ public class LoanRestApiTest {
     /*@BeforeTest
     public void initPath(){
         RestAssured.rootPath="http://localhost:8080/LDS-web-app/rest";//"http://localhost:8080/LDS/rest/clients"
-    }*/
+    }
     
     @Test
     public void getClientByIdTest() {
@@ -68,7 +68,7 @@ public class LoanRestApiTest {
                 statusCode(200);
                 
     }
-   /* @Test
+    @Test
     public void getClient(int id){
         given().
                 contentType("application/json").
@@ -86,7 +86,7 @@ public class LoanRestApiTest {
                 
                 statusCode(200);
     }
-    */
+    
     @Test 
     public void getClientByNickNameTest(){
         given().
@@ -104,5 +104,6 @@ public class LoanRestApiTest {
                 statusCode(200);
                 
     }
+*/
          
 }
