@@ -148,6 +148,27 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         
+        <dependency>
+  		<groupId>org.springframework.security</groupId>
+  		<artifactId>spring-security-web</artifactId>
+  		<version>3.2.7.RELEASE</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework.security</groupId>
+  		<artifactId>spring-security-config</artifactId>
+  		<version>3.2.7.RELEASE</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework.security</groupId>
+  		<artifactId>spring-security-core</artifactId>
+  		<version>3.2.7.RELEASE</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework.security</groupId>
+  		<artifactId>spring-security-taglibs</artifactId>
+  		<version>3.2.7.RELEASE</version>
+  	</dependency>
+        
     </dependencies>
 
     <build>
