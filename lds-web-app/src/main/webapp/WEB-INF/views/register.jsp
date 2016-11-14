@@ -8,7 +8,7 @@
             <form:form action="register" method="post" modelAttribute="client">
                 <div class="form-group">
                     <form:label path="nickName">Nickname</form:label>
-                    <form:input type="text" class="form-conrol" path="nickName" placeholder="Nickname"/>
+                    <form:input type="text" class="form-control" path="nickName" placeholder="Nickname"/>
                 </div>
                 <div class="form-group">
                     <form:label path = "pass">Password</form:label>
