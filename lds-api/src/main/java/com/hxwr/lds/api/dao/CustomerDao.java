@@ -86,7 +86,7 @@ public class CustomerDao implements ICustomerDao {
                     "from Client as client left join fetch client.loans where client.nickName = :nickname");
             query.setString("nickname", nickName);
             List list = query.list();
-            if (list.get(0) != null) {
+            if (list.size() > 0) {
                 return (Client) list.get(0);
             }
             else {
