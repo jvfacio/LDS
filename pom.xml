@@ -29,5 +29,6 @@
         <module>lds-api</module>
         <module>lds-rest-assured</module>
         <module>lds-web-app</module>
+        <module>lds-integration-tests</module>
     </modules>
  </project>
