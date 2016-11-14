@@ -35,7 +35,7 @@ public class CustomerRestController {
    @PostMapping("/client")
    @Consumes("application/json")
    public void postClient(@RequestBody Client cl){
-       customerDao.addCustomerDetails(cl);    
+       customerDao.addCustomerDetails(cl);
     }
     
     

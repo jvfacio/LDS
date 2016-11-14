@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="pageTitle" value="Customer Details" scope="request"/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
-<c:set var="client" value="${clientSession.getClient()}" />
+<c:set var="client" value="${clientSession.getClient()}" scope="page"/>
 <div class="container">
 <div class="row">
     <div class="col-md-4">

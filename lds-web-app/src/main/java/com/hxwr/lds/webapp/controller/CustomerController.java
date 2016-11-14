@@ -8,7 +8,6 @@ package com.hxwr.lds.webapp.controller;
 import com.hxwr.lds.webapp.session.ClientSession;
 import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.service.ICustomerSrv;
-import com.hxwr.lds.webapp.IRestClient;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,14 +47,16 @@ public class CustomerController extends AbstractSessionAwareController {
     }
     
     @GetMapping("/customer/register")
-    public String registerPage(ModelMap model) {
+    public String registerPage(Model model) {
+        model.addAttribute("client", new Client());
         return "register";
     }
     
     @PostMapping("/customer/register")
     public String registerCustomer(
-            @ModelAttribute ClientSession session,
+            @ModelAttribute Client client,
             BindingResult result,
+            @ModelAttribute ClientSession session,
             RedirectAttributes redirect
     ) throws IOException
     {
@@ -64,7 +65,8 @@ public class CustomerController extends AbstractSessionAwareController {
             return "redirect:/customer/register";
         }
         else {
-            customerSrv.register(session.getClient());
+            session.setClient(client);
+            customerSrv.register(client);
             redirect.addFlashAttribute("message", "Account successfully created.");
             return "redirect:/customer";
         }
