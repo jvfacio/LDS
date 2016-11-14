@@ -8,6 +8,7 @@ package com.hxwr.lds.webapp.controller;
 import com.hxwr.lds.webapp.session.ClientSession;
 import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.service.ICustomerSrv;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -48,7 +49,8 @@ public class CustomerController extends AbstractSessionAwareController {
             @ModelAttribute ClientSession session,
             BindingResult result,
             RedirectAttributes redirect
-    ) {
+    ) throws IOException
+    {
         if (result.hasErrors()) {
             redirect.addFlashAttribute("message", "Invalid registration information");
             return "redirect:/customer/register";
@@ -69,7 +71,9 @@ public class CustomerController extends AbstractSessionAwareController {
     public String submitLogin(
             RedirectAttributes redirect,
             @ModelAttribute ClientSession session,
-            String nickname, String password) {
+            String nickname, String password)
+        throws IOException 
+    {
         Client client = customerSrv.validateCustomer(nickname, password);
         if (client != null) {
             session.setClient(client);
