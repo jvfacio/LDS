@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 public class JsonRestClient implements IRestClient, Serializable {
     
     private static final URI DEFAULT_URI = 
-            UriBuilder.fromUri("http://192.168.10.50:8081/lds-api")
+            UriBuilder.fromUri("http://localhost:8080/lds-api")
             .build();
     
     final ObjectMapper mapper = new ObjectMapper();
