@@ -8,6 +8,7 @@ package com.hxwr.lds.webapp.controller;
 import com.hxwr.lds.webapp.session.ClientSession;
 import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.service.ICustomerSrv;
+import com.hxwr.lds.webapp.IRestClient;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
