@@ -5,6 +5,7 @@
  */
 package com.hxwr.lds.webapp;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import java.io.IOException;
@@ -43,7 +44,9 @@ public class JsonRestClient implements IRestClient, Serializable {
     
     public JsonRestClient(URI uri) {
         Client client = ClientBuilder.newClient();
-        client.register(JacksonJsonProvider.class);
+        JacksonJsonProvider jsonProvider = new JacksonJsonProvider()
+            .configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+        client.register(jsonProvider);
         target = client.target(uri);
     }
     
