@@ -8,6 +8,7 @@ package com.hxwr.lds.webapp;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -29,7 +30,7 @@ import org.springframework.stereotype.Service;
  */
 @Service("jsonRestClient")
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class JsonRestClient implements IRestClient {
+public class JsonRestClient implements IRestClient, Serializable {
     
     private static final URI DEFAULT_URI = 
             UriBuilder.fromUri("http://192.168.10.50:8081/lds-api")
