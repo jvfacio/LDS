@@ -32,7 +32,7 @@ public class CustomerController extends AbstractSessionAwareController {
     
     @RequestMapping("/")
 	public String showIndex(Model model) {
-		model.addAttribute("resultado", "Resultado desde Session");
+		model.addAttribute("resultado", "Result from Session");
 		return "index";
 	}
     

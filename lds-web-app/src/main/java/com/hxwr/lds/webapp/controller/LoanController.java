@@ -12,14 +12,16 @@ import com.hxwr.lds.core.service.ICreateReportSrv;
 import com.hxwr.lds.core.service.ILoanSrv;
 import com.hxwr.lds.webapp.service.HTMLViewReportSrv;
 import com.hxwr.lds.webapp.service.PDFViewReportSrv;
+import com.hxwr.lds.webapp.session.ClientSession;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -47,20 +49,18 @@ public class LoanController {
 
     @PostMapping(value = "/loan/create")
     public String submitLoan(
-            HttpSession session,
+            @ModelAttribute ClientSession clientSession,
             String type, String loanperiod,
-            String interest, String amount) throws IOException {
-
-        Object rawclient = session.getAttribute("client");
+            String interest, String amount,
+            RedirectAttributes redirect) throws IOException {
 
         //If the Client is not logged in, redirect to the login page
-        if (rawclient == null || !(rawclient instanceof Client)) {
-
+        if (!clientSession.isLoggedIn()) {
             return "redirect:/customer/login";
         } else {
-            //Cast the Client to correct type
-            Client client = (Client) rawclient;
-
+            
+            Client client = clientSession.getClient();
+            
             //Initialize the new Loan object
             Loan loan = new Loan();
             loan.setLoanType(type);
@@ -74,24 +74,27 @@ public class LoanController {
             loanSrv.addLoanDetails(loan);
 
             //Set confirmation message
-            session.setAttribute("message", "New Loan Created!");
+            redirect.addFlashAttribute("message", "New Loan Created!");
 
             //Generate a loan report
             LoanReport lr = crs.CreateReport(loan, client);
 
             //Pass the LoanReport to JSP for rendering
-            session.setAttribute("report", lr);
+            redirect.addAttribute("report", lr);
 
-            return "displayloan";
+            return "redirect:/displayloan";
 
         }
 
     }
 
     @GetMapping(value = "/loan/display")
-    public void displayLoan(HttpServletRequest request, String id,String disp,
-            HttpSession session, HttpServletResponse response) throws IOException {
-
+    public String displayLoan(
+            String id, String disp,
+            RedirectAttributes redirect,
+            HttpServletRequest request, HttpServletResponse response) 
+        throws IOException
+    {
         //get the loan id
         Integer loanid =  Integer.parseInt(id);
         
@@ -109,13 +112,15 @@ public class LoanController {
 
             if (disp.equalsIgnoreCase("HTML")) {
                 HTMLView.view(report, request, response);
+                
             } else if (disp.equalsIgnoreCase("PDF")) {
                 PDFView.view(report, request, response);
             }
-
         } else {
-            session.setAttribute("message", "Loan doesn't exist");
-            //return "customer";
+            redirect.addFlashAttribute("message", "Loan doesn't exist");
+            return "redirect:/customer";
         }
+        return null;
     }
 }
+
