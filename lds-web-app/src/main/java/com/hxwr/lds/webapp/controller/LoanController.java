@@ -12,6 +12,7 @@ import com.hxwr.lds.core.service.ICreateReportSrv;
 import com.hxwr.lds.core.service.ILoanSrv;
 import com.hxwr.lds.webapp.service.HTMLViewReportSrv;
 import com.hxwr.lds.webapp.service.PDFViewReportSrv;
+import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,7 +49,7 @@ public class LoanController {
     public String submitLoan(
             HttpSession session,
             String type, String loanperiod,
-            String interest, String amount) {
+            String interest, String amount) throws IOException {
 
         Object rawclient = session.getAttribute("client");
 
@@ -89,7 +90,7 @@ public class LoanController {
 
     @GetMapping(value = "/loan/display")
     public void displayLoan(HttpServletRequest request, String id,String disp,
-            HttpSession session, HttpServletResponse response) {
+            HttpSession session, HttpServletResponse response) throws IOException {
 
         //get the loan id
         Integer loanid =  Integer.parseInt(id);
@@ -97,9 +98,9 @@ public class LoanController {
         //get the load associated with the loanid
 
         Loan loan = loanSrv.fetchLoanByID(loanid);
-
+       
         if (loan != null) {
-
+         
             //retrieve the customer associated with the loan
             Client client = loan.getClient();
 

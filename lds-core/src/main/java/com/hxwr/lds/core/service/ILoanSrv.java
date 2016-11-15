@@ -6,6 +6,7 @@
 package com.hxwr.lds.core.service;
 
 import com.hxwr.lds.core.entities.Loan;
+import java.io.IOException;
 
 /**
  *
@@ -13,6 +14,6 @@ import com.hxwr.lds.core.entities.Loan;
  */
 public interface ILoanSrv {
     
-    public Loan fetchLoanByID(int loanID);
-    public void addLoanDetails(Loan loan);
+    public Loan fetchLoanByID(int loanID) throws IOException;
+    public void addLoanDetails(Loan loan) throws IOException;
 }
