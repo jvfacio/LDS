@@ -23,17 +23,17 @@
                 <div class="form-group">
                     <label for="loanPeriodInput">Loan Period</label>
                     <!--input type="text" class="form-control" id="loanPeriodInput" name="loanperiod" placeholder="Years"-->
-                    <input type="radio" name="loanperiod" value="10"/> 10 Years <br>
-                    <input type="radio" name="loanperiod" value="15"/> 15 Years <br>
-                    <input type="radio" name="loanperiod" value="20"/>20 Years
+                    <input type="radio" name="loanperiod" value="10" required="true"/> 10 Years <br>
+                    <input type="radio" name="loanperiod" value="15" required="true"/> 15 Years <br>
+                    <input type="radio" name="loanperiod" value="20" required="true"/>20 Years
                 </div>
                 <div class="form-group">
                     <label for="loanInterestInput">Interest</label>
-                    <input type="number" step=0.01 class="form-control" id="loanInterestInput" name="interest" placeholder="Interest  (%)">
+                    <input type="number" step=0.01 min="0" class="form-control" id="loanInterestInput" name="interest" placeholder="Interest  (%)" required="true">
                 </div>
                 <div class="form-group">
                     <label for="loanAmountInput">Amount</label>
-                    <input type="number" step=0.01 class="form-control" id="loanAmountInput" name="amount" placeholder="Amount  (MXN)"> 
+                    <input type="number" step=0.01 min="0" class="form-control" id="loanAmountInput" name="amount" placeholder="Amount  (MXN)" required="true"> 
                 </div>
 
                 <button type="submit" class="btn btn-default">Submit</button>
