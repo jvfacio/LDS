@@ -111,6 +111,7 @@ public class LoanController {
 
             if (disp.equalsIgnoreCase("HTML")) {
                 HTMLView.view(report, request, response);
+                
             } else if (disp.equalsIgnoreCase("PDF")) {
                 PDFView.view(report, request, response);
             }
@@ -118,5 +119,6 @@ public class LoanController {
             redirect.addFlashAttribute("message", "Loan doesn't exist");
             return "redirect:/customer";
         }
+        return null;
     }
 }
