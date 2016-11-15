@@ -5,8 +5,11 @@
  */
 package com.hxwr.lds.api.controller;
 
+import com.hxwr.lds.core.dao.ICustomerDao;
 import com.hxwr.lds.core.dao.ILoanDao;
+import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.entities.Loan;
+import java.util.HashMap;
 import javax.ws.rs.Consumes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +27,13 @@ public class LoanRestController {
     
     @Autowired
     private ILoanDao iLoanDao;
+    @Autowired
+    private ICustomerDao customerDao;
     
     @PostMapping("/client/{id}/createLoan")
     @Consumes("application/json")
-    public void addLoan(@RequestBody  Loan loan){
+    public void addLoan(@PathVariable("id") int id, @RequestBody Loan loan){
+        loan.setClient(customerDao.getById(id));
         iLoanDao.addLoanDetails(loan);
     }
     @GetMapping("/loan/{id}")

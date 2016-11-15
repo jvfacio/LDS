@@ -31,7 +31,7 @@ public class LoanSrvImpl implements ILoanSrv {
      }
      
      @Override
-     public void addLoanDetails(Loan loan)throws IOException {        
+     public void addLoanDetails(Loan loan)throws IOException {
         restClient.makeRequest("POST", "/client/"+ loan.getClient().getId()+ "/createLoan", loan);
      }
     
