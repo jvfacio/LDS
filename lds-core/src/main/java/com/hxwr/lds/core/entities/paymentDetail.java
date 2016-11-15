@@ -15,32 +15,23 @@ import java.util.Date;
  * @author joseph
  */
 public class paymentDetail implements Serializable {
+    private int paymentdetailID;
     private int numOfPayment;
-    private Date limitPayDay;
-    private double amount;
-    private int status;
+    private Date beginningBalance;
+    private double interest;
+    private int principal;
+    private int endingBalance;
+    private String date;
+    
     @JsonIgnore
-    private loansApproved loanid;
-    private arrears arrear;
-    
-    private int detailPayID;
+    private Loan loanid;
 
-    
-    public int getDetailPayID() {
-        return detailPayID;
+    public int getPaymentdetailID() {
+        return paymentdetailID;
     }
 
-    public void setDetailPayID(int detailPayID) {
-        this.detailPayID = detailPayID;
-    }
-    
-
-    public arrears getArrear() {
-        return arrear;
-    }
-
-    public void setArrear(arrears arrear) {
-        this.arrear = arrear;
+    public void setPaymentdetailID(int paymentdetailID) {
+        this.paymentdetailID = paymentdetailID;
     }
 
     public int getNumOfPayment() {
@@ -51,38 +42,53 @@ public class paymentDetail implements Serializable {
         this.numOfPayment = numOfPayment;
     }
 
-    public Date getLimitPayDay() {
-        return limitPayDay;
+    public Date getBeginningBalance() {
+        return beginningBalance;
     }
 
-    public void setLimitPayDay(Date limitPayDay) {
-        this.limitPayDay = limitPayDay;
+    public void setBeginningBalance(Date beginningBalance) {
+        this.beginningBalance = beginningBalance;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getInterest() {
+        return interest;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setInterest(double interest) {
+        this.interest = interest;
     }
 
-    public int getStatus() {
-        return status;
+    public int getPrincipal() {
+        return principal;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setPrincipal(int principal) {
+        this.principal = principal;
     }
 
-    public loansApproved getLoanid() {
+    public int getEndingBalance() {
+        return endingBalance;
+    }
+
+    public void setEndingBalance(int endingBalance) {
+        this.endingBalance = endingBalance;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Loan getLoanid() {
         return loanid;
     }
 
-    public void setLoanid(loansApproved loanid) {
+    public void setLoanid(Loan loanid) {
         this.loanid = loanid;
     }
-    
-    
+
     
 }

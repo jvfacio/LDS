@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-package com.hxwr.lds.core.entities;
+package com.hxwr.lds.core.entities.notusefullfornow;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hxwr.lds.core.entities.paymentDetail;
 import java.io.Serializable;
 import java.util.Date;
 
