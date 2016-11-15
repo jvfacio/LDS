@@ -9,5 +9,7 @@
  * @author Training
  */
 public class SeleniumTests {
-    
+    public static void main(String[] args){
+        
+    }
 }
