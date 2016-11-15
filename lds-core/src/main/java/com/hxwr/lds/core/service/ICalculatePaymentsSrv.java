@@ -7,10 +7,8 @@ package com.hxwr.lds.core.service;
  */
 
 
-import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.entities.Loan;
 import com.hxwr.lds.core.entities.PaymentDetail;
-import com.hxwr.lds.core.model.LoanReport;
 import java.util.ArrayList;
 
 /**
