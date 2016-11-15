@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="clientSession" value="${sessionScope['scopedTarget.clientSession']}" scope="request" />
 <html lang="en">
     <head>
         <title>LDS - <c:out value="${pageTitle}"/></title>
