@@ -3,92 +3,177 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.hxwr.lds.core.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
  * @author joseph
  */
-public class paymentDetail implements Serializable {
+public class PaymentDetail implements Serializable {
+
     private int paymentdetailID;
     private int numOfPayment;
-    private Date beginningBalance;
+    private double beginningBalance;
     private double interest;
-    private int principal;
-    private int endingBalance;
-    private String date;
-    
+    private double principal;
+    private double endingBalance;
+    private Calendar date;
+    private double paymentAmount;
+
     @JsonIgnore
     private Loan loanid;
 
+    /**
+     *
+     * @return PaymentdetailID
+     */
     public int getPaymentdetailID() {
         return paymentdetailID;
     }
 
+    /**
+     *
+     * @param paymentdetailID to set
+     */
     public void setPaymentdetailID(int paymentdetailID) {
         this.paymentdetailID = paymentdetailID;
     }
 
+    /**
+     *
+     * @return numOfPayment
+     */
     public int getNumOfPayment() {
         return numOfPayment;
     }
 
+    /**
+     *
+     * @param numOfPayment the index of the payment to set
+     */
     public void setNumOfPayment(int numOfPayment) {
         this.numOfPayment = numOfPayment;
     }
 
-    public Date getBeginningBalance() {
+    /**
+     *
+     * @return the beginningBalance
+     */
+    public double getBeginningBalance() {
         return beginningBalance;
     }
 
-    public void setBeginningBalance(Date beginningBalance) {
+    /**
+     *
+     * @param beginningBalance the beginningBalance to set
+     */
+    public void setBeginningBalance(double beginningBalance) {
         this.beginningBalance = beginningBalance;
     }
 
+    /**
+     *
+     * @return the interest
+     */
     public double getInterest() {
         return interest;
     }
 
+    /**
+     *
+     * @param interest the interest paid for the current month
+     */
     public void setInterest(double interest) {
         this.interest = interest;
     }
 
-    public int getPrincipal() {
+    /**
+     * @return the principal
+     */
+    public double getPrincipal() {
         return principal;
     }
 
-    public void setPrincipal(int principal) {
+    /**
+     * @param principal the principal to set
+     */
+    public void setPrincipal(double principal) {
         this.principal = principal;
     }
 
-    public int getEndingBalance() {
+    /**
+     *
+     * @return the endingBalance
+     */
+    public double getEndingBalance() {
         return endingBalance;
     }
 
-    public void setEndingBalance(int endingBalance) {
+    /**
+     *
+     * @param endingBalance the balance after the current payment
+     */
+    public void setEndingBalance(double endingBalance) {
         this.endingBalance = endingBalance;
     }
 
-    public String getDate() {
+    /**
+     * @return the date
+     */
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    /**
+     *
+     * @return the date formatted as a String
+     */
+    public String getFormattedDate() {
+        return new SimpleDateFormat("MM-dd-yyyy").format(date.getTime());
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Calendar date) {
         this.date = date;
     }
 
+    /**
+     *
+     * @return loanid
+     */
     public Loan getLoanid() {
         return loanid;
     }
 
+    /**
+     *
+     * @param loanid the id of the loan associated with the payment
+     */
     public void setLoanid(Loan loanid) {
         this.loanid = loanid;
     }
 
-    
+    /**
+     *
+     * @return paymentAmount
+     */
+    public double getPaymentAmount() {
+        return paymentAmount;
+    }
+
+    /**
+     *
+     * @param paymentAmount the payment amount for the month
+     */
+    public void setPaymentAmount(double paymentAmount) {
+        this.paymentAmount = paymentAmount;
+    }
+
 }
