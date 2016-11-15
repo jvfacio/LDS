@@ -4,13 +4,24 @@
  * and open the template in the editor.
  */
 package com.hxwr.lds.integration.tests;
+import com.hxwr.lds.integration.tests.clientTests.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
+	
 /**
  *
  * @author Training
  */
 public class SeleniumTestRunner {
+    
     public static void main(String[] args){
-        
+        WebDriver driver = null;
+        RegisterClient a = new RegisterClient();
+        driver = a.initialize(driver);
+        a.testCase1(driver);
     }
+   
+        
+   
 }
