@@ -82,7 +82,7 @@ public class LoanController {
             redirect.addFlashAttribute("message", "New Loan Created!");
 
             //Pass the loan to JSP for rendering
-            redirect.addAttribute("report", loan);
+            redirect.addAttribute("loan", loan);
 
             return "redirect:/displayloan";
 
