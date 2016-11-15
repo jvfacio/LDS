@@ -7,7 +7,7 @@
 package com.hxwr.lds.core.entities.notusefullfornow;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hxwr.lds.core.entities.paymentDetail;
+import com.hxwr.lds.core.entities.PaymentDetail;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,7 +19,7 @@ public class arrears implements Serializable{
     private int loanid;
     private int numOfPayment;
     @JsonIgnore
-    private paymentDetail pDetail;
+    private PaymentDetail pDetail;
     private double arrearPayAmount;
     private int status;
     private Date payDate;
@@ -40,11 +40,11 @@ public class arrears implements Serializable{
         this.numOfPayment = numOfPayment;
     }
 
-    public paymentDetail getpDetail() {
+    public PaymentDetail getpDetail() {
         return pDetail;
     }
 
-    public void setpDetail(paymentDetail pDetail) {
+    public void setpDetail(PaymentDetail pDetail) {
         this.pDetail = pDetail;
     }
 

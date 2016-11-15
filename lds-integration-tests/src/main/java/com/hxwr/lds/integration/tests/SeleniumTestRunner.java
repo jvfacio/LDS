@@ -5,6 +5,7 @@
  */
 package com.hxwr.lds.integration.tests;
 import com.hxwr.lds.integration.tests.clientTests.*;
+import java.util.Random;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -19,7 +20,12 @@ public class SeleniumTestRunner {
         WebDriver driver = null;
         RegisterClient a = new RegisterClient();
         driver = a.initialize(driver);
+        
         a.testCase1(driver);
+        a.testCase2(driver);
+        
+        
+        
     }
    
         
