@@ -8,7 +8,6 @@ package com.hxwr.lds.webapp.controller;
 import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.entities.Loan;
 import com.hxwr.lds.core.model.LoanReport;
-import com.hxwr.lds.core.service.ICreateReportSrv;
 import com.hxwr.lds.core.service.ILoanSrv;
 import com.hxwr.lds.webapp.service.HTMLViewReportSrv;
 import com.hxwr.lds.webapp.service.PDFViewReportSrv;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.hxwr.lds.core.service.ICalculatePaymentsSrv;
 
 /**
  *
@@ -34,7 +34,7 @@ public class LoanController {
     
     @Autowired ILoanSrv loanSrv;
 
-    @Autowired ICreateReportSrv crs;
+    @Autowired ICalculatePaymentsSrv paymentCalc;
 
     @Autowired HTMLViewReportSrv HTMLView;
 
@@ -68,20 +68,21 @@ public class LoanController {
             loan.setLoanPeriod(loanperiod);
             loan.setAmount(Double.parseDouble(amount));
             loan.setInterest(Double.parseDouble(interest));
+            
+            //Add loan payment calculations
+            loan.setPaymentDetail(paymentCalc.CalculatePayments(loan));
 
             //Add the new Loan to the Client
             loan.setClient(client);
 
+            //Add the 
             loanSrv.addLoanDetails(loan);
 
             //Set confirmation message
             redirect.addFlashAttribute("message", "New Loan Created!");
 
-            //Generate a loan report
-            LoanReport lr = crs.CreateReport(loan, client);
-
-            //Pass the LoanReport to JSP for rendering
-            redirect.addAttribute("report", lr);
+            //Pass the loan to JSP for rendering
+            redirect.addAttribute("report", loan);
 
             return "redirect:/displayloan";
 
@@ -104,18 +105,12 @@ public class LoanController {
         Loan loan = loanSrv.fetchLoanByID(loanid);
        
         if (loan != null) {
-         
-            //retrieve the customer associated with the loan
-            Client client = loan.getClient();
-
-            //create the LoanReport
-            LoanReport report = crs.CreateReport(loan, client);
 
             if (disp.equalsIgnoreCase("HTML")) {
-                HTMLView.view(report, request, response);
+                HTMLView.view(loan, request, response);
                 
             } else if (disp.equalsIgnoreCase("PDF")) {
-                PDFView.view(report, request, response);
+                PDFView.view(loan, request, response);
             }
         } else {
             redirect.addFlashAttribute("message", "Loan doesn't exist");
