@@ -43,8 +43,12 @@ public class LoanController {
     PDFViewReportSrv PDFView;
 
     @GetMapping(value = "/loan/create")
-    public String createLoan() {
-        return "createLoan";
+    public String createLoan(@ModelAttribute ClientSession clientSession) {
+        if(clientSession.isLoggedIn())
+            return "createLoan";
+        else {
+            return "redirect:/customer/login";
+        }
     }
 
     @PostMapping(value = "/loan/create")
