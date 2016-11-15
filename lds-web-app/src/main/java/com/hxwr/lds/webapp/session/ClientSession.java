@@ -7,11 +7,16 @@ package com.hxwr.lds.webapp.session;
 
 import com.hxwr.lds.core.entities.Client;
 import java.io.Serializable;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Training
  */
+@Component
+@Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ClientSession implements Serializable {
   
     private Client client = null;

@@ -30,20 +30,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class LoanController {
 
-    @Autowired
-    ILoanSrv loanSrv;
+    @Autowired ClientSession clientSession;
+    
+    @Autowired ILoanSrv loanSrv;
 
-    @Autowired
-    ICreateReportSrv crs;
+    @Autowired ICreateReportSrv crs;
 
-    @Autowired
-    HTMLViewReportSrv HTMLView;
+    @Autowired HTMLViewReportSrv HTMLView;
 
-    @Autowired
-    PDFViewReportSrv PDFView;
+    @Autowired PDFViewReportSrv PDFView;
 
     @GetMapping(value = "/loan/create")
-    public String createLoan(@ModelAttribute ClientSession clientSession) {
+    public String createLoan() {
         if(clientSession.isLoggedIn())
             return "createLoan";
         else {
@@ -53,7 +51,6 @@ public class LoanController {
 
     @PostMapping(value = "/loan/create")
     public String submitLoan(
-            @ModelAttribute ClientSession clientSession,
             String type, String loanperiod,
             String interest, String amount,
             RedirectAttributes redirect) throws IOException {

@@ -25,10 +25,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author 35194
  */
 @Controller
-public class CustomerController extends AbstractSessionAwareController {
+public class CustomerController {
     
     @Autowired
     ICustomerSrv customerSrv;
+    
+    @Autowired
+    ClientSession clientSession;
     
     @RequestMapping("/")
 	public String showIndex(Model model) {
@@ -37,8 +40,8 @@ public class CustomerController extends AbstractSessionAwareController {
 	}
     
     @GetMapping("/customer")
-    public String customerDetails(@ModelAttribute ClientSession session) {
-        if (session.isLoggedIn()) {
+    public String customerDetails() {
+        if (clientSession.isLoggedIn()) {
             return "customer";
         }
         else {
@@ -56,7 +59,6 @@ public class CustomerController extends AbstractSessionAwareController {
     public String registerCustomer(
             @ModelAttribute Client client,
             BindingResult result,
-            @ModelAttribute ClientSession session,
             RedirectAttributes redirect
     ) throws IOException
     {
@@ -65,7 +67,7 @@ public class CustomerController extends AbstractSessionAwareController {
             return "redirect:/customer/register";
         }
         else {
-            session.setClient(client);
+            clientSession.setClient(client);
             customerSrv.register(client);
             redirect.addFlashAttribute("message", "Account successfully created.");
             return "redirect:/customer";
@@ -80,13 +82,12 @@ public class CustomerController extends AbstractSessionAwareController {
     @PostMapping("/customer/login")
     public String submitLogin(
             RedirectAttributes redirect,
-            @ModelAttribute ClientSession session,
             String nickname, String password)
         throws IOException 
     {
         Client client = customerSrv.validateCustomer(nickname, password);
         if (client != null) {
-            session.setClient(client);
+            clientSession.setClient(client);
             redirect.addFlashAttribute("message", "Login successful!");
             return "redirect:/customer";
         }
@@ -97,8 +98,8 @@ public class CustomerController extends AbstractSessionAwareController {
     }
     
     @RequestMapping(value = "/customer/logout")
-    public String submitLogout(@ModelAttribute ClientSession session) {
-        session.setClient(null);
+    public String submitLogout() {
+        clientSession.setClient(null);
         return "redirect:/";
     }
 }
