@@ -30,7 +30,7 @@ public class HTMLViewReportSrv implements IViewReportSrv {
         try {
             HttpSession session = request.getSession();
              //set report attribute
-            session.setAttribute("report", loan);
+            session.setAttribute("loan", loan);
             //redirect the loan to the display loan jsp
             request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp")
                     .forward(request, response);
