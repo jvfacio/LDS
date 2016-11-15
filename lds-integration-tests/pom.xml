@@ -8,16 +8,4 @@
     </parent>
     <artifactId>lds-integration-tests</artifactId>
     <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>2.48.2</version>
-        </dependency>
-    </dependencies>
 </project>
