@@ -10,11 +10,13 @@ import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.service.ICustomerSrv;
 import com.hxwr.lds.webapp.IRestClient;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriUtils;
 
 /**
  *
@@ -36,15 +38,17 @@ public class CustomerSrvImpl implements ICustomerSrv {
         
         log.debug("Validate the customer");
         Client client = restClient.makeRequest(
-                "GET", "/client/getclientbynickname/" + username,
-                Client.class);
+                "GET", "/client/getclientbynickname/" 
+                       + UriUtils.encodePathSegment(username, StandardCharsets.UTF_8.name())
+                , Client.class);
         //TODO: authenticate
         return client;
     }
     @Override
     public Client getCustomer(String nickName) throws IOException {
         return restClient.makeRequest(
-            "GET", "/client/getclientbynickname/" + nickName,
+            "GET", "/client/getclientbynickname/" 
+                   + UriUtils.encodePathSegment(nickName, StandardCharsets.UTF_8.name()),
             Client.class);
         
     }
