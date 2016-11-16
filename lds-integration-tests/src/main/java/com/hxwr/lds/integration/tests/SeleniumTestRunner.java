@@ -16,10 +16,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class SeleniumTestRunner {
     
     public static void main(String[] args){
+        
+        ///// register test case
         WebDriver driver = null;
         RegisterClient a = new RegisterClient();
         driver = a.initialize(driver);
         a.testCase1(driver);
+        
+        ////// login test case
+        loginClient.getBrowserRunning("http://localhost:8080/lds-web-app/");
     }
    
         
