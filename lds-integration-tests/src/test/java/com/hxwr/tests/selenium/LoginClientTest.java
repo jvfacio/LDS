@@ -5,19 +5,41 @@ package com.hxwr.tests.selenium;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.hxwr.tests.selenium.AbstractSeleniumTest;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
  * @author Training
  */
 public class LoginClientTest extends AbstractSeleniumTest {
+    
+    @Given("^the LDS homepage$")
+    public void goToHomePage() {
+        driver.get("http://localhost:8080/lds-web-app");
+    }
+    
+    @When("^I navigate to the login page$")
+    public void navigateToLogin() {
+        driver.navigate().to("http://localhost:8080/lds-web-app/customer/login");
+    }
+    
+    @When("^I login with$")
+    public void loginWith(HashMap<String,String> info) {
+        driver.findElement(By.id("custNickname")).sendKeys(info.get("username"));
+        driver.findElement(By.id("custPassword")).sendKeys(info.get("password"));
+        driver.findElement(By.xpath("/html/body/div[2]/div/div/div/form/button")).click();
+    }
+    
+    @Then("^the page title should be \"([^\"]*)\"$")
+    public void validatePageTitle(String title) {
+        assert driver.getTitle().equals(title);
+    }
     
     @Test
     public void testHappyPath(){
