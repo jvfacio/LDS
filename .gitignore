@@ -217,4 +217,3 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-lds-rest-assured/src/test/java/com/hxwr/lds/restassured/ApplicationTest.java
