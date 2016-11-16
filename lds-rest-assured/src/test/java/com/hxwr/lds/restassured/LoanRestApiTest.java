@@ -48,10 +48,11 @@ public class LoanRestApiTest {
 		given().
 			
 		when().
-			get("/getclientbynickname/okok").
+			get("/getclientbynickname/ok").
 		then().body("id",equalTo(1))
-                        .and().body("firstName", equalTo("okok"))
-                        .and().body("lastName", equalTo("okok"))
+                        .and().body("name", equalTo("ddd"))
+                        .and().body("phoneNumber", equalTo("5555"))
+                        .and().body("lastName",equalTo("dddd"))
                         .statusCode(200);
 	}
         
@@ -61,7 +62,7 @@ public class LoanRestApiTest {
 	        given().
                         
 		when().
-			get("/getclientbynickname/okok").
+			get("/getclientbynickname/ok").
 		then().statusCode(200);
 	}
     
@@ -78,7 +79,7 @@ public class LoanRestApiTest {
         given().
                
         when().
-                 get("/getclientbynickname/okok").
+                 get("/getclientbynickname/ok").
         then().
                 body(containsString("name")).
                 body(containsString("lastName")).
@@ -94,7 +95,7 @@ public class LoanRestApiTest {
                     get("/getclientbynickname/ ");
                                                
         }
-         @Test
+        @Test
         public void testUnit7(){
             expect().
                      statusCode(400).
