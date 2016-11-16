@@ -5,12 +5,8 @@
  */
 package com.hxwr.lds.api.dao;
 
-//import com.hxwr.lds.*;
-import com.hxwr.lds.core.dao.ILoanDao;
 import com.hxwr.lds.core.dao.IPaymentDetailDao;
-import com.hxwr.lds.core.entities.Loan;
 import com.hxwr.lds.core.entities.PaymentDetail;
-import java.util.Iterator;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,17 +19,13 @@ import org.springframework.stereotype.Repository;
  * @author Training
  */
 @Repository
-public class LoanDao implements ILoanDao{
-    
-    @Autowired
-    IPaymentDetailDao paymentDetail;
-    
-    
+public class PaymentDetailDao implements IPaymentDetailDao {
+
     @Autowired
     private SessionFactory sessionFactory;
-    
+
     @Override
-    public void addLoanDetails(Loan loan) throws HibernateException {
+    public void addPaymentDetail(PaymentDetail paymentDetail) {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -41,16 +33,9 @@ public class LoanDao implements ILoanDao{
 
             transaction = session.beginTransaction();
 
-            session.save(loan);
+            session.save(paymentDetail);
             transaction.commit();
-            
-            Iterator iterator = loan.getPaymentDetail().iterator();
-            
-            while(iterator.hasNext()){
-                paymentDetail.addPaymentDetail((PaymentDetail)iterator.next());
-            }
-            
-            System.out.println("\n\n Details Added \n");
+            System.out.println("\n\n Payment Added \n");
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -64,26 +49,20 @@ public class LoanDao implements ILoanDao{
     }
 
     @Override
-    public Loan getByLoanID(Integer loanID) {
+    public PaymentDetail getByPaymentID(Integer paymentDetailID) {
         Session hibernateSession = null;
         try {
             hibernateSession = sessionFactory.openSession();
-            return (Loan) hibernateSession.get(Loan.class, loanID);
-        }
-        finally {
+            return (PaymentDetail) hibernateSession.get(PaymentDetail.class, paymentDetailID);
+        } finally {
             //if (hibernateSession != null) hibernateSession.close();
         }
     }
-    
-    @Override
-    public Loan refresh(Loan loan) {
-        return getByLoanID(loan.getLoanID());
-    }
-    
+
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    
+
     public void setSessionFactory(SessionFactory factory) {
         sessionFactory = factory;
     }

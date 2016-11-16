@@ -82,7 +82,9 @@ public class LoanController {
 
             //Add loan payment calculations
             loan.setPaymentDetail(paymentCalc.CalculatePayments(loan));
-            
+            for(int i = 0; i<loan.getPaymentDetail().size();i++){
+            System.out.println("THE NUMBER OF PAYMENT IS " + loan.getPaymentDetail().get(i).getNumOfPayment());
+            }
             //Add the 
             loanSrv.addLoanDetails(loan);
 
