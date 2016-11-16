@@ -8,7 +8,7 @@ package com.hxwr.lds.core.entities.notusefullfornow;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hxwr.lds.core.entities.Loan;
-import com.hxwr.lds.core.entities.paymentDetail;
+import com.hxwr.lds.core.entities.PaymentDetail;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -23,7 +23,7 @@ public class loansApproved  implements Serializable {
     @JsonIgnore
     private Loan loan;
     private Date dateApproved;
-    private Set<paymentDetail> payDetail = new HashSet<paymentDetail>(0);
+    private Set<PaymentDetail> payDetail = new HashSet<PaymentDetail>(0);
 
     public Loan getLoan() {
         return loan;
@@ -33,11 +33,11 @@ public class loansApproved  implements Serializable {
         this.loan = loan;
     }
     
-    public Set<paymentDetail> getPayDetail() {
+    public Set<PaymentDetail> getPayDetail() {
         return payDetail;
     }
 
-    public void setPayDetail(Set<paymentDetail> payDetail) {
+    public void setPayDetail(Set<PaymentDetail> payDetail) {
         this.payDetail = payDetail;
     }
 

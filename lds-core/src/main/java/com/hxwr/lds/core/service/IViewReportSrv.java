@@ -5,7 +5,7 @@
  */
 package com.hxwr.lds.core.service;
 
-import com.hxwr.lds.core.model.LoanReport;
+import com.hxwr.lds.core.entities.Loan;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +21,6 @@ public interface IViewReportSrv {
      * @param request
      * @param response 
      */
-    public void view(LoanReport loan, HttpServletRequest request, HttpServletResponse response);
+    public void view(Loan loan, HttpServletRequest request, HttpServletResponse response);
 
 }

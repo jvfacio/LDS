@@ -5,7 +5,7 @@
  */
 package com.hxwr.lds.webapp.service;
 
-import com.hxwr.lds.core.model.LoanReport;
+import com.hxwr.lds.core.entities.Loan;
 import com.hxwr.lds.core.service.IViewReportSrv;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +42,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
      * @param response
      */
     @Override
-    public void view(LoanReport loan, HttpServletRequest request, HttpServletResponse response) {
+    public void view(Loan loan, HttpServletRequest request, HttpServletResponse response) {
 
         Document document = new Document();
 
@@ -63,9 +63,9 @@ public class PDFViewReportSrv implements IViewReportSrv {
 
             //add loan information to pdf
             document.add(Chunk.NEWLINE);
-            document.add(new Paragraph("Loan Type: " + loan.getLoan().getLoanType()));
-            document.add(new Paragraph("Loan Amount: " + loan.getLoan().getAmount()));
-            document.add(new Paragraph("Loan Period: " + loan.getLoan().getLoanPeriod()));
+            document.add(new Paragraph("Loan Type: " + loan.getLoanType()));
+            document.add(new Paragraph("Loan Amount: " + loan.getAmount()));
+            document.add(new Paragraph("Loan Period: " + loan.getLoanPeriod()));
             document.add(Chunk.NEWLINE);
 
             //create table of payment objects
@@ -79,17 +79,17 @@ public class PDFViewReportSrv implements IViewReportSrv {
             table.addCell("Balance");
 
             //add dates, payments, and balance to table
-            for (int i = 0; i < loan.getMonthPaymentLst().size(); i++) {
+            for (int i = 0; i < loan.getPaymentDetail().size(); i++) {
 
                 table.addCell(String.valueOf(i+1));
                 //add date to table
-                table.addCell(loan.getMonthPaymentLst().get(i).getFormattedDate());
+                table.addCell(loan.getPaymentDetail().get(i).getFormattedDate());
 
                 //add payment amount to table
-                table.addCell(String.valueOf(loan.getMonthPaymentLst().get(i).getAmount()));
+                table.addCell(String.valueOf(loan.getAmount()));
 
                 //add balance to table
-                table.addCell(String.valueOf(loan.getMonthPaymentLst().get(i).getPrincipal()));
+                table.addCell(String.valueOf(loan.getPaymentDetail().get(i).getPrincipal()));
 
             }
 

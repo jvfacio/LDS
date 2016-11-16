@@ -9,23 +9,23 @@
 <table class="table table-hover">
     <tr>
         <td> Type </td>
-        <td>${report.getLoan().getLoanType()}</td>
+        <td>${loan.getLoanType()}</td>
     </tr>
     <tr>
         <td> Period </td>
-        <td> ${report.getLoan().getLoanPeriod()} Years </td>
+        <td> ${loan.getLoanPeriod()} Years </td>
     </tr>
     <tr>
         <td> Interest </td>
-        <td> ${report.getLoan().getInterest()}% </td>
+        <td> ${loan.getInterest()}% </td>
     </tr>
     <tr>
         <td> Amount </td>
-        <td> &#36;${report.getLoan().getAmount()} </td>
+        <td> &#36;${loan.getAmount()} </td>
     </tr>
     <tr>
         <td> Total Monthly Payments </td>
-        <td> ${report.getMonthPaymentLst().size()}
+        <td> ${loan.getPaymentDetail().size()}
     </tr>
 </table>
 <h3>Monthly Payments</h3>
@@ -36,7 +36,7 @@
         <th>Date</th>
     </tr>
     <c:set var="count" value="1" scope="page" />
-    <c:forEach var="payment" items="${report.getMonthPaymentLst()}">
+    <c:forEach var="payment" items="${loan.getPaymentDetail()}">
         <tr>
             <td>${count}</td>
             <c:set var="count" value="${count + 1}" scope="page"/>

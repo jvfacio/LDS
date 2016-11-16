@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.hxwr.lds.core.entities.paymentDetail" table="payment_Detail">
+    <class name="com.hxwr.lds.core.entities.PaymentDetail" table="payment_Detail">
         <!--composite-id >
             <key-property name="numOfPayment" type="integer" >
                 <column name="NUM_OF_PEYMENT"/>
@@ -19,7 +19,7 @@
         <many-to-one name="loanid" class="com.hxwr.lds.core.entities.Loan" fetch="select">
             <column name="LOANID" not-null="true"/>
         </many-to-one>
-        <property name="numOfPayment" type="double">
+        <property name="numOfPayment" type="integer">
             <column name="NUM_OF_PAYMENT" not-null="true" />
         </property>
         <property name="beginningBalance" type="double">
@@ -29,13 +29,13 @@
             <column name="INTEREST" not-null="true"/>
         </property>
         <property name="principal" type="double">
-            <column name="PRINCIPAL" not-null="true" default="0" />
+            <column name="PRINCIPAL" not-null="true"  />
         </property>
         <property name="endingBalance" type="double">
-            <column name="ENDIND_BALANCE" not-null="true" default="0" />
+            <column name="ENDIND_BALANCE" not-null="true"  />
         </property>
-        <property name="date" type="string">
-            <column name="DATE" not-null="true" default="0" />
+        <property name="date" type="calendar">
+            <column name="DATE" not-null="true"  />
         </property>
        
     </class>

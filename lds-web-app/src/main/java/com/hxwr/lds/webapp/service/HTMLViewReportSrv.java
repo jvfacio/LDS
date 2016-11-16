@@ -5,7 +5,7 @@
  */
 package com.hxwr.lds.webapp.service;
 
-import com.hxwr.lds.core.model.LoanReport;
+import com.hxwr.lds.core.entities.Loan;
 import com.hxwr.lds.core.service.IViewReportSrv;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -26,11 +26,11 @@ import org.springframework.stereotype.Service;
 public class HTMLViewReportSrv implements IViewReportSrv {
     
     @Override
-    public void view(LoanReport loan, HttpServletRequest request, HttpServletResponse response)  {
+    public void view(Loan loan, HttpServletRequest request, HttpServletResponse response)  {
         try {
             HttpSession session = request.getSession();
              //set report attribute
-            session.setAttribute("report", loan);
+            session.setAttribute("loan", loan);
             //redirect the loan to the display loan jsp
             request.getRequestDispatcher("/WEB-INF/views/displayloan.jsp")
                     .forward(request, response);
