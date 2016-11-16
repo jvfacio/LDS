@@ -24,7 +24,7 @@ public abstract class AbstractSeleniumTest {
     
     @Before
     public void initDriver() {
-       String temp=((System.getProperty("os.name").contains("Win"))? "C:\\chromedriver.exe":"/bin/chromedriver");
+       String temp=((System.getProperty("os.name").contains("Win"))? "C:\\chromedriver.exe":"/usr/bin/chromedriver");
        System.out.println(System.getProperty("webdriver.chrome.driver"));
        if(System.getProperty("webdriver.chrome.driver") == null) {
             System.setProperty("webdriver.chrome.driver",temp);
