@@ -37,7 +37,7 @@ public class ApplicationTest {
         expect().
         statusCode(200).
         when().
-                get("http://localhost:8081/lds-api/rest/clients");
+                get("http://localhost:8080/lds-api/rest/clients");
         
         System.out.println("hello from test1");
     }
@@ -47,7 +47,7 @@ public class ApplicationTest {
         expect().
         statusCode(200).
         when().
-                get("http://localhost:8081/lds-api/rest/client/1");
+                get("http://localhost:8080/lds-api/rest/client/1");
         
         System.out.println("Hello from test2");
     }
@@ -56,7 +56,7 @@ public class ApplicationTest {
         expect().
         statusCode(200).
         when().
-                get("http://localhost:8081/lds-api/rest/client/antonyrmrz");
+                get("http://localhost:8080/lds-api/rest/client/antonyrmrz");
         
         System.out.println("Hello from test3");
     }
