@@ -25,12 +25,12 @@ public class LoginClientTest extends AbstractSeleniumTest {
         driver.get(url);
         driver.navigate().to("http://localhost:8080/lds-web-app/customer/login");
         String title= driver.getTitle();
-        assert(title.equals("Login"));
+        assert(title.equals("LDS - Login"));
         driver.findElement(By.id("custNickname")).sendKeys("ok");
         driver.findElement(By.id("custPassword")).sendKeys("ok");
-        driver.findElement(By.className("btn btn-default")).click();
+        driver.findElement(By.xpath("/html/body/div[2]/div/div/div/form/button")).click();
         String custTitle=driver.getTitle();
-        assert(custTitle.equals("Customer Details"));
+        assert(custTitle.equals("LDS - Customer Details"));
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.findElement(By.id("navLogoutLink")).click();
         driver.close();
@@ -42,14 +42,15 @@ public class LoginClientTest extends AbstractSeleniumTest {
         driver.get(url);
         driver.navigate().to("http://localhost:8080/lds-web-app/customer/login");
         String title= driver.getTitle();
-        assert(title.equals("Login"));
+        assert(title.equals("LDS - Login"));
         String nickName= driver.findElement(By.id("custNickname")).getAttribute("value");
         String passWord= driver.findElement(By.id("custPassword")).getAttribute("value");
         if(nickName.isEmpty()&& passWord.isEmpty()){
-             driver.findElement(By.className("btn btn-default")).click();
+             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+             driver.findElement(By.xpath("/html/body/div[2]/div/div/div/form/button")).click();
              driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
              String titleTest= driver.getTitle();
-             assert(titleTest.equals("Login"));
+             assert(titleTest.equals("LDS - Login"));
         }
         driver.close();
         
