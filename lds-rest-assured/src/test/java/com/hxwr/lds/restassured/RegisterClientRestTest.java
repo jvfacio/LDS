@@ -29,7 +29,7 @@ public class RegisterClientRestTest {
     Response response;
     String jsonAsString;
     ObjectMapper mapper;
-    String user;
+    static String user;
    
     
     @BeforeClass
@@ -42,11 +42,14 @@ public class RegisterClientRestTest {
     }
     
     
-    
+    /**
+     * Checks if a simple user can be inserted in the database
+     * @throws JsonProcessingException 
+     */
     @Test
 	public void testUnit1() throws JsonProcessingException {
         mapper = new ObjectMapper();    
-        String user= "RestUser"+new Random().nextInt(5000)+1;
+        user = "RestUser"+new Random().nextInt(5000)+1;
 	Client client =new Client("Hector","844222112", "Colosio HXWR", "100000","Medina",user, "xxx");
         jsonAsString = mapper.writeValueAsString(client); 
         System.out.println(jsonAsString);
@@ -54,8 +57,19 @@ public class RegisterClientRestTest {
                     .given().contentType("application/json").body(jsonAsString)
                     .when().post("/lds-api/client");
 	}
+
+    /**
+     *Checks if the same user can be inserted in the database
+     * @throws JsonProcessingException
+     */
     @Test
-        public void testUnit2(){
-            System.out.println("Hello from test 2");
-        }
+	public void testUnit2() throws JsonProcessingException {
+        mapper = new ObjectMapper();    
+	Client client =new Client("Hector","844222112", "Colosio HXWR", "100000","Medina",user, "xxx");
+        jsonAsString = mapper.writeValueAsString(client); 
+        System.out.println(jsonAsString);
+        expect().statusCode(500)
+                    .given().contentType("application/json").body(jsonAsString)
+                    .when().post("/lds-api/client");
+	}
 }
