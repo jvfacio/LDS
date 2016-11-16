@@ -22,13 +22,12 @@
         <property name="amount" type="double">
             <column name="amount" not-null="false" />
         </property>
-        <list name="paymentDetail" table="payment_Detail" inverse="true" lazy="true" fetch="select">
+        <bag name="paymentDetail" table="payment_Detail" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="loanid" not-null="true"/>
             </key>
-            <list-index column="order" base="0" />
             <one-to-many class="com.hxwr.lds.core.entities.PaymentDetail"/>
-        </list>
+        </bag>
 
     </class>
 
