@@ -105,11 +105,19 @@ public class LoanRestApiTest {
         }
         @Test
         public void testUnit8(){
+            
+            try{
+            
             expect().
                      statusCode(400).
             when().        
                     get("/getclientbynickname/?");
-                                               
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+            }
+           
         }
          
-}
+
