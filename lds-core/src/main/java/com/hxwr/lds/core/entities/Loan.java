@@ -8,9 +8,7 @@ package com.hxwr.lds.core.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -24,7 +22,7 @@ public class Loan implements java.io.Serializable{
     private double interest;
     private double amount;
     @JsonIgnore
-    private Set<PaymentDetail> paymentDetail = new HashSet<PaymentDetail>();
+    private List<PaymentDetail> paymentDetail = new ArrayList<PaymentDetail>();
     
     @JsonIgnore
     private Client client;
@@ -81,11 +79,11 @@ public class Loan implements java.io.Serializable{
         this.amount = amount;
     }
 
-    public Set<PaymentDetail> getPaymentDetail() {
+    public List<PaymentDetail> getPaymentDetail() {
         return paymentDetail;
     }
 
-    public void setPaymentDetail(Set<PaymentDetail> paymentDetail) {
+    public void setPaymentDetail(List<PaymentDetail> paymentDetail) {
         this.paymentDetail = paymentDetail;
     }
 
