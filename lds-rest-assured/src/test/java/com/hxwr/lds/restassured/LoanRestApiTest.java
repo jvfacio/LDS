@@ -94,7 +94,7 @@ public class LoanRestApiTest {
                     get("/getclientbynickname/ ");
                                                
         }
-         @Test
+        @Test
         public void testUnit7(){
             expect().
                      statusCode(400).
