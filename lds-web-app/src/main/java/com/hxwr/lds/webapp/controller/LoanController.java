@@ -67,13 +67,13 @@ public class LoanController {
             loan.setLoanPeriod(loanperiod);
             loan.setAmount(Double.parseDouble(amount));
             loan.setInterest(Double.parseDouble(interest));
-            
-            //Add loan payment calculations
-            loan.setPaymentDetail(paymentCalc.CalculatePayments(loan));
 
             //Add the new Loan to the Client
             loan.setClient(client);
 
+            //Add loan payment calculations
+            loan.setPaymentDetail(paymentCalc.CalculatePayments(loan));
+            
             //Add the 
             loanSrv.addLoanDetails(loan);
 
@@ -81,7 +81,7 @@ public class LoanController {
             redirect.addFlashAttribute("message", "New Loan Created!");
 
             //Pass the loan to JSP for rendering
-            redirect.addAttribute("loan", loan);
+            redirect.addFlashAttribute("loan", loan);
 
             return "redirect:/displayloan";
 
@@ -99,7 +99,7 @@ public class LoanController {
         //get the loan id
         Integer loanid =  Integer.parseInt(id);
         
-        //get the load associated with the loanid
+        //get the loan associated with the loanid
 
         Loan loan = loanSrv.fetchLoanByID(loanid);
        

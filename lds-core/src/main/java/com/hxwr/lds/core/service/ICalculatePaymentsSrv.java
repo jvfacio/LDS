@@ -9,7 +9,7 @@ package com.hxwr.lds.core.service;
 
 import com.hxwr.lds.core.entities.Loan;
 import com.hxwr.lds.core.entities.PaymentDetail;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,10 +18,10 @@ import java.util.ArrayList;
 public interface ICalculatePaymentsSrv {
     
     /**
-     * Generate the loan report object
+     * Generate the loan paymentDetail object
      * @param loan loan data
-     * @return a loan report data
+     * @return a list loan paymentDeails
      */
     
-    public ArrayList<PaymentDetail> CalculatePayments(Loan loan);
+    public List<PaymentDetail> CalculatePayments(Loan loan);
 }

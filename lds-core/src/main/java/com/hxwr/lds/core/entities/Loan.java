@@ -21,7 +21,7 @@ public class Loan implements java.io.Serializable{
     private double interest;
     private double amount;
     @JsonIgnore
-    private List<PaymentDetail> paymentDetail = new ArrayList<>();
+    private List<PaymentDetail> paymentDetail = new ArrayList<PaymentDetail>();
     
     @JsonIgnore
     private Client client;

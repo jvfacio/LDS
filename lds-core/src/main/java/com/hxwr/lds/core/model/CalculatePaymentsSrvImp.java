@@ -12,10 +12,11 @@ import com.hxwr.lds.core.entities.PaymentDetail;
 import java.util.ArrayList;
 import java.util.Calendar;
 import com.hxwr.lds.core.service.ICalculatePaymentsSrv;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
- * implements the real way to create the loan report
+ * implements the calculations for the payment details
  *
  * @author 35194
  */
@@ -23,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class CalculatePaymentsSrvImp implements ICalculatePaymentsSrv {
 
     @Override
-    public ArrayList<PaymentDetail> CalculatePayments(Loan loan) {
+    public List<PaymentDetail> CalculatePayments(Loan loan) {
 
         
         double beginningBalance;
@@ -34,7 +35,7 @@ public class CalculatePaymentsSrvImp implements ICalculatePaymentsSrv {
         double endingBalance;
         double principal;
         double monthInterestAmount;
-        ArrayList<PaymentDetail> payments = new ArrayList<>();
+        List<PaymentDetail> payments = new ArrayList<>();
 
         //get current date        
         Calendar date = Calendar.getInstance();
@@ -58,7 +59,8 @@ public class CalculatePaymentsSrvImp implements ICalculatePaymentsSrv {
         for (int i = 0; i < loanPeriodmonths; i++) {
             
             //the amount of interest payed for the month
-            monthInterestAmount = beginningBalance * monthlyInterest;
+            monthInterestAmount = beginningBalance * monthlyInterest; 
+            System.out.println(monthInterestAmount);
             
             //the amount of principal paid for the month
             principal= paymentAmount - monthInterestAmount;
