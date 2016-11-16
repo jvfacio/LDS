@@ -30,7 +30,7 @@ public class LoanDao implements ILoanDao {
     ICalculatePaymentsSrv paymentCalc;
 
     @Autowired
-    IPaymentDetailDao paymentDetail;
+    IPaymentDetailDao paymentDetailDao;
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -58,7 +58,9 @@ public class LoanDao implements ILoanDao {
             System.out.println("THIS IS THE SIZE" + loan.getPaymentDetail().size());
 
             while (iterator.hasNext()) {
-                paymentDetail.addPaymentDetail((PaymentDetail) iterator.next());
+                PaymentDetail paymentDetail = (PaymentDetail) iterator.next();
+                paymentDetail.setLoan(loan);
+                paymentDetailDao.addPaymentDetail(paymentDetail);
             }
 
             System.out.println("\n\n Details Added \n");
