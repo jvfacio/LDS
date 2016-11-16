@@ -35,8 +35,6 @@ public class LoanController {
     
     @Autowired ILoanSrv loanSrv;
 
-    @Autowired ICalculatePaymentsSrv paymentCalc;
-
     @Autowired HTMLViewReportSrv HTMLView;
 
     @Autowired PDFViewReportSrv PDFView;
@@ -80,11 +78,6 @@ public class LoanController {
             //Add the new Loan to the Client
             loan.setClient(client);
 
-            //Add loan payment calculations
-            loan.setPaymentDetail(paymentCalc.CalculatePayments(loan));
-            for(int i = 0; i<loan.getPaymentDetail().size();i++){
-            System.out.println("THE NUMBER OF PAYMENT IS " + loan.getPaymentDetail().get(i).getNumOfPayment());
-            }
             //Add the 
             loanSrv.addLoanDetails(loan);
 
