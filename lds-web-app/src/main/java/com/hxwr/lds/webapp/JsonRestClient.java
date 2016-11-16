@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
  * A Spring service for accessing lds-rest-api via a JSON/HTTP client
  */
 @Service("jsonRestClient")
-@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(value = "session", proxyMode = ScopedProxyMode.INTERFACES)
 public class JsonRestClient implements IRestClient, Serializable {
     
     private static final URI DEFAULT_URI = 
