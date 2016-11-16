@@ -18,7 +18,6 @@ public class Client implements java.io.Serializable{
     private String salary;
     private String lastName;
     private String nickName;
-    @JsonIgnore
     private String pass;
     private Set<Loan> loans = new HashSet<Loan>();
     
