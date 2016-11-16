@@ -50,14 +50,14 @@ public class RegisterClientTest extends AbstractSeleniumTest {
         String user="un"+Integer.toString(new Random().nextInt(50000)+1);
         driver.findElement(By.id("navRegisterUrl")).click();
         driver.findElement(By.id("nickName")).sendKeys(user);
-        // assert(driver.findElement(By.id("nickName")).getText().equals(user));
+        assert(driver.findElement(By.id("nickName")).getAttribute("value").equals(user));
         driver.findElement(By.id("pass")).sendKeys("12345");
         driver.findElement(By.id("name")).sendKeys("Antony");
         driver.findElement(By.id("lastName")).sendKeys("Ramirez");
         driver.findElement(By.id("address")).sendKeys("ahdiasuhdiuahsiuh");
         driver.findElement(By.id("phoneNumber")).sendKeys("8887778891");
         driver.findElement(By.id("salary")).sendKeys("-100000");
-        //assert(driver.findElement(By.id("salary")).getText().equals("100000"));
+        assert(driver.findElement(By.id("salary")).getAttribute("value").equals("-100000"));
         driver.findElement(By.id("submitUser")).click();
         Thread.sleep(1000);
         driver.close();
