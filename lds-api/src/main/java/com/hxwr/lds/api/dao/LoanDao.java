@@ -46,6 +46,7 @@ public class LoanDao implements ILoanDao{
             
             Iterator iterator = loan.getPaymentDetail().iterator();
             
+            System.out.println("THIS IS THE SIZE" + loan.getPaymentDetail().size());
             while(iterator.hasNext()){
                 paymentDetail.addPaymentDetail((PaymentDetail)iterator.next());
             }
