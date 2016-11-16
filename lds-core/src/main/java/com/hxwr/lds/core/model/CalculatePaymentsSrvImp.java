@@ -12,12 +12,14 @@ import com.hxwr.lds.core.entities.PaymentDetail;
 import java.util.ArrayList;
 import java.util.Calendar;
 import com.hxwr.lds.core.service.ICalculatePaymentsSrv;
+import org.springframework.stereotype.Service;
 
 /**
  * implements the real way to create the loan report
  *
  * @author 35194
  */
+@Service
 public class CalculatePaymentsSrvImp implements ICalculatePaymentsSrv {
 
     @Override

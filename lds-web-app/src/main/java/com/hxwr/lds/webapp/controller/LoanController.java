@@ -7,7 +7,6 @@ package com.hxwr.lds.webapp.controller;
 
 import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.entities.Loan;
-import com.hxwr.lds.core.model.LoanReport;
 import com.hxwr.lds.core.service.ILoanSrv;
 import com.hxwr.lds.webapp.service.HTMLViewReportSrv;
 import com.hxwr.lds.webapp.service.PDFViewReportSrv;
