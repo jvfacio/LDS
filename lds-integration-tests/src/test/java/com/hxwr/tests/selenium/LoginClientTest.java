@@ -1,11 +1,11 @@
-package com.hxwr.selenium;
+package com.hxwr.tests.selenium;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.hxwr.selenium.AbstractSeleniumTest;
+import com.hxwr.tests.selenium.AbstractSeleniumTest;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.openqa.selenium.By;

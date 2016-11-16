@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hxwr.selenium;
+package com.hxwr.tests.selenium;
 
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
