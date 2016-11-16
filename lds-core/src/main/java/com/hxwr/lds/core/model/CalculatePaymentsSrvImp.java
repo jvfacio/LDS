@@ -60,7 +60,6 @@ public class CalculatePaymentsSrvImp implements ICalculatePaymentsSrv {
             
             //the amount of interest payed for the month
             monthInterestAmount = beginningBalance * monthlyInterest; 
-            System.out.println(monthInterestAmount);
             
             //the amount of principal paid for the month
             principal= paymentAmount - monthInterestAmount;
