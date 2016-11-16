@@ -1,20 +1,15 @@
 package com.hxwr.lds.restassured;
 
+
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.*;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import static org.hamcrest.Matchers.*;
-
-import java.util.concurrent.TimeUnit;
-
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class LoanRestApiTest {
-	private static Response response;
-        private static String jsonAsString;
+    
+   
 	/*******************************************************
 	 * Send a GET request to
 	 * http://localhost:8080/contact/1
