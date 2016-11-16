@@ -27,6 +27,18 @@ public class Loan implements java.io.Serializable{
     
     @JsonIgnore
     private Client client;
+    
+    public Loan(String loanType, String loanPeriod, double interest, double amount){
+        this.loanType=loanType;
+        this.loanPeriod=loanPeriod;
+        this.interest=interest;
+        this.amount=amount;
+    }
+    
+
+    public Loan() {
+        
+    }
 
     public int getLoanID() {
         return loanID;
