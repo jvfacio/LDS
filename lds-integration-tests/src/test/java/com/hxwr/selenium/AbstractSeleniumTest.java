@@ -7,6 +7,7 @@ package com.hxwr.selenium;
 
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
@@ -23,10 +24,10 @@ public abstract class AbstractSeleniumTest {
     
     @Before
     public void initDriver() {
-        /*if(System.getProperty("webdriver.chrome.driver") == null) {
-            System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\chromedriver.exe");
-        }*/
-        driver = new FirefoxDriver();
+       if(System.getProperty("webdriver.chrome.driver") == null) {
+            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+       }
+        driver = new ChromeDriver();
     }
     
 }
