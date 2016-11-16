@@ -29,29 +29,29 @@ public class LoanRestApiTest {
              RestAssured.basePath = "/lds-api/client";
         }
 
-        @BeforeClass
+       /* @BeforeClass
         public static void testUnit1()
         {
         
             response =
                 when().
-                    get("/getclientbynickname/xxx").
+                    get("/getclientbynickname/okok").
                 then().
                     contentType(ContentType.JSON).  // check that the content type return from the API is JSON
                 extract().response(); // extract the response
        
        //jsonAsString = response.asString();
-        }
+        }*/
 	@Test
 	public void testUnit2() {
 		
 		given().
 			
 		when().
-			get("/getclientbynickname/xxx").
+			get("/getclientbynickname/okok").
 		then().body("id",equalTo(1))
-                        .and().body("firstName", equalTo("xxx"))
-                        .and().body("lastName", equalTo("xxx"))
+                        .and().body("firstName", equalTo("okok"))
+                        .and().body("lastName", equalTo("okok"))
                         .statusCode(200);
 	}
         
@@ -61,16 +61,16 @@ public class LoanRestApiTest {
 	        given().
                         
 		when().
-			get("/getclientbynickname/xxx").
+			get("/getclientbynickname/okok").
 		then().statusCode(200);
 	}
     
     
-        @Test
-        public void testUnit4() {
+        
+       /* public void testUnit4() {
                 String customer=  response.path("nickName");
-                assert(customer.equals("xxx"));
-        }
+                assert(customer.equals("okok"));
+        }*/
                 
     
         @Test
@@ -78,7 +78,7 @@ public class LoanRestApiTest {
         given().
                
         when().
-                 get("/getclientbynickname/xxx").
+                 get("/getclientbynickname/okok").
         then().
                 body(containsString("name")).
                 body(containsString("lastName")).
