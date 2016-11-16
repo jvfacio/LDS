@@ -5,6 +5,12 @@
  */
 package com.hxwr.lds.restassured;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hxwr.lds.core.entities.Loan;
+import io.restassured.RestAssured;
+import static io.restassured.RestAssured.expect;
+import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -13,13 +19,41 @@ import org.testng.annotations.Test;
  * @author Training
  */
 public class CreateLoanRestTest {
+    
+    Response response;
+    String jsonAsString;
+    ObjectMapper mapper;
+    Loan loan;
+    
     @BeforeClass
     public static void init(){
+        RestAssured.baseURI = "http://localhost:8080";
+        RestAssured.basePath = "/lds-api/";
         
     }
     
     @Test
-    public void testUnit1(){
-        System.out.println("yeah");
+    //Test to check if client is able to enter information and submit successfully
+    public void testUnit1() throws JsonProcessingException{
+        mapper= new ObjectMapper();
+        loan= new Loan("Mortgage","15",15.0,233.0);
+        jsonAsString = mapper.writeValueAsString(loan); 
+        System.out.println(jsonAsString);
+        expect().statusCode(200)
+                    .given().contentType("application/json").body(jsonAsString)
+                    .when().post("/client/1/createLoan");
+    }
+    
+    @Test
+    //Test to check if one client can register many loans
+    public void testUnit2() throws JsonProcessingException {
+           mapper= new ObjectMapper();
+           loan=new Loan("Mortgage","15",15.0,233.0);
+           jsonAsString = mapper.writeValueAsString(loan); 
+           System.out.println(jsonAsString);
+           expect().statusCode(200)
+                    .given().contentType("application/json").body(jsonAsString)
+                    .when().post("/client/1/createLoan");
+    
     }
 }
