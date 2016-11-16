@@ -35,7 +35,7 @@
                     <form:label path = "salary">Salary</form:label>
                     <form:input type="number" min="0" class="form-control" path="salary" placeholder="Salary" required="true"/>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" id="submitUser" class="btn btn-default">Submit</button>
                 
             </form:form>
         </div>

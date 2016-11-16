@@ -21,45 +21,46 @@ public class RegisterClientTest extends AbstractSeleniumTest {
      * @param driver 
      */
     @Test
-    public void testCase1(){
+    public void testCase1() throws InterruptedException{
         String url="http://localhost:8080/lds-web-app/";
         driver.get(url);
         String user="u"+Integer.toString(new Random().nextInt(50000)+1);
         driver.findElement(By.id("navRegisterUrl")).click();
         driver.findElement(By.id("nickName")).sendKeys(user);
-        assert(driver.findElement(By.id("nickName")).getText().equals(user));
         driver.findElement(By.id("pass")).sendKeys("12345");
         driver.findElement(By.id("name")).sendKeys("Antony");
         driver.findElement(By.id("lastName")).sendKeys("Ramirez");
         driver.findElement(By.id("address")).sendKeys("ahdiasuhdiuahsiuh");
         driver.findElement(By.id("phoneNumber")).sendKeys("8887778891");
         driver.findElement(By.id("salary")).sendKeys("100000");
-        assert(driver.findElement(By.id("salary")).getText().equals("100000"));
-        driver.findElement(By.id("client")).submit();
+        driver.findElement(By.id("submitUser")).click();
         driver.findElement(By.id("navLogoutLink")).click();
+        Thread.sleep(1000);
+        driver.close();
     }
     /***
      * Test case to know if the web program accepts negative values 
      * @param driver 
      */
     @Test
-    public void testCase2(){ 
+    public void testCase2() throws InterruptedException{ 
         String url="http://localhost:8080/lds-web-app/";
         driver.get(url);
         //random user
         String user="un"+Integer.toString(new Random().nextInt(50000)+1);
         driver.findElement(By.id("navRegisterUrl")).click();
         driver.findElement(By.id("nickName")).sendKeys(user);
-         assert(driver.findElement(By.id("nickName")).getText().equals(user));
+        // assert(driver.findElement(By.id("nickName")).getText().equals(user));
         driver.findElement(By.id("pass")).sendKeys("12345");
         driver.findElement(By.id("name")).sendKeys("Antony");
         driver.findElement(By.id("lastName")).sendKeys("Ramirez");
         driver.findElement(By.id("address")).sendKeys("ahdiasuhdiuahsiuh");
         driver.findElement(By.id("phoneNumber")).sendKeys("8887778891");
-        driver.findElement(By.id("salary")).sendKeys("100000");
-        assert(driver.findElement(By.id("salary")).getText().equals("100000"));
-        driver.findElement(By.id("client")).submit();
-        driver.findElement(By.id("navLogoutLink")).click();
+        driver.findElement(By.id("salary")).sendKeys("-100000");
+        //assert(driver.findElement(By.id("salary")).getText().equals("100000"));
+        driver.findElement(By.id("submitUser")).click();
+        Thread.sleep(1000);
+        driver.close();
     }
     
     
