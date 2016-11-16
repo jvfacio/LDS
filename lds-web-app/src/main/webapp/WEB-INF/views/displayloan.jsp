@@ -28,7 +28,12 @@
         <td> ${loan.getPaymentDetail().size()}
     </tr>
 </table>
-<h3>Monthly Payments</h3>
+    <table class="table table-hover">
+         <td> <h3>Monthly Payments</h3> </td>
+         <td><a href='<c:url value="/loan/total/${loan.getLoanID()}" />'>Totals</a></td>
+         <td>  </td>
+    </table>
+
 <table class="table table-hover">
     <tr>
         <td>Payment</td>

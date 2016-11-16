@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.hxwr.lds.core.service.ICalculatePaymentsSrv;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
@@ -39,6 +41,7 @@ public class LoanController {
 
     @Autowired PDFViewReportSrv PDFView;
 
+   
     @GetMapping(value = "/loan/create")
     public String createLoan() {
         if(clientSession.isLoggedIn())
@@ -48,6 +51,12 @@ public class LoanController {
         }
     }
 
+    @RequestMapping("/loan/total/{id}")
+	public String showIndex(Model model) {
+		model.addAttribute("resultado", "Results:");
+		return "totals";
+	}
+    
     @PostMapping(value = "/loan/create")
     public String submitLoan(
             String type, String loanperiod,
