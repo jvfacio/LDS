@@ -28,7 +28,7 @@ public class CreateLoanRestTest {
     @BeforeClass
     public static void init(){
         RestAssured.baseURI = "http://localhost:8080";
-        RestAssured.basePath = "/lds-api/";
+        RestAssured.basePath = "/lds-api";
         
     }
     
