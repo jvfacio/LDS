@@ -23,7 +23,7 @@ public class LoginClientTest extends AbstractSeleniumTest {
     public void testHappyPath(){
         String url="http://localhost:8080/lds-web-app";
         driver.get(url);
-        driver.navigate().to("http://http://localhost:8080/lds-web-app/customer/login");
+        driver.navigate().to("http://localhost:8080/lds-web-app/customer/login");
         String title= driver.getTitle();
         assert(title.equals("Login"));
         driver.findElement(By.id("custNickname")).sendKeys("ok");
@@ -40,7 +40,7 @@ public class LoginClientTest extends AbstractSeleniumTest {
     public void testNickNamePasswordEmpty(){
         String url="http://localhost:8080/lds-web-app";
         driver.get(url);
-        driver.navigate().to("http://http://localhost:8080/lds-web-app/customer/login");
+        driver.navigate().to("http://localhost:8080/lds-web-app/customer/login");
         String title= driver.getTitle();
         assert(title.equals("Login"));
         String nickName= driver.findElement(By.id("custNickname")).getAttribute("value");
