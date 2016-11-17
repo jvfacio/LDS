@@ -148,7 +148,6 @@ public class LoanController {
         if (loan != null) {
             model.addAttribute("loan", loan);
 
-            
             //joseph add this for calculate totals, regards
             DecimalFormat decimales = new DecimalFormat("0.00");
             List<PaymentDetail> pdetails = loan.getPaymentDetail();

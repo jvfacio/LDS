@@ -62,14 +62,13 @@
     <c:set var="count" value="1" scope="page" />
     <c:forEach var="payment" items="${loan.getPaymentDetail()}">
         <tr>
-            <td>${count}</td>
-            <c:set var="count" value="${count + 1}" scope="page"/>
-            <td> &#36;${payment.getPaymentAmount()} </td>
-            <td> ${payment.getFormattedDate()}</td>
-            <th> -- </th>
-            <th> -- </th>
-            <th> -- </th>
-            <th> -- </th>
+            <td> ${payment.getNumOfPayment()} </td>
+            <td> ${payment.getBeginningBalance()} </td>
+            <th> ${payment.getInterest()} </th>
+            <th> ${payment.getPrincipal()} </th>
+            <th> ${payment.getEndingBalance()} </th>
+            <th> ${payment.getDate()} </th>
+            <td> ${payment.getPrincipal() + payment.getInterest()}</td>
         </tr>
     </c:forEach>
 </table>
