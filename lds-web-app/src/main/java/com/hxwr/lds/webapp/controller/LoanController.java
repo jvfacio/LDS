@@ -50,38 +50,38 @@ public class LoanController {
         }
     }
 
-    @RequestMapping("/loan/total/{id}")
-    public String showIndex(Model model, @PathVariable("id") int id) {
-        try {
-            Loan loan = loanSrv.fetchLoanByID(id);
-            List<PaymentDetail> pdetails = loan.getPaymentDetail();
-
-            double bi = 0;
-            for (PaymentDetail i : pdetails) {
-                bi = bi + i.getInterest();
-            }
-
-            double tot = 0;
-            for (PaymentDetail i : pdetails) {
-                tot = tot + i.getEndingBalance();
-            }
-
-            double monthly = 0;
-            for (PaymentDetail i : pdetails) {
-                monthly = i.getPrincipal() + i.getEndingBalance();
-                break;
-            }
-
-            model.addAttribute("resultado", "Results:");
-            model.addAttribute("paymonthly", monthly);
-            model.addAttribute("numberpayments", pdetails.size());
-            model.addAttribute("totalinteres", bi);
-            model.addAttribute("total", tot);
-        } catch (IOException ex) {
-            System.err.println("Error " + ex.getMessage());
-        }
-        return "totals";
-    }
+//    @RequestMapping("/loan/total/{id}")
+//    public String showIndex(Model model, @PathVariable("id") int id) {
+//        try {
+//            Loan loan = loanSrv.fetchLoanByID(id);
+//            List<PaymentDetail> pdetails = loan.getPaymentDetail();
+//
+//            double bi = 0;
+//            for (PaymentDetail i : pdetails) {
+//                bi = bi + i.getInterest();
+//            }
+//
+//            double tot = 0;
+//            for (PaymentDetail i : pdetails) {
+//                tot = tot + i.getEndingBalance();
+//            }
+//
+//            double monthly = 0;
+//            for (PaymentDetail i : pdetails) {
+//                monthly = i.getPrincipal() + i.getEndingBalance();
+//                break;
+//            }
+//
+//            model.addAttribute("resultado", "Results:");
+//            model.addAttribute("paymonthly", monthly);
+//            model.addAttribute("numberpayments", pdetails.size());
+//            model.addAttribute("totalinteres", bi);
+//            model.addAttribute("total", tot);
+//        } catch (IOException ex) {
+//            System.err.println("Error " + ex.getMessage());
+//        }
+//        return "totals";
+//    }
 
     @PostMapping(value = "/loan/create")
     public String submitLoan(
