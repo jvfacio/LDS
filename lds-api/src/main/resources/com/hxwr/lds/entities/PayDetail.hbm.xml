@@ -16,7 +16,7 @@
             <column name="PAYMENTID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="loanid" class="com.hxwr.lds.core.entities.Loan" fetch="select">
+        <many-to-one name="loan" class="com.hxwr.lds.core.entities.Loan" fetch="select">
             <column name="LOANID" not-null="true"/>
         </many-to-one>
         <property name="numOfPayment" type="java.lang.Integer">
