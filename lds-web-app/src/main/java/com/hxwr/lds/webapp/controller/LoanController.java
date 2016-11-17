@@ -12,6 +12,7 @@ import com.hxwr.lds.core.service.ILoanSrv;
 import com.hxwr.lds.webapp.service.PDFViewReportSrv;
 import com.hxwr.lds.webapp.session.ClientSession;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -149,25 +150,27 @@ public class LoanController {
 
             
             //joseph add this for calculate totals, regards
+            DecimalFormat decimales = new DecimalFormat("0.00");
             List<PaymentDetail> pdetails = loan.getPaymentDetail();
-            double bi = 0;
+            double interes = 0;
             for (PaymentDetail i : pdetails) {
-                bi = bi + i.getInterest();
+                interes = interes + i.getInterest();
             }
             double tot = 0;
             for (PaymentDetail i : pdetails) {
-                tot = tot + i.getEndingBalance();
+                tot = tot + i.getPrincipal();
             }
             double monthly = 0;
             for (PaymentDetail i : pdetails) {
-                monthly = i.getPrincipal() + i.getEndingBalance();
+                monthly = i.getPrincipal() + i.getInterest();
                 break;
             }
+            
             model.addAttribute("resultado", "Results:");
-            model.addAttribute("paymonthly", monthly);
+            model.addAttribute("paymonthly", decimales.format(monthly));
             model.addAttribute("numberpayments", pdetails.size());
-            model.addAttribute("totalinteres", bi);
-            model.addAttribute("total", tot);
+            model.addAttribute("totalinteres", decimales.format(interes));
+            model.addAttribute("total", decimales.format(tot + interes));
 
             return "displayloan";
         } else {
