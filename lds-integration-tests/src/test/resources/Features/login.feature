@@ -8,15 +8,6 @@ Feature: Login
         |ok        |ok      |
         |antonyrmrz|1234    |
       Then the page title should be "LDS - Login"
-
-   Scenario: Not Successful Login with wrong credentials
-       Given the LDS homepage
-       When I navigate to the login page
-       And I login with the values I should get an error
-        |username  |password|
-        |ok        |od      |
-        |antonyrmrz|1231    |
-      Then the page title should be "LDS - Login"
       
     Scenario: Not Successful Login with no credentials
        Given the LDS homepage
@@ -32,5 +23,4 @@ Feature: Login
        And I login with the values I should get an error
         |username  |password|
         |ok        |        |
-        |antonyrmrz|        |
       Then the page title should be "LDS - Login"

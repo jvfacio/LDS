@@ -13,8 +13,11 @@ import gherkin.formatter.model.DataTableRow;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 /**
  *
  * @author Training
@@ -36,11 +39,8 @@ public class LoginClientTest extends AbstractSeleniumTest {
     public void navigateToLogin() {
         driver.navigate().to("http://localhost:8080/lds-web-app/customer/login");
     }
-    private Map<String,String> usersMap;
     @When("^I login with$")
     public void loginWith(DataTable table) {
-       usersMap = new HashMap<String,String>();
-
        for(Map<String,String> row : table.asMaps(String.class, String.class)){
            driver.findElement(By.id("custNickname")).sendKeys(row.get("username"));
            driver.findElement(By.id("custPassword")).sendKeys(row.get("password"));
@@ -50,6 +50,19 @@ public class LoginClientTest extends AbstractSeleniumTest {
        }
        
     }
+    
+    @When("^I login with the values I should get an error$")
+    public void loginWithNoValid(DataTable table){
+        for(Map<String,String> row : table.asMaps(String.class, String.class)){
+           driver.findElement(By.id("custNickname")).sendKeys(row.get("username"));
+           driver.findElement(By.id("custPassword")).sendKeys(row.get("password"));
+           driver.findElement(By.xpath("/html/body/div[2]/div/div/div/form/button")).click();
+           WebElement invalidInput = driver.findElement(By.cssSelector("#custPassword:invalid"));
+           assertThat(invalidInput.isDisplayed(), is(true));
+       }
+    }
+    
+    
     
     @Then("^the page title should be \"([^\"]*)\"$")
     public void validatePageTitle(String title) {
