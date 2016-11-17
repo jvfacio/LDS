@@ -50,8 +50,8 @@
                             <td>${loan.getLoanPeriod()} Years</td>
                             <td>${loan.getInterest()}%</td>
                             <td>&#36;${loan.getAmount()}</td>
-                            <td><a class="btn btn-default" href="/lds-web-app/loan/display?id=${loan.getLoanID()}&disp=HTML" role="button">View</a></td>
-                            <td><a class="btn btn-default" href="/lds-web-app/loan/display?id=${loan.getLoanID()}&disp=PDF" role="button" download>Download PDF</a></td>
+                            <td><a class="btn btn-default" href="/lds-web-app/loan/display/html?id=${loan.getLoanID()}" role="button">View</a></td>
+                            <td><a class="btn btn-default" href="/lds-web-app/loan/display/pdf?id=${loan.getLoanID()}" role="button" download>Download PDF</a></td>
                             <td><a class="btn btn-default" role="button" href='<c:url value="/loan/total/${loan.getLoanID()}" />'>Totals</a></td>
                         </tr>
                     </c:forEach>
