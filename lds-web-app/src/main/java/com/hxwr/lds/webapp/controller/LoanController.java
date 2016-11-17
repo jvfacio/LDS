@@ -9,27 +9,21 @@ import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.entities.Loan;
 import com.hxwr.lds.core.entities.PaymentDetail;
 import com.hxwr.lds.core.service.ILoanSrv;
-import com.hxwr.lds.webapp.service.HTMLViewReportSrv;
 import com.hxwr.lds.webapp.service.PDFViewReportSrv;
 import com.hxwr.lds.webapp.session.ClientSession;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.hxwr.lds.core.service.ICalculatePaymentsSrv;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -41,14 +35,11 @@ public class LoanController {
     @Autowired
     ClientSession clientSession;
 
+    @Autowired 
+    PDFViewReportSrv PDFView;
+    
     @Autowired
     ILoanSrv loanSrv;
-
-    @Autowired
-    HTMLViewReportSrv HTMLView;
-
-    @Autowired
-    PDFViewReportSrv PDFView;
 
     @GetMapping(value = "/loan/create")
     public String createLoan() {
@@ -59,20 +50,12 @@ public class LoanController {
         }
     }
 
-    ArrayList<Double> balance;
-    ArrayList<Double> principal;
-    ArrayList<Double> interes;
-    double tot = 0;
-
     @RequestMapping("/loan/total/{id}")
     public String showIndex(Model model, @PathVariable("id") int id) {
-        model.addAttribute("resultado", "Results:");
         try {
             Loan loan = loanSrv.fetchLoanByID(id);
             List<PaymentDetail> pdetails = loan.getPaymentDetail();
             
-            
-
             double bi = 0;
             for (PaymentDetail i: pdetails) {
                 bi = bi + i.getInterest();
@@ -132,40 +115,43 @@ public class LoanController {
             //Pass the loan to JSP for rendering
             redirect.addFlashAttribute("loan", loan);
 
-            return "redirect:/loan/display?disp=html&id=" + loan.getLoanID();
+            return "redirect:/loan/display/html?id=" + loan.getLoanID();
 
         }
 
     }
+    
+    @GetMapping(value = "/loan/display/pdf")
+    public String displayLoanPDF(
+            @RequestParam(value = "id", required = true) int id,
+            HttpServletRequest request, HttpServletResponse response
+    ) throws IOException
+    {
+        Loan loan = loanSrv.fetchLoanByID(id);
+        if(loan != null) {
+            PDFView.view(loan, request, response);
+            return null;
+        }
+        else {
+            return "redirect:/customer";
+        }
+    }
 
-    @GetMapping(value = "/loan/display")
-    public String displayLoan(
-            String id, String disp,
+    @GetMapping(value = "/loan/display/html")
+    public String displayLoanHTML(
+            @RequestParam(value = "id", required = true) int id,
             RedirectAttributes redirect,
-            HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        //get the loan id
-
-        //System.out.println("loan str: " + id);
-        Integer loanid =  Integer.parseInt(id);
-        //System.out.println("loan int: " + loanid);
-        
-
+            Model model) 
+        throws IOException
+    {
         //get the loan associated with the loanid
-        Loan loan = loanSrv.fetchLoanByID(loanid);
-
+        Loan loan = loanSrv.fetchLoanByID(id);
         if (loan != null) {
-
-            if (disp.equalsIgnoreCase("HTML")) {
-                HTMLView.view(loan, request, response);
-
-            } else if (disp.equalsIgnoreCase("PDF")) {
-                PDFView.view(loan, request, response);
-            }
+            model.addAttribute("loan", loan);
+            return "displayloan";
         } else {
             redirect.addFlashAttribute("message", "Loan doesn't exist");
             return "redirect:/customer";
         }
-        return null;
     }
 }
