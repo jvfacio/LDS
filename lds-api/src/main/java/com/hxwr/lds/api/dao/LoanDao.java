@@ -41,29 +41,20 @@ public class LoanDao implements ILoanDao {
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
-
             transaction = session.beginTransaction();
-
+            //Add loan payment calculations
+            paymentCalc.CalculatePayments(loan);
             session.save(loan);
             transaction.commit();
 
-            //Add loan payment calculations
-            loan.setPaymentDetail(paymentCalc.CalculatePayments(loan));
-            for (int i = 0; i < loan.getPaymentDetail().size(); i++) {
-                System.out.println("THE NUMBER OF PAYMENT IS " + loan.getPaymentDetail().get(i).getNumOfPayment());
-            }
-
-            Iterator iterator = loan.getPaymentDetail().iterator();
-
-            System.out.println("THIS IS THE SIZE" + loan.getPaymentDetail().size());
-
+            Iterator<PaymentDetail> iterator = loan.getPaymentDetail().iterator();
             while (iterator.hasNext()) {
-                PaymentDetail paymentDetail = (PaymentDetail) iterator.next();
-                paymentDetail.setLoan(loan);
+                PaymentDetail paymentDetail = iterator.next();
                 paymentDetailDao.addPaymentDetail(paymentDetail);
             }
 
             System.out.println("\n\n Details Added \n");
+
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();

@@ -86,10 +86,13 @@ public class CalculatePaymentsSrvImp implements ICalculatePaymentsSrv {
             //add new monthlyPayment to payments list
             payments.add(monthlyPayment);
             
+            //add reference to parent Loan on PaymentDetail
+            monthlyPayment.setLoan(loan);
+            
             //make the the current ending balance the beginning balance for the next payment
             beginningBalance = endingBalance;
         }
-
+        loan.setPaymentDetail(payments);
         return payments;
     }
 
