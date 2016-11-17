@@ -4,7 +4,7 @@
     Author     : Training
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="pageTitle" value="Customer Details" scope="request"/>
+<c:set var="pageTitle" value="Customer Details" scope="request"/><br/><br/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
 <c:set var="client" value="${clientSession.getClient()}" scope="page"/>
 <div class="container">
@@ -12,23 +12,23 @@
     <div class="col-md-4">
             <table class="table table-condensed">
                 <tr>
-                    <td>Nickname</td>
+                    <td>Nickname: </td>
                     <td>${client.getNickName()}</td>
                 </tr>
                 <tr>
-                    <td>First Name</td>
+                    <td>First Name: </td>
                     <td>${client.getName()}</td>
                 </tr>
                 <tr>
-                    <td>Last Name</td>
+                    <td>Last Name: </td>
                     <td>${client.getlastName()}</td>
                 </tr>
                 <tr>
-                    <td>Address</td>
+                    <td>Address: </td>
                     <td>${client.getAddress()}</td>
                 </tr>
                 <tr>
-                    <td>Salary</td>
+                    <td>Salary: </td>
                     <td>&#36;${client.getSalary()}</td>
                 </tr>
             </table>
