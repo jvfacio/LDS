@@ -4,7 +4,7 @@ Scenario: Successful Register
 Given the LDS homepage for the loan delivery system
 When I navigate to the register page 
 And I enter Nickname with
-      | hola   |    
+      | holaaa   |    
 And I enter Password with
       |abc123  |
 And I enter First Name with
@@ -21,11 +21,11 @@ And I click Submit
 Then I should be able to view the customer details page 
 And I should see Account created successfully
 
-Scenario: Successful Register
-Given the LDS homepage for the loan delivery system
+Scenario: Unsuccessful Register
+Given LDS homepage for the loan delivery system
 When I navigate to the register page 
 And I enter Nickname with
-      | hola   |    
+      | heyyyyy   |    
 And I enter Password with
       |abc123  |
 And I enter First Name with
