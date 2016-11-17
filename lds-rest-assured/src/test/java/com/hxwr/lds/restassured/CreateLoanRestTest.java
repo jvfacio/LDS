@@ -36,7 +36,7 @@ public class CreateLoanRestTest {
     //Test to check if client is able to enter information and submit successfully
     public void testUnit1() throws JsonProcessingException{
         mapper= new ObjectMapper();
-        loan= new Loan("Car","25",16.0,234.0);
+        loan= new Loan("Car","10",16.0,234.0);
         jsonAsString = mapper.writeValueAsString(loan); 
         System.out.println(jsonAsString);
         expect().statusCode(200)
@@ -48,7 +48,7 @@ public class CreateLoanRestTest {
     //Test to check if one client can register many loans
     public void testUnit2() throws JsonProcessingException {
            mapper= new ObjectMapper();
-           loan=new Loan("Mortgage","15",15.0,233.0);
+           loan=new Loan("Mortgage","10",15.0,233.0);
            jsonAsString = mapper.writeValueAsString(loan); 
            System.out.println(jsonAsString);
            expect().statusCode(200)
