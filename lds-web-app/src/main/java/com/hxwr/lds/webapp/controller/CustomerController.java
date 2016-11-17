@@ -47,7 +47,7 @@ public class CustomerController {
             DecimalFormat decimals = new DecimalFormat("0.00");
             DecimalFormat percentages = new DecimalFormat("0.##");
             model.addAttribute("decimals", decimals);
-            model.addAttribute("percentages", percentages);s
+            model.addAttribute("percentages", percentages);
             return "customer";
         }
         else {
