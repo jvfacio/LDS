@@ -24,4 +24,4 @@ Feature: Login
         |username  |password|
         |ok        |        |
       Then the page title should be "LDS - Login"
-      And Close the web browser
+      
