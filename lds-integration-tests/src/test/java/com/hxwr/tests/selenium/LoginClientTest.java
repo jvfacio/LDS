@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -19,9 +20,15 @@ import org.openqa.selenium.By;
  */
 public class LoginClientTest extends AbstractSeleniumTest {
     
+   
+   
+   
+    
     @Given("^the LDS homepage$")
     public void goToHomePage() {
+       
         driver.get("http://localhost:8080/lds-web-app/");
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
     
     @When("^I navigate to the login page$")
@@ -31,9 +38,9 @@ public class LoginClientTest extends AbstractSeleniumTest {
     
     @When("^I login with$")
     public void loginWith(HashMap<String,String> info) {
-        driver.findElement(By.id("custNickname")).sendKeys(info.get("username"));
-        driver.findElement(By.id("custPassword")).sendKeys(info.get("password"));
-        driver.findElement(By.xpath("/html/body/div[2]/div/div/div/form/button")).click();
+       driver.findElement(By.id("custNickname")).sendKeys(info.get("username"));
+       driver.findElement(By.id("custPassword")).sendKeys(info.get("password"));
+       driver.findElement(By.xpath("/html/body/div[2]/div/div/div/form/button")).click();
     }
     
     @Then("^the page title should be \"([^\"]*)\"$")
