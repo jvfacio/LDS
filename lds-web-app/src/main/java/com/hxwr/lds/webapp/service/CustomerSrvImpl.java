@@ -41,7 +41,7 @@ public class CustomerSrvImpl implements ICustomerSrv {
                 "GET", "/client/getclientbynickname/" 
                        + UriUtils.encodePathSegment(username, StandardCharsets.UTF_8.name())
                 , Client.class);
-        if(client.getPass().equals(password))
+        if(client != null && client.getPass().equals(password))
             return client;
         else
             return null;
