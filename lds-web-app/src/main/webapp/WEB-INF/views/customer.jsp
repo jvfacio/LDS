@@ -40,16 +40,16 @@
                     <th>Type</th>
                     <th>Period</th>
                     <th>Interest</th>
-                    <th>Amount Needed</th>
-                    <th>Details</th>
+                    <th>Principal</th>
+                    <th></th>
                     <th></th>
                 </tr>
                     <c:forEach var="loan" items="${client.getLoans()}">
                         <tr>
                             <td>${loan.getLoanType()}</td>        
                             <td>${loan.getLoanPeriod()} Years</td>
-                            <td>${loan.getInterest()}%</td>
-                            <td>&#36;${loan.getAmount()}</td>
+                            <td>${percentages.format(loan.getInterest())}%</td>
+                            <td>&#36;${decimals.format(loan.getAmount())}</td>
                             <td><a class="btn btn-default" href="/lds-web-app/loan/display/html?id=${loan.getLoanID()}" role="button">View</a></td>
                             <td><a class="btn btn-default" href="/lds-web-app/loan/display/pdf?id=${loan.getLoanID()}" role="button" download>Download PDF</a></td>
                         </tr>

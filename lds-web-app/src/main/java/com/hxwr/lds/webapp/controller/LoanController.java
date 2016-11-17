@@ -149,11 +149,12 @@ public class LoanController {
             model.addAttribute("loan", loan);
 
             //joseph add this for calculate totals, regards
-            DecimalFormat decimales = new DecimalFormat("0.00");
+            DecimalFormat decimals = new DecimalFormat("0.00");
+            DecimalFormat percentages = new DecimalFormat("0.##");
             List<PaymentDetail> pdetails = loan.getPaymentDetail();
-            double interes = 0;
+            double interest = 0;
             for (PaymentDetail i : pdetails) {
-                interes = interes + i.getInterest();
+                interest = interest + i.getInterest();
             }
             double tot = 0;
             for (PaymentDetail i : pdetails) {
@@ -165,12 +166,12 @@ public class LoanController {
                 break;
             }
             
-            model.addAttribute("resultado", "Results:");
-            model.addAttribute("paymonthly", decimales.format(monthly));
+            model.addAttribute("paymonthly", decimals.format(monthly));
             model.addAttribute("numberpayments", pdetails.size());
-            model.addAttribute("totalinteres", decimales.format(interes));
-            model.addAttribute("total", decimales.format(tot + interes));
-            model.addAttribute("decimales", decimales);
+            model.addAttribute("totalinterest", decimals.format(interest));
+            model.addAttribute("total", decimals.format(tot + interest));
+            model.addAttribute("decimals", decimals);
+            model.addAttribute("percentages", percentages);
 
             return "displayloan";
         } else {

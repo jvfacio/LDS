@@ -9,6 +9,7 @@ import com.hxwr.lds.webapp.session.ClientSession;
 import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.service.ICustomerSrv;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,8 +42,12 @@ public class CustomerController {
 	}
     
     @GetMapping("/customer")
-    public String customerDetails() {
+    public String customerDetails(Model model) {
         if (clientSession.isLoggedIn()) {
+            DecimalFormat decimals = new DecimalFormat("0.00");
+            DecimalFormat percentages = new DecimalFormat("0.##");
+            model.addAttribute("decimals", decimals);
+            model.addAttribute("percentages", percentages);s
             return "customer";
         }
         else {

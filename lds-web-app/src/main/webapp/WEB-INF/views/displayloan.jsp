@@ -6,6 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="pageTitle" value="Loan Report" scope="request"/>
 <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+<h2>Overview</h2>
 <table class="table table-hover">
     <tr>
         <td> Type </td>
@@ -17,58 +18,50 @@
     </tr>
     <tr>
         <td> Interest </td>
-        <td> ${loan.getInterest()}% </td>
+        <td> ${percentages.format(loan.getInterest())}% </td>
     </tr>
     <tr>
-        <td> Amount </td>
-        <td> &#36;${loan.getAmount()} </td>
+        <td> Principal </td>
+        <td> &#36;${decimals.format(loan.getAmount())} </td>
     </tr>
-    <tr>
-        <td> Totals </td>
-        <td> 
-
-            <table class="table table-hover">
+    </table>
+    <h2> Payment Summary </h2>
+        <table class="table table-hover">
+            <tr>
+                <td> Monthly Payment </td>
+                <td> $ <c:out value="${paymonthly}"></c:out> </td>
+                </tr>
                 <tr>
-                    <td> Payment Every Month </td>
-                    <td> $ <c:out value="${paymonthly}"></c:out> </td>
-                    </tr>
-                    <tr>
-                        <td> Total of <c:out value="${numberpayments}"></c:out> Payments </td>
-                    <td> $ <c:out value="${total}"></c:out> </td>
-                    </tr>
-                    <tr>
-                        <td> Total Interest </td>
-                        <td> $ <c:out value="${totalinteres}"></c:out> </td>
-                    </tr>
-                </table>
+                    <td> Total of <c:out value="${numberpayments}"></c:out> Payments </td>
+                <td> $ <c:out value="${total}"></c:out> </td>
+                </tr>
+                <tr>
+                    <td> Total Interest Paid </td>
+                    <td> $ <c:out value="${totalinterest}"></c:out> </td>
+                </tr>
+        </table>
 
-            </td>
-        </tr>
-    </table>
-    <table class="table table-hover">
-        <td> <h3>Monthly Payments</h3> </td>
-    </table>
+    <h2>Monthly Payments</h2>
 
     <table class="table table-hover">
         <tr>
-            <th>Payment</th>
-            <th>Beginning Balance</th>
-            <th>Interes</th>
-            <th>Principal</th>
-            <th>Endinig Balance</th>
+            <th>#</th>
             <th>Date</th>
-            <th>Payment Amount</th>
+            <th>Beginning Balance</th>
+            <th>Interest Paid</th>
+            <th>Principal Paid</th>
+            <th>Ending Balance</th>
+            
         </tr>
 
     <c:forEach var="payment" items="${loan.getPaymentDetail()}">
         <tr>
             <td> ${payment.getNumOfPayment()} </td>
-            <td> $ ${decimales.format(payment.getBeginningBalance())} </td>
-            <td> $ ${decimales.format(payment.getInterest())} </td>
-            <td> $ ${decimales.format(payment.getPrincipal())} </td>
-            <td> $ ${decimales.format(payment.getEndingBalance())} </td>
-            <td> ${payment.getDate()} </td>
-            <td> $ ${decimales.format(payment.getPrincipal() + payment.getInterest())} </td>
+            <td> ${payment.getFormattedDate()} </td>
+            <td> $ ${decimals.format(payment.getBeginningBalance())} </td>
+            <td> $ ${decimals.format(payment.getInterest())} </td>
+            <td> $ ${decimals.format(payment.getPrincipal())} </td>
+            <td> $ ${decimals.format(payment.getEndingBalance())} </td>
         </tr>
     </c:forEach>
 </table>
