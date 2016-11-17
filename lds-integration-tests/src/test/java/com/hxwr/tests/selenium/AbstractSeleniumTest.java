@@ -16,9 +16,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public abstract class AbstractSeleniumTest {
     
-    public WebDriver driver;
+    public static WebDriver driver = new ChromeDriver();
     
-    public WebDriver getDriver() {
+    public  WebDriver getDriver() {
         return driver;
     }
     
@@ -29,7 +29,7 @@ public abstract class AbstractSeleniumTest {
        if(System.getProperty("webdriver.chrome.driver") == null) {
             System.setProperty("webdriver.chrome.driver",temp);
        }
-        driver = new ChromeDriver();
+        
     }
     
 }
