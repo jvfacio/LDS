@@ -24,24 +24,41 @@
         <td> &#36;${loan.getAmount()} </td>
     </tr>
     <tr>
-        <td> Total Monthly Payments </td>
-        <td> ${loan.getPaymentDetail().size()}
-    </tr>
-</table>
-<table class="table table-hover">
-    <td> <h3>Monthly Payments</h3> </td>
-</table>
+        <td> Totals </td>
+        <td> 
 
-<table class="table table-hover">
-    <tr>
-        <td>Payment</td>
-        <th>Beginning Balance</th>
-        <th>Interes</th>
-        <th>Principal</th>
-        <th>Endinig Balance</th>
-        <th>Date</th>
-        <th>Payment Amount</th>
-    </tr>
+            <table class="table table-hover">
+                <tr>
+                    <td> Payment Every Month </td>
+                    <td> <c:out value="${paymonthly}"></c:out> </td>
+                    </tr>
+                    <tr>
+                        <td> Total of <c:out value="${numberpayments}"></c:out> Payments </td>
+                    <td> <c:out value="${total}"></c:out> </td>
+                    </tr>
+                    <tr>
+                        <td> Total Interest </td>
+                        <td>  <c:out value="${totalinteres}"></c:out> </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+    <table class="table table-hover">
+        <td> <h3>Monthly Payments</h3> </td>
+    </table>
+
+    <table class="table table-hover">
+        <tr>
+            <td>Payment</td>
+            <th>Beginning Balance</th>
+            <th>Interes</th>
+            <th>Principal</th>
+            <th>Endinig Balance</th>
+            <th>Date</th>
+            <th>Payment Amount</th>
+        </tr>
     <c:set var="count" value="1" scope="page" />
     <c:forEach var="payment" items="${loan.getPaymentDetail()}">
         <tr>

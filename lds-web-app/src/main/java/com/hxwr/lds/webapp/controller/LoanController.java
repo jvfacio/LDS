@@ -35,9 +35,9 @@ public class LoanController {
     @Autowired
     ClientSession clientSession;
 
-    @Autowired 
+    @Autowired
     PDFViewReportSrv PDFView;
-    
+
     @Autowired
     ILoanSrv loanSrv;
 
@@ -55,19 +55,19 @@ public class LoanController {
         try {
             Loan loan = loanSrv.fetchLoanByID(id);
             List<PaymentDetail> pdetails = loan.getPaymentDetail();
-            
+
             double bi = 0;
-            for (PaymentDetail i: pdetails) {
+            for (PaymentDetail i : pdetails) {
                 bi = bi + i.getInterest();
             }
-            
+
             double tot = 0;
-            for (PaymentDetail i: pdetails) {
+            for (PaymentDetail i : pdetails) {
                 tot = tot + i.getEndingBalance();
             }
-            
+
             double monthly = 0;
-            for (PaymentDetail i: pdetails) {
+            for (PaymentDetail i : pdetails) {
                 monthly = i.getPrincipal() + i.getEndingBalance();
                 break;
             }
@@ -120,19 +120,17 @@ public class LoanController {
         }
 
     }
-    
+
     @GetMapping(value = "/loan/display/pdf")
     public String displayLoanPDF(
             @RequestParam(value = "id", required = true) int id,
             HttpServletRequest request, HttpServletResponse response
-    ) throws IOException
-    {
+    ) throws IOException {
         Loan loan = loanSrv.fetchLoanByID(id);
-        if(loan != null) {
+        if (loan != null) {
             PDFView.view(loan, request, response);
             return null;
-        }
-        else {
+        } else {
             return "redirect:/customer";
         }
     }
@@ -141,17 +139,41 @@ public class LoanController {
     public String displayLoanHTML(
             @RequestParam(value = "id", required = true) int id,
             RedirectAttributes redirect,
-            Model model) 
-        throws IOException
-    {
+            Model model)
+            throws IOException {
         //get the loan associated with the loanid
         Loan loan = loanSrv.fetchLoanByID(id);
+        
         if (loan != null) {
             model.addAttribute("loan", loan);
+
+            
+            //joseph add this for calculate totals, regards
+            List<PaymentDetail> pdetails = loan.getPaymentDetail();
+            double bi = 0;
+            for (PaymentDetail i : pdetails) {
+                bi = bi + i.getInterest();
+            }
+            double tot = 0;
+            for (PaymentDetail i : pdetails) {
+                tot = tot + i.getEndingBalance();
+            }
+            double monthly = 0;
+            for (PaymentDetail i : pdetails) {
+                monthly = i.getPrincipal() + i.getEndingBalance();
+                break;
+            }
+            model.addAttribute("resultado", "Results:");
+            model.addAttribute("paymonthly", monthly);
+            model.addAttribute("numberpayments", pdetails.size());
+            model.addAttribute("totalinteres", bi);
+            model.addAttribute("total", tot);
+
             return "displayloan";
         } else {
             redirect.addFlashAttribute("message", "Loan doesn't exist");
             return "redirect:/customer";
         }
+
     }
 }
