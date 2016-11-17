@@ -6,7 +6,9 @@
  */
 package com.hxwr.lds.core.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,8 @@ import java.util.List;
  *
  * @author Training
  */
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Loan implements java.io.Serializable{
 
     private int loanID;
@@ -24,7 +28,6 @@ public class Loan implements java.io.Serializable{
    // @JsonIgnore
     private List<PaymentDetail> paymentDetail = new ArrayList<PaymentDetail>();
     
-    @JsonBackReference
     private Client client;
     
     public Loan(String loanType, String loanPeriod, double interest, double amount){

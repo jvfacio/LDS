@@ -5,10 +5,14 @@
  */
 package com.hxwr.lds.core.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Client implements java.io.Serializable{
 
     private int id;
@@ -20,7 +24,6 @@ public class Client implements java.io.Serializable{
     private String nickName;
     private String pass;
     
-    @JsonManagedReference
     private Set<Loan> loans = new HashSet<Loan>();
     
     public Client() { super(); }
