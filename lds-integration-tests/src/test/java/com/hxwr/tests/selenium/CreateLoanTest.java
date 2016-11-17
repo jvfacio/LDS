@@ -71,8 +71,9 @@ public class CreateLoanTest extends AbstractSeleniumTest{
     }
     
     @Then("^I click submit button on the loan page$")
-    public void submitClickLoan(){
-        driver.findElement(By.xpath("/html/body/div[2]/div/div/div[1]/form/button")).click();      
+    public void submitClickLoan() throws InterruptedException{
+        driver.findElement(By.xpath("/html/body/div[2]/div/div/div[1]/form/button")).click(); 
+        Thread.sleep(10000);
     }
     
     
