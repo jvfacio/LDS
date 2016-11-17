@@ -19,7 +19,7 @@ And I enter Salary with
       |35000 |
 And I click Submit
 Then I should be able to view the customer details page 
-And I should  see Account created successfully
+And I should see Account created successfully
 
 Scenario: Successful Register
 Given the LDS homepage for the loan delivery system
