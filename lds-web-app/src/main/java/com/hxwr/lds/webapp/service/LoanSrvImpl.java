@@ -32,6 +32,7 @@ public class LoanSrvImpl implements ILoanSrv {
      public void addLoanDetails(Loan loan)throws IOException {
         Loan newLoan = restClient.makeRequest("POST", "/client/"+ loan.getClient().getId()+ "/createLoan", loan, Loan.class);
         loan.setLoanID(newLoan.getLoanID());
+        loan.getClient().addLoan(loan);
      }
     
 }
