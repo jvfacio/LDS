@@ -21,7 +21,7 @@ public class LoginClientTest extends AbstractSeleniumTest {
     
     @Given("^the LDS homepage$")
     public void goToHomePage() {
-        driver.get("http://localhost:8080/lds-web-app");
+        driver.get("http://localhost:8080/lds-web-app/");
     }
     
     @When("^I navigate to the login page$")
@@ -40,8 +40,9 @@ public class LoginClientTest extends AbstractSeleniumTest {
     public void validatePageTitle(String title) {
         assert driver.getTitle().equals(title);
     }
+}
     
-    @Test
+   /* @Test
     public void testHappyPath(){
         String url="http://localhost:8080/lds-web-app";
         driver.get(url);
@@ -78,4 +79,4 @@ public class LoginClientTest extends AbstractSeleniumTest {
         
         
     }
-}
+}*/
