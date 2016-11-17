@@ -42,14 +42,15 @@ public class PDFViewReportSrv implements IViewReportSrv {
      * @param response
      */
     @Override
-    public void view(Loan loan, HttpServletRequest request, HttpServletResponse response) {
+    public void view(Loan loan, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Document document = new Document();
-
+        ServletOutputStream os = null;
         try {
             response.setContentType("application/pdf");
-            ServletOutputStream os = response.getOutputStream();
+            os = response.getOutputStream();
             PdfWriter.getInstance(document, os);
+            response.setHeader("Content-Disposition", "attachment; filename=\"LoanReport.pdf\"");
 
             document.open();
 
@@ -69,37 +70,56 @@ public class PDFViewReportSrv implements IViewReportSrv {
             document.add(Chunk.NEWLINE);
 
             //create table of payment objects
-            PdfPTable table = new PdfPTable(4);
+            PdfPTable table = new PdfPTable(7);
 
             //add table headers
             table.setHeaderRows(1);
             table.addCell("Payment #");
             table.addCell("Date");
-            table.addCell("Payment");
-            table.addCell("Balance");
+            table.addCell("Beginning Balance");
+            table.addCell("Payment Amount");
+            table.addCell("Interest");
+            table.addCell("Principal");
+            table.addCell("Ending Balance");
 
             //add dates, payments, and balance to table
             for (int i = 0; i < loan.getPaymentDetail().size(); i++) {
 
-                table.addCell(String.valueOf(i+1));
+                //add payment number to table
+                table.addCell(String.valueOf(loan.getPaymentDetail().get(i).getNumOfPayment()));
+
                 //add date to table
                 table.addCell(loan.getPaymentDetail().get(i).getFormattedDate());
 
-                //add payment amount to table
-                table.addCell(String.valueOf(loan.getAmount()));
+                //add beginning balance to table
+                table.addCell("$" + String.valueOf(loan.getPaymentDetail().get(i).getBeginningBalance()));
 
-                //add balance to table
-                table.addCell(String.valueOf(loan.getPaymentDetail().get(i).getPrincipal()));
+                //add payment amount to table
+                table.addCell("$" + String.valueOf(loan.getPaymentDetail().get(i).getPaymentAmount()));
+
+                //add interest to table
+                table.addCell("$" + String.valueOf(loan.getPaymentDetail().get(i).getInterest()));
+
+                //add principal to table
+                table.addCell("$" + String.valueOf(loan.getPaymentDetail().get(i).getPrincipal()));
+
+                //add ending balance to table
+                table.addCell("$" + String.valueOf(loan.getPaymentDetail().get(i).getEndingBalance()));
 
             }
 
             //add table rows to pdf
             document.add(table);
 
-        } catch (IOException | DocumentException ex) {
+        } catch (DocumentException | IOException ex) {
             Logger.getLogger(PDFViewReportSrv.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             document.close();
+            if (os != null) {
+                os.flush();
+                os.close();
+            }
+
         }
 
     }

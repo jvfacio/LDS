@@ -6,6 +6,7 @@
 package com.hxwr.lds.core.service;
 
 import com.hxwr.lds.core.entities.Loan;
+import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,7 +21,8 @@ public interface IViewReportSrv {
      * @param loan
      * @param request
      * @param response 
+     * @throws java.io.IOException 
      */
-    public void view(Loan loan, HttpServletRequest request, HttpServletResponse response);
+    public void view(Loan loan, HttpServletRequest request, HttpServletResponse response) throws IOException;
 
 }
