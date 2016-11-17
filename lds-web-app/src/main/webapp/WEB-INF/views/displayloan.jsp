@@ -43,7 +43,7 @@
         <tr>
             <td>${count}</td>
             <c:set var="count" value="${count + 1}" scope="page"/>
-            <td> &#36;${payment.getAmount()} </td>
+            <td> &#36;${payment.getPaymentAmount()} </td>
             <td> ${payment.getFormattedDate()}</td>
         </tr>
     </c:forEach>

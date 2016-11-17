@@ -35,7 +35,8 @@ public class CustomerController {
     
     @RequestMapping("/")
 	public String showIndex(Model model) {
-		model.addAttribute("resultado", "Result from Session");
+		System.out.println("Java Version: " + System.getProperty("java.version"));
+                System.out.println(System.getProperties());
 		return "index";
 	}
     

@@ -135,7 +135,10 @@ public class PaymentDetail implements Serializable {
      * @return the date formatted as a String
      */
     public String getFormattedDate() {
-        return new SimpleDateFormat("MM-dd-yyyy").format(date.getTime());
+        if (date == null)
+            return null;
+        else
+            return new SimpleDateFormat("MM-dd-yyyy").format(date.getTime());
     }
 
     /**

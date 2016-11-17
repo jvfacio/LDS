@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "/src/test/resources")
+@CucumberOptions(features="src/test/resources/Features", glue={"com.hxwr.tests.selenium"})
 public class TestSeleniumCucumberRunner {
     
 }

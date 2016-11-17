@@ -132,7 +132,7 @@ public class LoanController {
             //Pass the loan to JSP for rendering
             redirect.addFlashAttribute("loan", loan);
 
-            return "redirect:/displayloan";
+            return "redirect:/loan/display?disp=html&id=" + loan.getLoanID();
 
         }
 
@@ -145,7 +145,11 @@ public class LoanController {
             HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         //get the loan id
-        Integer loanid = Integer.parseInt(id);
+
+        //System.out.println("loan str: " + id);
+        Integer loanid =  Integer.parseInt(id);
+        //System.out.println("loan int: " + loanid);
+        
 
         //get the loan associated with the loanid
         Loan loan = loanSrv.fetchLoanByID(loanid);

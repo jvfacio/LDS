@@ -41,8 +41,10 @@ public class CustomerSrvImpl implements ICustomerSrv {
                 "GET", "/client/getclientbynickname/" 
                        + UriUtils.encodePathSegment(username, StandardCharsets.UTF_8.name())
                 , Client.class);
-        //TODO: authenticate
-        return client;
+        if(client.getPass().equals(password))
+            return client;
+        else
+            return null;
     }
     @Override
     public Client getCustomer(String nickName) throws IOException {
