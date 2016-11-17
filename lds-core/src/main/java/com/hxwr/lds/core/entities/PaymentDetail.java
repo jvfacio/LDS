@@ -6,6 +6,7 @@
 package com.hxwr.lds.core.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,7 +27,7 @@ public class PaymentDetail implements Serializable {
     private double paymentAmount;
 
     @JsonIgnore
-    private Loan loanid;
+    private Loan loan;
 
     /**
      *
@@ -146,18 +147,20 @@ public class PaymentDetail implements Serializable {
 
     /**
      *
-     * @return loanid
+     * @return loan
      */
-    public Loan getLoanid() {
-        return loanid;
+    @JsonIgnore
+    public Loan getLoan() {
+        return loan;
     }
 
     /**
      *
      * @param loanid the id of the loan associated with the payment
      */
-    public void setLoanid(Loan loanid) {
-        this.loanid = loanid;
+    @JsonProperty
+    public void setLoan(Loan loan) {
+        this.loan = loan;
     }
 
     /**
