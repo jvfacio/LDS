@@ -6,11 +6,17 @@
 package com.hxwr.lds.api.dao;
 
 import com.hxwr.lds.core.dao.IPaymentDetailDao;
+import com.hxwr.lds.core.entities.Loan;
 import com.hxwr.lds.core.entities.PaymentDetail;
+import java.util.List;
+import java.util.Set;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -66,4 +72,17 @@ public class PaymentDetailDao implements IPaymentDetailDao {
     public void setSessionFactory(SessionFactory factory) {
         sessionFactory = factory;
     }
+
+    public Session getSession() {
+        return sessionFactory.openSession();
+    }
+
+//    @Override
+//    public List<PaymentDetail> getTotalsbyLoanID(Loan loan) {
+//        Criteria crit = getSession().createCriteria(PaymentDetail.class)
+//                .setFetchMode("loan", FetchMode.JOIN)
+//                .add(Restrictions.eq("loan.loanID", loan.getLoanID()))
+//                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+//        return  crit.list();
+//    }
 }

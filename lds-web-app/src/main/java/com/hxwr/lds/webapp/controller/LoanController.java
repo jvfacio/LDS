@@ -7,6 +7,7 @@ package com.hxwr.lds.webapp.controller;
 
 import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.entities.Loan;
+import com.hxwr.lds.core.entities.PaymentDetail;
 import com.hxwr.lds.core.service.ILoanSrv;
 import com.hxwr.lds.webapp.service.HTMLViewReportSrv;
 import com.hxwr.lds.webapp.service.PDFViewReportSrv;
@@ -21,7 +22,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.hxwr.lds.core.service.ICalculatePaymentsSrv;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -31,30 +38,68 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoanController {
 
-    @Autowired ClientSession clientSession;
-    
-    @Autowired ILoanSrv loanSrv;
+    @Autowired
+    ClientSession clientSession;
 
-    @Autowired HTMLViewReportSrv HTMLView;
+    @Autowired
+    ILoanSrv loanSrv;
 
-    @Autowired PDFViewReportSrv PDFView;
+    @Autowired
+    HTMLViewReportSrv HTMLView;
 
-   
+    @Autowired
+    PDFViewReportSrv PDFView;
+
     @GetMapping(value = "/loan/create")
     public String createLoan() {
-        if(clientSession.isLoggedIn())
+        if (clientSession.isLoggedIn()) {
             return "createLoan";
-        else {
+        } else {
             return "redirect:/customer/login";
         }
     }
 
+    ArrayList<Double> balance;
+    ArrayList<Double> principal;
+    ArrayList<Double> interes;
+    double tot = 0;
+
     @RequestMapping("/loan/total/{id}")
-	public String showIndex(Model model) {
-		model.addAttribute("resultado", "Results:");
-		return "totals";
-	}
-    
+    public String showIndex(Model model, @PathVariable("id") int id) {
+        model.addAttribute("resultado", "Results:");
+        try {
+            Loan loan = loanSrv.fetchLoanByID(id);
+            List<PaymentDetail> pdetails = loan.getPaymentDetail();
+            
+            
+
+            double bi = 0;
+            for (PaymentDetail i: pdetails) {
+                bi = bi + i.getInterest();
+            }
+            
+            double tot = 0;
+            for (PaymentDetail i: pdetails) {
+                tot = tot + i.getEndingBalance();
+            }
+            
+            double monthly = 0;
+            for (PaymentDetail i: pdetails) {
+                monthly = i.getPrincipal() + i.getEndingBalance();
+                break;
+            }
+
+            model.addAttribute("resultado", "Results:");
+            model.addAttribute("paymonthly", monthly);
+            model.addAttribute("numberpayments", pdetails.size());
+            model.addAttribute("totalinteres", bi);
+            model.addAttribute("total", tot);
+        } catch (IOException ex) {
+            System.err.println("Error " + ex.getMessage());
+        }
+        return "totals";
+    }
+
     @PostMapping(value = "/loan/create")
     public String submitLoan(
             String type, String loanperiod,
@@ -65,9 +110,9 @@ public class LoanController {
         if (!clientSession.isLoggedIn()) {
             return "redirect:/customer/login";
         } else {
-            
+
             Client client = clientSession.getClient();
-            
+
             //Initialize the new Loan object
             Loan loan = new Loan();
             loan.setLoanType(type);
@@ -97,21 +142,19 @@ public class LoanController {
     public String displayLoan(
             String id, String disp,
             RedirectAttributes redirect,
-            HttpServletRequest request, HttpServletResponse response) 
-        throws IOException
-    {
+            HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
         //get the loan id
-        Integer loanid =  Integer.parseInt(id);
-        
-        //get the loan associated with the loanid
+        Integer loanid = Integer.parseInt(id);
 
+        //get the loan associated with the loanid
         Loan loan = loanSrv.fetchLoanByID(loanid);
-       
+
         if (loan != null) {
 
             if (disp.equalsIgnoreCase("HTML")) {
                 HTMLView.view(loan, request, response);
-                
+
             } else if (disp.equalsIgnoreCase("PDF")) {
                 PDFView.view(loan, request, response);
             }
@@ -122,4 +165,3 @@ public class LoanController {
         return null;
     }
 }
-

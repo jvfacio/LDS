@@ -7,9 +7,12 @@ package com.hxwr.lds.api.controller;
 
 import com.hxwr.lds.core.dao.ICustomerDao;
 import com.hxwr.lds.core.dao.ILoanDao;
+import com.hxwr.lds.core.dao.IPaymentDetailDao;
 import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.entities.Loan;
+import com.hxwr.lds.core.entities.PaymentDetail;
 import java.util.HashMap;
+import java.util.List;
 import javax.ws.rs.Consumes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +32,8 @@ public class LoanRestController {
     private ILoanDao iLoanDao;
     @Autowired
     private ICustomerDao customerDao;
+     @Autowired
+    private IPaymentDetailDao paymentDao;
     
     @PostMapping("/client/{id}/createLoan")
     @Consumes("application/json")
@@ -38,7 +43,12 @@ public class LoanRestController {
     }
     @GetMapping("/loan/{id}")
     public Loan getLoanById(@PathVariable("id") int id){
-     
         return iLoanDao.getByLoanID(id);
     }
+    
+//    @GetMapping("/loan/total/{id}")
+//    public List<PaymentDetail> getTotalsbyLoanID(@PathVariable("id") int id){
+//        Loan loan = iLoanDao.getByLoanID(id);
+//        return paymentDao.getTotalsbyLoanID(loan);
+//    }
 }
