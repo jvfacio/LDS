@@ -22,12 +22,10 @@ import org.springframework.stereotype.Service;
 public class LoanSrvImpl implements ILoanSrv {
     @Autowired 
     IRestClient restClient;
-    private static Loan loan;
     
     @Override
      public Loan fetchLoanByID(int loanID)throws IOException{
-         loan=restClient.makeRequest("GET","/loan/" + loanID, Loan.class);
-         return loan;
+         return restClient.makeRequest("GET","/loan/" + loanID, Loan.class);
      }
      
      @Override
