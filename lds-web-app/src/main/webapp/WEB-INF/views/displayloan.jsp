@@ -30,15 +30,15 @@
             <table class="table table-hover">
                 <tr>
                     <td> Payment Every Month </td>
-                    <td> <c:out value="${paymonthly}"></c:out> </td>
+                    <td> $ <c:out value="${paymonthly}"></c:out> </td>
                     </tr>
                     <tr>
                         <td> Total of <c:out value="${numberpayments}"></c:out> Payments </td>
-                    <td> <c:out value="${total}"></c:out> </td>
+                    <td> $ <c:out value="${total}"></c:out> </td>
                     </tr>
                     <tr>
                         <td> Total Interest </td>
-                        <td>  <c:out value="${totalinteres}"></c:out> </td>
+                        <td> $ <c:out value="${totalinteres}"></c:out> </td>
                     </tr>
                 </table>
 
@@ -51,7 +51,7 @@
 
     <table class="table table-hover">
         <tr>
-            <td>Payment</td>
+            <th>Payment</th>
             <th>Beginning Balance</th>
             <th>Interes</th>
             <th>Principal</th>
@@ -59,16 +59,16 @@
             <th>Date</th>
             <th>Payment Amount</th>
         </tr>
-    <c:set var="count" value="1" scope="page" />
+
     <c:forEach var="payment" items="${loan.getPaymentDetail()}">
         <tr>
             <td> ${payment.getNumOfPayment()} </td>
-            <td> ${payment.getBeginningBalance()} </td>
-            <th> ${payment.getInterest()} </th>
-            <th> ${payment.getPrincipal()} </th>
-            <th> ${payment.getEndingBalance()} </th>
-            <th> ${payment.getDate()} </th>
-            <td> ${payment.getPrincipal() + payment.getInterest()}</td>
+            <td> $ ${decimales.format(payment.getBeginningBalance())} </td>
+            <td> $ ${decimales.format(payment.getInterest())} </td>
+            <td> $ ${decimales.format(payment.getPrincipal())} </td>
+            <td> $ ${decimales.format(payment.getEndingBalance())} </td>
+            <td> ${payment.getDate()} </td>
+            <td> $ ${decimales.format(payment.getPrincipal() + payment.getInterest())} </td>
         </tr>
     </c:forEach>
 </table>

@@ -170,6 +170,7 @@ public class LoanController {
             model.addAttribute("numberpayments", pdetails.size());
             model.addAttribute("totalinteres", decimales.format(interes));
             model.addAttribute("total", decimales.format(tot + interes));
+            model.addAttribute("decimales", decimales);
 
             return "displayloan";
         } else {
