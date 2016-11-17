@@ -53,7 +53,6 @@ public class LoginClientTest extends AbstractSeleniumTest {
     
     @Then("^the page title should be \"([^\"]*)\"$")
     public void validatePageTitle(String title) {
-        driver.navigate().to("http://localhost:8080/lds-web-app/");
         assert driver.getTitle().equals(title);
     }
 }

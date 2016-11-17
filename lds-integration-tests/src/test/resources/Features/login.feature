@@ -7,29 +7,30 @@ Feature: Login
         |username  |password|
         |ok        |ok      |
         |antonyrmrz|1234    |
-      Then the page title should be "LDS - Home"
+      Then the page title should be "LDS - Login"
 
-   Scenario: Not Successful Login
+   Scenario: Not Successful Login with wrong credentials
        Given the LDS homepage
        When I navigate to the login page
-       And I login with
+       And I login with the values I should get an error
         |username  |password|
         |ok        |od      |
         |antonyrmrz|1231    |
-      Then the page should be the same
+      Then the page title should be "LDS - Login"
       
-    Scenario: Not Successful Login
+    Scenario: Not Successful Login with no credentials
        Given the LDS homepage
        When I navigate to the login page
-       And I login with
+       And I login with the values I should get an error
         |username|password|
         |        |        |
-      Then the page should be the same
-    Scenario: Not Successful Login
+      Then the page title should be "LDS - Login"
+
+    Scenario: Not Successful Login with with no password
        Given the LDS homepage
        When I navigate to the login page
-       And I login with
+       And I login with the values I should get an error
         |username  |password|
         |ok        |        |
         |antonyrmrz|        |
-      Then the page should be the same
+      Then the page title should be "LDS - Login"
