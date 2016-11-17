@@ -21,7 +21,7 @@ public class LoanRestApiTest {
         {
         // here we setup the default URL and API base path to use throughout the tests
              RestAssured.baseURI = "http://localhost:8080";
-             RestAssured.basePath = "/lds-api/client";
+             RestAssured.basePath = "/lds-api";
         }
 
        /* @BeforeClass
@@ -43,7 +43,7 @@ public class LoanRestApiTest {
 		given().
 			
 		when().
-			get("/getclientbynickname/ok").
+			get("/client/getclientbynickname/ok").
 		then().body("id",equalTo(1))
                         .and().body("name", equalTo("ddd"))
                         .and().body("phoneNumber", equalTo("5555"))
@@ -57,7 +57,7 @@ public class LoanRestApiTest {
 	        given().
                         
 		when().
-			get("/getclientbynickname/ok").
+			get("/client/getclientbynickname/ok").
 		then().statusCode(200);
 	}
     
@@ -74,7 +74,7 @@ public class LoanRestApiTest {
         given().
                
         when().
-                 get("/getclientbynickname/ok").
+                 get("/client/getclientbynickname/ok").
         then().
                 body(containsString("name")).
                 body(containsString("lastName")).
@@ -87,7 +87,7 @@ public class LoanRestApiTest {
             expect().
                      statusCode(400).
             when().        
-                    get("/getclientbynickname/ ");
+                    get("/client/getclientbynickname/ ");
                                                
         }
         @Test
@@ -95,7 +95,7 @@ public class LoanRestApiTest {
             expect().
                      statusCode(400).
             when().        
-                    get("/getclientbynickname//");
+                    get("/client/getclientbynickname//");
                                                
         }
         @Test
@@ -106,7 +106,7 @@ public class LoanRestApiTest {
             expect().
                      statusCode(400).
             when().        
-                    get("/getclientbynickname/?");
+                    get("/client/getclientbynickname/?");
             }
             catch(Exception e){
                 System.out.println(e);

@@ -35,7 +35,7 @@ public class RegisterClientRestTest {
     @BeforeClass
     public static void init(){
          RestAssured.baseURI = "http://localhost:8080";
-         RestAssured.basePath = "";
+         RestAssured.basePath = "/lds-api";
          //Set up new test data
         
         System.out.println("hello form init");
@@ -55,7 +55,7 @@ public class RegisterClientRestTest {
         System.out.println(jsonAsString);
         expect().statusCode(200)
                     .given().contentType("application/json").body(jsonAsString)
-                    .when().post("/lds-api/client");
+                    .when().post("/client");
 	}
 
     /**
@@ -70,6 +70,6 @@ public class RegisterClientRestTest {
         System.out.println(jsonAsString);
         expect().statusCode(500)
                     .given().contentType("application/json").body(jsonAsString)
-                    .when().post("/lds-api/client");
+                    .when().post("/client");
 	}
 }
