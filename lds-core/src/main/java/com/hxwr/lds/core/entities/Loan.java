@@ -16,7 +16,10 @@ import java.util.List;
  *
  * @author Training
  */
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIdentityInfo(
+    generator=ObjectIdGenerators.PropertyGenerator.class,
+    property="loanID",
+    scope=Loan.class)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Loan implements java.io.Serializable{
 

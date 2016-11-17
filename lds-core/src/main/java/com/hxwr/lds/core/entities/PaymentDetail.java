@@ -18,7 +18,10 @@ import java.util.Calendar;
  *
  * @author joseph
  */
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIdentityInfo(
+    generator=ObjectIdGenerators.PropertyGenerator.class,
+    property="paymentdetailID",
+    scope=PaymentDetail.class)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PaymentDetail implements Serializable {
 
