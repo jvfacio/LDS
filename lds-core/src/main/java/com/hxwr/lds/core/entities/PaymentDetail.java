@@ -5,8 +5,11 @@
  */
 package com.hxwr.lds.core.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,6 +18,11 @@ import java.util.Calendar;
  *
  * @author joseph
  */
+@JsonIdentityInfo(
+    generator=ObjectIdGenerators.PropertyGenerator.class,
+    property="paymentdetailID",
+    scope=PaymentDetail.class)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PaymentDetail implements Serializable {
 
     private int paymentdetailID;
@@ -26,7 +34,6 @@ public class PaymentDetail implements Serializable {
     private Calendar date;
     private double paymentAmount;
 
-   // @JsonIgnore
     private Loan loan;
 
     /**

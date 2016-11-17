@@ -40,6 +40,10 @@ public class RegisterClientTest extends AbstractSeleniumTest {
     public void goToHome(){
         driver.get("http://localhost:8080/lds-web-app/");
     }
+    @Given("^LDS homepage for the loan delivery system$")
+     public void Home(){
+        driver.get("http://localhost:8080/lds-web-app/");
+    }
     
     @When("^I navigate to the register page$")
     public void navigate(){
@@ -49,6 +53,7 @@ public class RegisterClientTest extends AbstractSeleniumTest {
     public void enterNickName(List<String> nickName){
         this.nickName=nickName;
         for(String n:nickName){
+            n=n+ new Random().nextInt(5000);
         driver.findElement(By.id("nickName")).sendKeys(n);
         }
     }
@@ -108,7 +113,7 @@ public class RegisterClientTest extends AbstractSeleniumTest {
     public void checkMessage(){
           String message= driver.findElement(By.id("message")).getText();
           assert(message.equals("Account successfully created."));
-          driver.close();
+         
       }
     @Then("^I should not be able to register successfully$")
     public void unableToRegister(){
