@@ -28,7 +28,7 @@ public class CreateLoanRestTest {
     @BeforeClass
     public static void init(){
         RestAssured.baseURI = "http://localhost:8080";
-        RestAssured.basePath = "";
+        RestAssured.basePath = "/lds-api";
         
     }
     
@@ -41,7 +41,7 @@ public class CreateLoanRestTest {
         System.out.println(jsonAsString);
         expect().statusCode(200)
                     .given().contentType("application/json").body(jsonAsString)
-                    .when().post("/lds-api/client/1/createLoan");
+                    .when().post("/client/1/createLoan");
     }
     
     @Test
@@ -53,7 +53,7 @@ public class CreateLoanRestTest {
            System.out.println(jsonAsString);
            expect().statusCode(200)
                     .given().contentType("application/json").body(jsonAsString)
-                    .when().post("/lds-api/client/1/createLoan");
+                    .when().post("/client/1/createLoan");
     
     }
 }
