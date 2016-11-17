@@ -6,6 +6,7 @@ package com.hxwr.tests.selenium;
  * and open the template in the editor.
  */
 import cucumber.api.DataTable;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -67,6 +68,10 @@ public class LoginClientTest extends AbstractSeleniumTest {
     @Then("^the page title should be \"([^\"]*)\"$")
     public void validatePageTitle(String title) {
         assert driver.getTitle().equals(title);
+    }
+    @When("^Close the web browser$")
+    public void finalize(){
+        driver.close();
     }
 }
     
