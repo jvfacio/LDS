@@ -14,15 +14,15 @@
     <table class="table table-hover">
     <tr>
         <td> Payment Every Month </td>
-        <td> ---------------------- </td>
+        <td> <c:out value="${paymonthly}"></c:out> </td>
     </tr>
     <tr>
-        <td> Total of 60 Payments </td>
-        <td> ---------------------- </td>
+        <td> Total of <c:out value="${numberpayments}"></c:out> Payments </td>
+        <td> <c:out value="${total}"></c:out> </td>
     </tr>
     <tr>
         <td> Total Interest </td>
-        <td> ---------------------- </td>
+        <td>  <c:out value="${totalinteres}"></c:out> </td>
     </tr>
 </table>
 

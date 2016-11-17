@@ -7,10 +7,12 @@ package com.hxwr.lds.webapp.controller;
 
 import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.entities.Loan;
+import com.hxwr.lds.core.entities.PaymentDetail;
 import com.hxwr.lds.core.service.ILoanSrv;
 import com.hxwr.lds.webapp.service.PDFViewReportSrv;
 import com.hxwr.lds.webapp.session.ClientSession;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,28 +32,57 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoanController {
 
-    @Autowired ClientSession clientSession;
+    @Autowired
+    ClientSession clientSession;
+
+    @Autowired 
+    PDFViewReportSrv PDFView;
     
-    @Autowired ILoanSrv loanSrv;
+    @Autowired
+    ILoanSrv loanSrv;
 
-    @Autowired PDFViewReportSrv PDFView;
-
-   
     @GetMapping(value = "/loan/create")
     public String createLoan() {
-        if(clientSession.isLoggedIn())
+        if (clientSession.isLoggedIn()) {
             return "createLoan";
-        else {
+        } else {
             return "redirect:/customer/login";
         }
     }
 
     @RequestMapping("/loan/total/{id}")
-	public String showIndex(Model model) {
-		model.addAttribute("resultado", "Results:");
-		return "totals";
-	}
-    
+    public String showIndex(Model model, @PathVariable("id") int id) {
+        try {
+            Loan loan = loanSrv.fetchLoanByID(id);
+            List<PaymentDetail> pdetails = loan.getPaymentDetail();
+            
+            double bi = 0;
+            for (PaymentDetail i: pdetails) {
+                bi = bi + i.getInterest();
+            }
+            
+            double tot = 0;
+            for (PaymentDetail i: pdetails) {
+                tot = tot + i.getEndingBalance();
+            }
+            
+            double monthly = 0;
+            for (PaymentDetail i: pdetails) {
+                monthly = i.getPrincipal() + i.getEndingBalance();
+                break;
+            }
+
+            model.addAttribute("resultado", "Results:");
+            model.addAttribute("paymonthly", monthly);
+            model.addAttribute("numberpayments", pdetails.size());
+            model.addAttribute("totalinteres", bi);
+            model.addAttribute("total", tot);
+        } catch (IOException ex) {
+            System.err.println("Error " + ex.getMessage());
+        }
+        return "totals";
+    }
+
     @PostMapping(value = "/loan/create")
     public String submitLoan(
             String type, String loanperiod,
@@ -61,9 +93,9 @@ public class LoanController {
         if (!clientSession.isLoggedIn()) {
             return "redirect:/customer/login";
         } else {
-            
+
             Client client = clientSession.getClient();
-            
+
             //Initialize the new Loan object
             Loan loan = new Loan();
             loan.setLoanType(type);
@@ -123,4 +155,3 @@ public class LoanController {
         }
     }
 }
-

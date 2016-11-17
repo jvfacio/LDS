@@ -5,7 +5,9 @@
  */
 package com.hxwr.lds.core.dao;
 
+import com.hxwr.lds.core.entities.Loan;
 import com.hxwr.lds.core.entities.PaymentDetail;
+import java.util.List;
 
 /**
  *
@@ -15,5 +17,6 @@ public interface IPaymentDetailDao {
     
     public void addPaymentDetail(PaymentDetail paymentDetail);
     public PaymentDetail getByPaymentID(Integer paymentDetailID);
+//    public List<PaymentDetail> getTotalsbyLoanID(Loan loan);
     
 }

@@ -26,7 +26,7 @@ public class PaymentDetail implements Serializable {
     private Calendar date;
     private double paymentAmount;
 
-    @JsonIgnore
+   // @JsonIgnore
     private Loan loan;
 
     /**
