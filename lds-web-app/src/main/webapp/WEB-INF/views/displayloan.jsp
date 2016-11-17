@@ -28,15 +28,19 @@
         <td> ${loan.getPaymentDetail().size()}
     </tr>
 </table>
-    <table class="table table-hover">
-         <td> <h3>Monthly Payments</h3> </td>
-    </table>
+<table class="table table-hover">
+    <td> <h3>Monthly Payments</h3> </td>
+</table>
 
 <table class="table table-hover">
     <tr>
         <td>Payment</td>
-        <th>Amount</th>
+        <th>Beginning Balance</th>
+        <th>Interes</th>
+        <th>Principal</th>
+        <th>Endinig Balance</th>
         <th>Date</th>
+        <th>Payment Amount</th>
     </tr>
     <c:set var="count" value="1" scope="page" />
     <c:forEach var="payment" items="${loan.getPaymentDetail()}">
@@ -45,6 +49,10 @@
             <c:set var="count" value="${count + 1}" scope="page"/>
             <td> &#36;${payment.getPaymentAmount()} </td>
             <td> ${payment.getFormattedDate()}</td>
+            <th> -- </th>
+            <th> -- </th>
+            <th> -- </th>
+            <th> -- </th>
         </tr>
     </c:forEach>
 </table>
