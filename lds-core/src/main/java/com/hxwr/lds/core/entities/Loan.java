@@ -6,7 +6,7 @@
  */
 package com.hxwr.lds.core.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class Loan implements java.io.Serializable{
    // @JsonIgnore
     private List<PaymentDetail> paymentDetail = new ArrayList<PaymentDetail>();
     
-    @JsonIgnore
+    @JsonBackReference
     private Client client;
     
     public Loan(String loanType, String loanPeriod, double interest, double amount){

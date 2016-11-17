@@ -5,7 +5,7 @@
  */
 package com.hxwr.lds.core.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +19,8 @@ public class Client implements java.io.Serializable{
     private String lastName;
     private String nickName;
     private String pass;
+    
+    @JsonManagedReference
     private Set<Loan> loans = new HashSet<Loan>();
     
     public Client() { super(); }
