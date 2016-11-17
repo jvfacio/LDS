@@ -28,7 +28,7 @@ public class CreateLoanRestTest {
     @BeforeClass
     public static void init(){
         RestAssured.baseURI = "http://localhost:8080";
-        RestAssured.basePath = "/lds-api";
+        RestAssured.basePath = "";
         
     }
     
@@ -36,12 +36,12 @@ public class CreateLoanRestTest {
     //Test to check if client is able to enter information and submit successfully
     public void testUnit1() throws JsonProcessingException{
         mapper= new ObjectMapper();
-        loan= new Loan("Mortgage","15",15.0,233.0);
+        loan= new Loan("Car","25",16.0,234.0);
         jsonAsString = mapper.writeValueAsString(loan); 
         System.out.println(jsonAsString);
         expect().statusCode(200)
                     .given().contentType("application/json").body(jsonAsString)
-                    .when().post("/client/1/createLoan");
+                    .when().post("/lds-api/client/1/createLoan");
     }
     
     @Test
@@ -53,7 +53,7 @@ public class CreateLoanRestTest {
            System.out.println(jsonAsString);
            expect().statusCode(200)
                     .given().contentType("application/json").body(jsonAsString)
-                    .when().post("/client/1/createLoan");
+                    .when().post("/lds-api/client/1/createLoan");
     
     }
 }
