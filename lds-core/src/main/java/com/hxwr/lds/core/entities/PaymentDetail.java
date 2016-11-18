@@ -140,6 +140,7 @@ public class PaymentDetail implements Serializable {
      *
      * @return the date formatted as a String
      */
+    @JsonIgnore
     public String getFormattedDate() {
         if (date == null) {
             return null;
@@ -177,6 +178,7 @@ public class PaymentDetail implements Serializable {
      *
      * @return paymentAmount
      */
+    @JsonIgnore
     public double getPaymentAmount() {
         return (interest + principal);
     }

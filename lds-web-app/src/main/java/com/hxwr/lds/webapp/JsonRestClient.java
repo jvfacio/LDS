@@ -7,6 +7,7 @@ package com.hxwr.lds.webapp;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -54,7 +55,7 @@ public class JsonRestClient implements IRestClient, Serializable {
         // Create jackson ObjectMapper
         ObjectMapper mapper = new ObjectMapper();
         // Create JacksonJaxbJsonProvider and add to client config
-        JacksonJsonProvider jacksonProvider = new JacksonJsonProvider()
+        JacksonJsonProvider jacksonProvider = new JacksonJaxbJsonProvider()
             .configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true)
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         jacksonProvider.setMapper(mapper);
