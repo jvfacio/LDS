@@ -23,7 +23,7 @@ public interface ICustomerSrv {
             throws IOException ;
     public List<Client> getAllClients()
             throws IOException ;
-    public void register(Client client)
+    public Client register(Client client)
             throws IOException ;
     public Client getCustomer(String nickName)
             throws IOException ;

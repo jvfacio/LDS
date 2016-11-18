@@ -73,10 +73,16 @@ public class CustomerController {
             return "redirect:/customer/register";
         }
         else {
-            clientSession.setClient(client);
-            customerSrv.register(client);
-            redirect.addFlashAttribute("message", "Account successfully created.");
-            return "redirect:/customer";
+            Client registeredClient = customerSrv.register(client);
+            if(registeredClient == null) {
+                redirect.addFlashAttribute("message", "Unable to register.");
+                return "redirect:/customer/register";
+            }
+            else {
+                clientSession.setClient(registeredClient);
+                redirect.addFlashAttribute("message", "Account successfully created.");
+                return "redirect:/customer";
+            }
         }
     }
 

@@ -68,8 +68,11 @@ public class CustomerSrvImpl implements ICustomerSrv {
     }
 
     @Override
-    public void register(Client client) throws IOException {
-        restClient.makeRequest("POST", "/client/", client);
+    public Client register(Client client) throws IOException {
+        Client newClient = 
+            restClient.makeRequest("POST", "/client/", client, Client.class);
+        client.setId(newClient.getId());
+        return newClient;
     }
 
     @Override
