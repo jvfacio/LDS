@@ -58,7 +58,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
             response.setHeader("Content-Disposition", "attachment; filename=\"LoanReport.pdf\"");
             Font headerFont = new Font(FontFamily.UNDEFINED, 15.0f, Font.UNDERLINE | Font.BOLD);
             Font contentFont = new Font(FontFamily.UNDEFINED, 10.0f);
-            DecimalFormat df = new DecimalFormat("#.00");
+            DecimalFormat df = new DecimalFormat("0.00");
 
             double total_interest = 0;
 
@@ -71,7 +71,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
             document.add(new Paragraph("Name: " + loan.getClient().getName() + " " + loan.getClient().getlastName(), contentFont));
             document.add(new Paragraph("Address: " + loan.getClient().getAddress(), contentFont));
             document.add(new Paragraph("Phone Number: " + loan.getClient().getPhoneNumber(), contentFont));
-            document.add(new Paragraph("Salary: $" + loan.getClient().getSalary(), contentFont));
+            document.add(new Paragraph("Salary: $" + df.format(loan.getClient().getSalary()), contentFont));
 
             //add loan information to pdf
             document.add(Chunk.NEWLINE);
@@ -79,7 +79,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
             document.add(new Paragraph("Type: " + loan.getLoanType(), contentFont));
             document.add(new Paragraph("Period: " + loan.getLoanPeriod() + " Years", contentFont));
             document.add(new Paragraph("Interest: " + loan.getInterest() + "%", contentFont));
-            document.add(new Paragraph("Principal: $" + loan.getAmount(), contentFont));
+            document.add(new Paragraph("Principal: $" + df.format(loan.getAmount()), contentFont));
             document.add(Chunk.NEWLINE);
 
             document.add(new Paragraph("Payment Summary", headerFont));
