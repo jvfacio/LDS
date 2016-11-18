@@ -58,6 +58,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
 
         Document document = new Document();
         Client client = customerSrv.getCustomer(loan.getClientId());
+        System.out.println(client.getSalary());
         ServletOutputStream os = null;
         try {
             response.setContentType("application/pdf");

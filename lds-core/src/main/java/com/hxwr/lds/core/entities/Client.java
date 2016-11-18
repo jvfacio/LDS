@@ -14,6 +14,7 @@ import java.util.Set;
 @JsonIdentityInfo(
     generator=ObjectIdGenerators.PropertyGenerator.class,
     property="id",
+    
     scope=Client.class)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Client implements java.io.Serializable{
