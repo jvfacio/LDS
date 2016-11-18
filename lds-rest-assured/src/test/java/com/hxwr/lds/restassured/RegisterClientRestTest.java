@@ -55,7 +55,7 @@ public class RegisterClientRestTest {
         System.out.println(jsonAsString);
         expect().statusCode(200)
                     .given().contentType("application/json").body(jsonAsString)
-                    .when().post("/lds-api/client");
+                    .when().post("/client");
 	}
 
     /**
@@ -70,6 +70,6 @@ public class RegisterClientRestTest {
         System.out.println(jsonAsString);
         expect().statusCode(500)
                     .given().contentType("application/json").body(jsonAsString)
-                    .when().post("/lds-api/client");
+                    .when().post("/client");
 	}
 }
