@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
  * @author Training
  */
 public class CreateLoanRestTest {
-    
+    //Create Loan Rest
     Response response;
     String jsonAsString;
     ObjectMapper mapper;
