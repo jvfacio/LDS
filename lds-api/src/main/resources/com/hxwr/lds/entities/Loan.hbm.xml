@@ -6,9 +6,12 @@
             <column name="loanid"/>
             <generator class="identity" />
         </id>
-        <many-to-one name="client" class="com.hxwr.lds.core.entities.Client" fetch="select">
+        <!--many-to-one  name="client" class="com.hxwr.lds.core.entities.Client" fetch="select">
             <column name="clientid" not-null="true"/>
-        </many-to-one>
+        </many-to-one-->
+        <property name="clientId" type="integer">
+            <column name="clientId"  not-null="false" />
+        </property>
 
         <property name="loanType" type="string">
             <column name="type" length="255" not-null="false" />

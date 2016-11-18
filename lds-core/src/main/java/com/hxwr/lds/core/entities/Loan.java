@@ -31,7 +31,7 @@ public class Loan implements java.io.Serializable{
    // @JsonIgnore
     private List<PaymentDetail> paymentDetail = new ArrayList<PaymentDetail>();
     
-    private Client client;
+    private int clientId;
     
     public Loan(String loanType, String loanPeriod, double interest, double amount){
         this.loanType=loanType;
@@ -93,12 +93,12 @@ public class Loan implements java.io.Serializable{
         this.paymentDetail = paymentDetail;
     }
 
-    public Client getClient() {
-        return client;
+    public int getClientId() {
+        return clientId;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     
