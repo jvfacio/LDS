@@ -103,7 +103,7 @@ public class LoanController {
             loan.setInterest(Double.parseDouble(interest));
 
             //Add the new Loan to the Client
-            loan.setClient(client);
+            loan.setClientId(client.getId());
 
             //Add the 
             loanSrv.addLoanDetails(loan);

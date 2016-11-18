@@ -5,7 +5,9 @@
  */
 package com.hxwr.lds.webapp.service;
 
+import com.hxwr.lds.core.entities.Client;
 import com.hxwr.lds.core.entities.Loan;
+import com.hxwr.lds.core.service.ICustomerSrv;
 import com.hxwr.lds.core.service.IViewReportSrv;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,7 @@ import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletOutputStream;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +40,10 @@ import org.springframework.stereotype.Service;
 @Qualifier("PDFView")
 public class PDFViewReportSrv implements IViewReportSrv {
 
+    @Autowired
+    ICustomerSrv customerSrv;
+    
+    
     /**
      * Generates a view. Implementations should use t he request/response
      * objects to forward/redirect users to the correct resource (HTML, PDF,
@@ -50,6 +57,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
     public void view(Loan loan, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Document document = new Document();
+        Client client = customerSrv.getCustomer(loan.getClientId());
         ServletOutputStream os = null;
         try {
             response.setContentType("application/pdf");
@@ -68,10 +76,10 @@ public class PDFViewReportSrv implements IViewReportSrv {
 
             //add client information pdf
             document.add(new Paragraph("Customer Details", headerFont));
-            document.add(new Paragraph("Name: " + loan.getClient().getName() + " " + loan.getClient().getlastName(), contentFont));
-            document.add(new Paragraph("Address: " + loan.getClient().getAddress(), contentFont));
-            document.add(new Paragraph("Phone Number: " + loan.getClient().getPhoneNumber(), contentFont));
-            document.add(new Paragraph("Salary: $" + df.format(loan.getClient().getSalary()), contentFont));
+            document.add(new Paragraph("Name: " + client.getName() + " " + client.getlastName(), contentFont));
+            document.add(new Paragraph("Address: " + client.getAddress(), contentFont));
+            document.add(new Paragraph("Phone Number: " + client.getPhoneNumber(), contentFont));
+            document.add(new Paragraph("Salary: $" + df.format(client.getSalary()), contentFont));
 
             //add loan information to pdf
             document.add(Chunk.NEWLINE);
