@@ -14,9 +14,9 @@ import javax.ws.rs.core.Response;
  */
 public interface IRestClient {
 
-    Response makeRequest(String method, String path) throws IOException;
+    void makeRequest(String method, String path) throws IOException;
     
-    Response makeRequest(String method, String path, Object param) throws IOException;
+    void makeRequest(String method, String path, Object param) throws IOException;
 
     <T> T makeRequest(String method, String path, Class<T> cls) throws IOException;
 
