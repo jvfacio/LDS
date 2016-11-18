@@ -50,12 +50,13 @@ public class JsonRestClient implements IRestClient, Serializable {
         //Configure the HTTP client
         ClientConfig clientConfig = new DefaultClientConfig();
         // Allow Jersey Client to support JSON.
-        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);   
+        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
         // Create jackson ObjectMapper
         ObjectMapper mapper = new ObjectMapper();
         // Create JacksonJaxbJsonProvider and add to client config
         JacksonJsonProvider jacksonProvider = new JacksonJsonProvider()
-            .configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+            .configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         jacksonProvider.setMapper(mapper);
         clientConfig.getSingletons().add(jacksonProvider); 
 
