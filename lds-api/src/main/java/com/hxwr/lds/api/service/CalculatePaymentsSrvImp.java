@@ -81,7 +81,6 @@ public class CalculatePaymentsSrvImp implements ICalculatePaymentsSrv {
             monthlyPayment.setNumOfPayment(i+1);
             monthlyPayment.setPrincipal(principal);
             monthlyPayment.setEndingBalance(endingBalance);
-            monthlyPayment.setPaymentAmount(paymentAmount);
 
             //add new monthlyPayment to payments list
             payments.add(monthlyPayment);
