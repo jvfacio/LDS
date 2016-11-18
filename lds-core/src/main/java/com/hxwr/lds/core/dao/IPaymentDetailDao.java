@@ -5,9 +5,7 @@
  */
 package com.hxwr.lds.core.dao;
 
-import com.hxwr.lds.core.entities.Loan;
 import com.hxwr.lds.core.entities.PaymentDetail;
-import java.util.List;
 
 /**
  *

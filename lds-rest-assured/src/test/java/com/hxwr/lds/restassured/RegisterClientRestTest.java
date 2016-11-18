@@ -8,16 +8,10 @@ package com.hxwr.lds.restassured;
 import com.hxwr.lds.core.entities.Client;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.expect;
-import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import io.restassured.response.Response;
-import static org.hamcrest.Matchers.equalTo;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.testng.annotations.Test;
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Random;
 
