@@ -26,9 +26,6 @@
         <property name="endingBalance" type="double">
             <column name="ENDING_BALANCE" not-null="true"  />
         </property>
-        <property name ="paymentAmount" type="double">
-            <column name ="PAYMENT_AMOUNT" not-null="true" />
-        </property>
         <property name="date" type="calendar">
             <column name="DATE" not-null="true"  />
         </property>
