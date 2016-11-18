@@ -83,7 +83,8 @@ public class PDFViewReportSrv implements IViewReportSrv {
             document.add(Chunk.NEWLINE);
 
             document.add(new Paragraph("Payment Summary", headerFont));
-            document.add(new Paragraph("Monthly Payment: $" + df.format(loan.getPaymentDetail().get(1).getPaymentAmount()), contentFont));
+            double paymentAmount = loan.getPaymentDetail().get(1).getInterest()+loan.getPaymentDetail().get(1).getPrincipal();
+            document.add(new Paragraph("Monthly Payment: $" + df.format(paymentAmount), contentFont));
             document.add(new Paragraph("Total of " + loan.getPaymentDetail().size() + " Payments", contentFont));
 
             //get the sum of interest paid
