@@ -3,14 +3,6 @@
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.hxwr.lds.core.entities.PaymentDetail" table="payment_Detail">
-        <!--composite-id >
-            <key-property name="numOfPayment" type="integer" >
-                <column name="NUM_OF_PEYMENT"/>
-            </key-property>
-            <key-many-to-one name="loanid">
-                <column name="LOAN_ID"/>
-            </key-many-to-one>
-        </composite-id-->
         
         <id name="paymentdetailID" type="java.lang.Integer">
             <column name="PAYMENTID" />
@@ -23,7 +15,7 @@
             <column name="NUM_OF_PAYMENT" not-null="true" />
         </property>
         <property name="beginningBalance" type="double">
-            <column name="BEGGINING_BALANCE" not-null="true" />
+            <column name="BEGINNING_BALANCE" not-null="true" />
         </property>
         <property name="interest" type="double">
             <column name="INTEREST" not-null="true"/>
@@ -32,7 +24,10 @@
             <column name="PRINCIPAL" not-null="true"  />
         </property>
         <property name="endingBalance" type="double">
-            <column name="ENDIND_BALANCE" not-null="true"  />
+            <column name="ENDING_BALANCE" not-null="true"  />
+        </property>
+        <property name ="paymentAmount" type="double">
+            <column name ="PAYMENT_AMOUNT" not-null="true" />
         </property>
         <property name="date" type="calendar">
             <column name="DATE" not-null="true"  />

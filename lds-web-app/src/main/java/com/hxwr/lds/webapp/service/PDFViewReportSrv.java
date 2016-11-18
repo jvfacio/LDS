@@ -13,10 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletOutputStream;
@@ -51,60 +56,75 @@ public class PDFViewReportSrv implements IViewReportSrv {
             os = response.getOutputStream();
             PdfWriter.getInstance(document, os);
             response.setHeader("Content-Disposition", "attachment; filename=\"LoanReport.pdf\"");
+            Font headerFont = new Font(FontFamily.UNDEFINED, 15.0f, Font.UNDERLINE | Font.BOLD);
+            Font contentFont = new Font(FontFamily.UNDEFINED, 10.0f);
+            DecimalFormat df = new DecimalFormat("#.00");
+
+            double total_interest = 0;
 
             document.open();
 
             document.addTitle("Loan Report");
 
             //add client information pdf
-            document.add(new Paragraph("Name: " + loan.getClient().getName() + " " + loan.getClient().getlastName()));
-            document.add(new Paragraph("Address: " + loan.getClient().getAddress()));
-            document.add(new Paragraph("Phone Number: " + loan.getClient().getPhoneNumber()));
-            document.add(new Paragraph("Salary: " + loan.getClient().getSalary()));
+            document.add(new Paragraph("Customer Details", headerFont));
+            document.add(new Paragraph("Name: " + loan.getClient().getName() + " " + loan.getClient().getlastName(), contentFont));
+            document.add(new Paragraph("Address: " + loan.getClient().getAddress(), contentFont));
+            document.add(new Paragraph("Phone Number: " + loan.getClient().getPhoneNumber(), contentFont));
+            document.add(new Paragraph("Salary: $" + loan.getClient().getSalary(), contentFont));
 
             //add loan information to pdf
             document.add(Chunk.NEWLINE);
-            document.add(new Paragraph("Loan Type: " + loan.getLoanType()));
-            document.add(new Paragraph("Loan Amount: " + loan.getAmount()));
-            document.add(new Paragraph("Loan Period: " + loan.getLoanPeriod()));
+            document.add(new Paragraph("Overview", headerFont));
+            document.add(new Paragraph("Type: " + loan.getLoanType(), contentFont));
+            document.add(new Paragraph("Period: " + loan.getLoanPeriod() + " Years", contentFont));
+            document.add(new Paragraph("Interest: " + loan.getInterest() + "%", contentFont));
+            document.add(new Paragraph("Principal: $" + loan.getAmount(), contentFont));
             document.add(Chunk.NEWLINE);
 
+            document.add(new Paragraph("Payment Summary", headerFont));
+            document.add(new Paragraph("Monthly Payment: $" + df.format(loan.getPaymentDetail().get(1).getPaymentAmount()), contentFont));
+            document.add(new Paragraph("Total of " + loan.getPaymentDetail().size() + " Payments", contentFont));
+
+            //get the sum of interest paid
+            for (int i = 0; i < loan.getPaymentDetail().size(); i++) {
+                total_interest += loan.getPaymentDetail().get(i).getInterest();
+            }
+            document.add(new Paragraph("Total Interest Paid: $" + df.format(total_interest), contentFont));
+
             //create table of payment objects
-            PdfPTable table = new PdfPTable(7);
+            PdfPTable table = new PdfPTable(6);
+            document.add(Chunk.NEWLINE);
 
             //add table headers
             table.setHeaderRows(1);
-            table.addCell("Payment #");
+            table.addCell("#");
             table.addCell("Date");
             table.addCell("Beginning Balance");
-            table.addCell("Payment Amount");
-            table.addCell("Interest");
-            table.addCell("Principal");
+            table.addCell("Interest Paid");
+            table.addCell("Principal Paid");
             table.addCell("Ending Balance");
 
             //add dates, payments, and balance to table
             for (int i = 0; i < loan.getPaymentDetail().size(); i++) {
 
                 //add payment number to table
-                table.addCell(String.valueOf(loan.getPaymentDetail().get(i).getNumOfPayment()));
+                table.addCell(new PdfPCell(new Phrase(String.valueOf(loan.getPaymentDetail().get(i).getNumOfPayment()), contentFont)));
 
                 //add date to table
                 table.addCell(loan.getPaymentDetail().get(i).getFormattedDate());
 
                 //add beginning balance to table
-                table.addCell("$" + String.valueOf(loan.getPaymentDetail().get(i).getBeginningBalance()));
-
-                //add payment amount to table
-                table.addCell("$" + String.valueOf(loan.getPaymentDetail().get(i).getPaymentAmount()));
+                table.addCell(new PdfPCell(new Phrase("$" + df.format(loan.getPaymentDetail().get(i).getBeginningBalance()), contentFont)));
 
                 //add interest to table
-                table.addCell("$" + String.valueOf(loan.getPaymentDetail().get(i).getInterest()));
+                table.addCell(new PdfPCell(new Phrase("$" + df.format(loan.getPaymentDetail().get(i).getInterest()), contentFont)));
 
                 //add principal to table
-                table.addCell("$" + String.valueOf(loan.getPaymentDetail().get(i).getPrincipal()));
+                table.addCell(new PdfPCell(new Phrase("$" + df.format(loan.getPaymentDetail().get(i).getPrincipal()), contentFont)));
 
                 //add ending balance to table
-                table.addCell("$" + String.valueOf(loan.getPaymentDetail().get(i).getEndingBalance()));
+                table.addCell(new PdfPCell(new Phrase("$" + df.format(loan.getPaymentDetail().get(i).getEndingBalance()), contentFont)));
 
             }
 
