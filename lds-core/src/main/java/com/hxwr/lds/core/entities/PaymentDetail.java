@@ -19,9 +19,9 @@ import java.util.Calendar;
  * @author joseph
  */
 @JsonIdentityInfo(
-    generator=ObjectIdGenerators.PropertyGenerator.class,
-    property="paymentdetailID",
-    scope=PaymentDetail.class)
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "paymentdetailID",
+        scope = PaymentDetail.class)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PaymentDetail implements Serializable {
 
@@ -32,7 +32,6 @@ public class PaymentDetail implements Serializable {
     private double principal;
     private double endingBalance;
     private Calendar date;
-    private double paymentAmount;
 
     private Loan loan;
 
@@ -142,10 +141,11 @@ public class PaymentDetail implements Serializable {
      * @return the date formatted as a String
      */
     public String getFormattedDate() {
-        if (date == null)
+        if (date == null) {
             return null;
-        else
+        } else {
             return new SimpleDateFormat("MM-dd-yyyy").format(date.getTime());
+        }
     }
 
     /**
@@ -166,7 +166,7 @@ public class PaymentDetail implements Serializable {
 
     /**
      *
-     * @param loanid the id of the loan associated with the payment
+     * @param loan
      */
     @JsonProperty
     public void setLoan(Loan loan) {
@@ -178,15 +178,7 @@ public class PaymentDetail implements Serializable {
      * @return paymentAmount
      */
     public double getPaymentAmount() {
-        return paymentAmount;
-    }
-
-    /**
-     *
-     * @param paymentAmount the payment amount for the month
-     */
-    public void setPaymentAmount(double paymentAmount) {
-        this.paymentAmount = paymentAmount;
+        return (interest + principal);
     }
 
 }
