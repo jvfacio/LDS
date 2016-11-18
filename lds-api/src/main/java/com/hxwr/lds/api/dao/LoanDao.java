@@ -56,7 +56,7 @@ public class LoanDao implements ILoanDao {
             System.out.println("\n\n Details Added \n");
 
         } catch (HibernateException e) {
-            if (transaction != null) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
             throw e;
