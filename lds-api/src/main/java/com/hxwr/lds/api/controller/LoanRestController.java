@@ -38,7 +38,7 @@ public class LoanRestController {
     @PostMapping("/client/{id}/createLoan")
     @Consumes("application/json")
     public Loan addLoan(@PathVariable("id") int id, @RequestBody Loan loan){
-        //loan.setClient(customerDao.getById(id));
+        loan.setClient(customerDao.getById(id));
         iLoanDao.addLoanDetails(loan);
         return loan;
     }
