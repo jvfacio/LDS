@@ -42,8 +42,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
 
     @Autowired
     ICustomerSrv customerSrv;
-    
-    
+
     /**
      * Generates a view. Implementations should use t he request/response
      * objects to forward/redirect users to the correct resource (HTML, PDF,
@@ -92,7 +91,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
             document.add(Chunk.NEWLINE);
 
             document.add(new Paragraph("Payment Summary", headerFont));
-            double paymentAmount = loan.getPaymentDetail().get(1).getInterest()+loan.getPaymentDetail().get(1).getPrincipal();
+            double paymentAmount = loan.getPaymentDetail().get(1).getInterest() + loan.getPaymentDetail().get(1).getPrincipal();
             document.add(new Paragraph("Monthly Payment: $" + df.format(paymentAmount), contentFont));
             document.add(new Paragraph("Total of " + loan.getPaymentDetail().size() + " Payments", contentFont));
 
@@ -122,7 +121,7 @@ public class PDFViewReportSrv implements IViewReportSrv {
                 table.addCell(new PdfPCell(new Phrase(String.valueOf(loan.getPaymentDetail().get(i).getNumOfPayment()), contentFont)));
 
                 //add date to table
-                table.addCell(loan.getPaymentDetail().get(i).getFormattedDate());
+                table.addCell(new PdfPCell(new Phrase(loan.getPaymentDetail().get(i).getFormattedDate(), contentFont)));
 
                 //add beginning balance to table
                 table.addCell(new PdfPCell(new Phrase("$" + df.format(loan.getPaymentDetail().get(i).getBeginningBalance()), contentFont)));
