@@ -46,7 +46,7 @@ public class LoanRestApiTest {
 			get("/client/getclientbynickname/ok").
 		then().body("id",equalTo(1))
                         .and().body("name", equalTo("ok"))
-                        .and().body("Address", equalTo("123 adfadf"))
+                        .and().body("address", equalTo("123 adfadf"))
                         .and().body("lastName",equalTo("fun"))
                         .statusCode(200);
 	}
