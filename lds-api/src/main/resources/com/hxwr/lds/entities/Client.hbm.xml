@@ -19,7 +19,7 @@
         <property name="phoneNumber" type="string">
             <column name="phoneNumber"/>
         </property>
-        <property name="salary" type="string">
+        <property name="salary" type="double">
             <column name="salary"/>
         </property>
         <property name="nickName" type="string" not-null="true" unique="true"/>
