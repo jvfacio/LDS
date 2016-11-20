@@ -44,7 +44,7 @@ public class RegisterClientRestTest {
 	public void testUnit1() throws JsonProcessingException {
         mapper = new ObjectMapper();    
         user = "RestUser"+new Random().nextInt(5000)+1;
-	Client client =new Client("Hector","844222112", "Colosio HXWR", "100000","Medina",user, "xxx");
+	Client client =new Client("Hector","844222112", "Colosio HXWR", 100000,"Medina",user, "xxx");
         jsonAsString = mapper.writeValueAsString(client); 
         System.out.println(jsonAsString);
         expect().statusCode(200)
@@ -59,7 +59,7 @@ public class RegisterClientRestTest {
     @Test
 	public void testUnit2() throws JsonProcessingException {
         mapper = new ObjectMapper();    
-	Client client =new Client("Hector","844222112", "Colosio HXWR", "100000","Medina",user, "xxx");
+	Client client =new Client("Hector","844222112", "Colosio HXWR", 100000,"Medina",user, "xxx");
         jsonAsString = mapper.writeValueAsString(client); 
         System.out.println(jsonAsString);
         expect().statusCode(500)
