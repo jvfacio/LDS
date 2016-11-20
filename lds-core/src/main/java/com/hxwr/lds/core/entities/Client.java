@@ -23,7 +23,7 @@ public class Client implements java.io.Serializable{
     private String name;
     private String phoneNumber;
     private String address;
-    private String salary;
+    private double salary;
     private String lastName;
     private String nickName;
     private String pass;
@@ -32,7 +32,7 @@ public class Client implements java.io.Serializable{
     
     public Client() { super(); }
     
-    public Client(String namec,String phoneNumberc, String addressc, String salaryc, String lastnamec, String nicknamec, String passc){
+    public Client(String namec,String phoneNumberc, String addressc, double salaryc, String lastnamec, String nicknamec, String passc){
         setName(namec);
         setPhoneNumber(phoneNumberc);
         setAddress(addressc);
@@ -137,14 +137,14 @@ public class Client implements java.io.Serializable{
     /**
      * @return the salary
      */
-    public String getSalary() {
+    public double getSalary() {
         return salary;
     }
 
     /**
      * @param salary the salary to set
      */
-    public void setSalary(String salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
