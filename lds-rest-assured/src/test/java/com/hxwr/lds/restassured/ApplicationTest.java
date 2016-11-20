@@ -24,7 +24,7 @@ public class ApplicationTest {
     public void Init(){
         
        //Set up new test data
-    	client = new Client("Hector","844222112", "Colosio HXWR", "100000","Medina", "h1", "xxx");
+    	client = new Client("Hector","844222112", "Colosio HXWR", 100000,"Medina", "h1", "xxx");
         System.out.println("hello form init");
     }
     @Test
