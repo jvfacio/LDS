@@ -28,6 +28,10 @@
                     <td>${client.getAddress()}</td>
                 </tr>
                 <tr>
+                    <td>Phone Number: </td>
+                    <td>${client.getPhoneNumber()}</td>
+                </tr>
+                <tr>
                     <td>Salary: </td>
                     <td>&#36;${client.getSalary()}</td>
                 </tr>
