@@ -217,3 +217,5 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
+lds-api/nb-configuration.xml
+lds-api/src/main/webapp/META-INF/context.xml
