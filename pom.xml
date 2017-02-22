@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
 
     <name>LDS</name>
-    <description>Loan Delivery System</description>
+    <description>Loan Delivery System2</description>
     
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
